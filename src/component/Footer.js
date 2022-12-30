@@ -1,6 +1,6 @@
 import React from "react";
 
-import CoffeeLogo from "../assets/logo/coffee.svg";
+import CoffeeLogo from "../assets/images/figilante-removebg.png";
 import Facebook from "../assets/logo/facebook.svg";
 import Instagram from "../assets/logo/instagram.svg";
 import Twiter from "../assets/logo/twiter.svg";
@@ -9,11 +9,10 @@ const Footer = () => {
   return (
     <div className="px-[10%] py-[60px] bg-[#e9d8a6] flex items-start">
       <section className="flex-1 w-[30%]">
-        <div className="flex gap-2 items-center">
-          <img src={CoffeeLogo} alt="logo-app" className="w-[35px] " />
-          <p className="text-[23px] font-bold text-[#774936]">Figilante</p>
-        </div>
-        <p className="mt-[20px] text-[] w-[30%] font-semibold">
+      <div className="flex">
+        <img src={CoffeeLogo} alt="logo-app" className="w-[200px]"/>
+      </div>
+        <p className="mt-[20px] text-[17px] w-[40%] font-semibold">
           Figalante is a store that sells some good meals, and especially
           coffee. We provide high quality beans
         </p>

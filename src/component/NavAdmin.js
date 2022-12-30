@@ -1,16 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import CoffeeLogo from "../assets/logo/coffee.svg";
+import CoffeeLogo from "../assets/images/figilante-removebg.png";
 import Search from "../assets/logo/search.svg";
 import Chat from "../assets/logo/chat.svg";
 
 const NavAdmin = (props) => {
   return (
     <div className="px-[10%] py-[20px] bg-[#e9d8a6] flex items-center">
-      <div className="flex gap-2 items-center">
-        <img src={CoffeeLogo} alt="logo-app" className="w-[35px] " />
-        <p className="text-[23px] font-bold text-[#774936]">Figilante</p>
+      <div className="flex">
+        <img src={CoffeeLogo} alt="logo-app" className="w-[150px]"/>
       </div>
       <div className="flex flex-1 gap-x-[15px] ml-[10%]">
         <Link>
