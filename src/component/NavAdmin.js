@@ -1,0 +1,82 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+import CoffeeLogo from "../assets/logo/coffee.svg";
+import Search from "../assets/logo/search.svg";
+import Chat from "../assets/logo/chat.svg";
+
+const NavAdmin = (props) => {
+  return (
+    <div className="px-[10%] py-[20px] bg-[#e9d8a6] flex items-center">
+      <div className="flex gap-2 items-center">
+        <img src={CoffeeLogo} alt="logo-app" className="w-[35px] " />
+        <p className="text-[23px] font-bold text-[#774936]">Figilante</p>
+      </div>
+      <div className="flex flex-1 gap-x-[15px] ml-[10%]">
+        <Link>
+          <p
+            className={`text-[18px] font-semibold hover:text-black ${
+              props.home ? "text-black" : "text-[#6c757d]"
+            }`}
+          >
+            Home
+          </p>
+        </Link>
+        <Link>
+          <p
+            className={`text-[18px] font-semibold hover:text-black ${
+              props.product ? "text-black" : "text-[#6c757d]"
+            }`}
+          >
+            Product
+          </p>
+        </Link>
+        <Link>
+          <p
+            className={`text-[18px] font-semibold hover:text-black ${
+              props.orders ? "text-black" : "text-[#6c757d]"
+            }`}
+          >
+            Orders
+          </p>
+        </Link>
+        <Link>
+          <p
+            className={`text-[18px] font-semibold hover:text-black ${
+              props.dashboard ? "text-black" : "text-[#6c757d]"
+            }`}
+          >
+            Dashboard
+          </p>
+        </Link>
+      </div>
+      <div className="flex items-center gap-x-[20px]">
+        <div className="relative group">
+          <img
+            src={Search}
+            alt=""
+            className="group-hover:absolute group-hover:w-[17px]
+             w-[20px] top-[25%] left-[5px]"
+          />
+          <input
+            className="hidden group-hover:block outline-none border-[2px] rounded-[10px] border-black placeholder:text-black pl-[25px] py-1 w-[130px]"
+            type="text"
+            placeholder="Search"
+          />
+        </div>
+        <div className="cursor-pointer">
+          <img src={Chat} alt="" />
+        </div>
+        <div className="border-[1px] border-[black] w-[40px] rounded-[50%] overflow-hidden cursor-pointer">
+          <img
+            src={require("../assets/images/avatar.png")}
+            alt=""
+            className="w-[100%]"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default NavAdmin;

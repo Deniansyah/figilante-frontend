@@ -28,7 +28,7 @@ const Footer = () => {
             <img src={Instagram} alt="" className="w-[100%]"/>
           </div>
         </div>
-        <p className="font-bold">©2023_Figalante</p>
+        <p className="font-bold">©2023_Figilante</p>
       </section>
       <section className="flex gap-[100px]">
         <div className="flex flex-col gap-3">
