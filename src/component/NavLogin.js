@@ -5,7 +5,7 @@ import CoffeeLogo from "../assets/images/figilante-removebg.png";
 
 const NavLogin = (props) => {
   return (
-    <div className="px-[10%] py-[20px] bg-[#e9d8a6] flex items-center">
+    <div className="px-[10%] py-[15px] bg-[#e9d8a6] flex items-center">
       <div className="flex flex-1">
         <img src={CoffeeLogo} alt="logo-app" className="w-[150px]"/>
       </div>

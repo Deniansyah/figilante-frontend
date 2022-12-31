@@ -7,7 +7,7 @@ import Chat from "../assets/logo/chat.svg";
 
 const NavAdmin = (props) => {
   return (
-    <div className="px-[10%] py-[20px] bg-[#e9d8a6] flex items-center">
+    <div className="px-[10%] py-[15px] bg-[#e9d8a6] flex items-center">
       <div className="flex">
         <img src={CoffeeLogo} alt="logo-app" className="w-[150px]"/>
       </div>
@@ -63,15 +63,30 @@ const NavAdmin = (props) => {
             placeholder="Search"
           />
         </div>
-        <div className="cursor-pointer">
-          <img src={Chat} alt="" />
-        </div>
-        <div className="border-[1px] border-[black] w-[40px] rounded-[50%] overflow-hidden cursor-pointer">
-          <img
-            src={require("../assets/images/avatar.png")}
-            alt=""
-            className="w-[100%]"
-          />
+        <Link to='/chat' className="cursor-pointer">
+          <img src={Chat} alt="" className="w-[25px]"/>
+        </Link>
+        <div className="dropdown dropdown-end border-[2px] border-black w-[40px] rounded-[50%]">
+          <label tabIndex={0}>
+            <img
+              src={require("../assets/images/avatar.png")}
+              alt=""
+              className="w-[100%] rounded-full cursor-pointer"
+            />
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <Link to='/profile'>
+                Profile
+              </Link>
+            </li>
+            <li>
+              <Link to='/login'>Logout</Link>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

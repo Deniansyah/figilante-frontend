@@ -7,28 +7,44 @@ import Chat from "../assets/logo/chat.svg";
 
 const NavCust = (props) => {
   return (
-    <div className="px-[10%] py-[20px] bg-[#e9d8a6] flex items-center">
+    <div className="px-[10%] py-[15px] bg-[#e9d8a6] flex items-center">
       <div className="flex">
-        <img src={CoffeeLogo} alt="logo-app" className="w-[150px]"/>
+        <img src={CoffeeLogo} alt="logo-app" className="w-[150px]" />
       </div>
       <div className="flex flex-1 gap-x-[15px] ml-[10%]">
-        <Link to='/'>
-          <p className={`text-[18px] font-semibold hover:text-black ${props.home?"text-black":"text-[#6c757d]"}`}>
+        <Link to="/">
+          <p
+            className={`text-[18px] font-semibold hover:text-black ${
+              props.home ? "text-black" : "text-[#6c757d]"
+            }`}
+          >
             Home
           </p>
         </Link>
-        <Link to='/product-customer'>
-          <p className={`text-[18px] font-semibold hover:text-black ${props.product?"text-black":"text-[#6c757d]"}`}>
+        <Link to="/product-customer">
+          <p
+            className={`text-[18px] font-semibold hover:text-black ${
+              props.product ? "text-black" : "text-[#6c757d]"
+            }`}
+          >
             Product
           </p>
         </Link>
         <Link>
-          <p className={`text-[18px] font-semibold hover:text-black ${props.cart?"text-black":"text-[#6c757d]"}`}>
+          <p
+            className={`text-[18px] font-semibold hover:text-black ${
+              props.cart ? "text-black" : "text-[#6c757d]"
+            }`}
+          >
             You Cart
           </p>
         </Link>
         <Link>
-          <p className={`text-[18px] font-semibold hover:text-black ${props.history?"text-black":"text-[#6c757d]"}`}>
+          <p
+            className={`text-[18px] font-semibold hover:text-black ${
+              props.history ? "text-black" : "text-[#6c757d]"
+            }`}
+          >
             History
           </p>
         </Link>
@@ -47,15 +63,30 @@ const NavCust = (props) => {
             placeholder="Search"
           />
         </div>
-        <div className="cursor-pointer">
-          <img src={Chat} alt="" />
-        </div>
-        <div className="border-[1px] border-[black] w-[40px] rounded-[50%] overflow-hidden cursor-pointer">
-          <img
-            src={require("../assets/images/avatar.png")}
-            alt=""
-            className="w-[100%]"
-          />
+        <Link to='/chat' className="cursor-pointer">
+          <img src={Chat} alt="" className="w-[25px]"/>
+        </Link>
+        <div className="dropdown dropdown-end border-[2px] border-black w-[40px] rounded-[50%]">
+          <label tabIndex={0}>
+            <img
+              src={require("../assets/images/avatar.png")}
+              alt=""
+              className="w-[100%] rounded-full cursor-pointer"
+            />
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <Link to='/profile'>
+                Profile
+              </Link>
+            </li>
+            <li>
+              <Link to='/login'>Logout</Link>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

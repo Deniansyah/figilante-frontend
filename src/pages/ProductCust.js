@@ -10,7 +10,7 @@ const ProductCust = () => {
     <>
       <NavCust product='true'/>
       <main className="flex bg-[#fbf8cc]">
-        <section className="w-[30%] border-r-[2px] border-[#e9d8a6] py-[25px] flex flex-col items-center px-[1%]">
+        <section className="w-[30%] border-r-[2px] border-[#e9d8a6] py-[35px] flex flex-col items-center px-[1%]">
           <div className="flex flex-col items-center justify-center text-center mx-auto mb-[20px]">
             <h1 className="text-[#6A4029] font-bold text-[25px]">
               Promo Today
@@ -31,7 +31,7 @@ const ProductCust = () => {
           </ul>
           </div>
         </section>
-        <section className="w-[70%] py-[25px] px-[40px]">
+        <section className="w-[70%] py-[45px] px-[40px]">
           <nav className="grid grid-cols-5">
             <p className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer border-b-[3px] border-[#e9d8a6] shadow-md">Favorite Product</p>
             <p className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer">Coffee</p>
