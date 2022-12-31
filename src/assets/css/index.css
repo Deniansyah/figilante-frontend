@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.btn {
+    text-transform: none;
+    width: 100%;
+}
+
+.input {
+    width: 100%;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
