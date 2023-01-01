@@ -4,7 +4,13 @@
 
 .btnCustom { /* class nya tolong dibedakan sama punyanya tailwind pingkan atau bisa pake "normal-case dan w-full" dari tailwind */
     text-transform: none;
-    width: 100%;
+}
+
+.btn-signup {
+  width: 400px;
+  height: 65px;
+  left: 817px;
+  top: 721px;
 }
 
 .input {
@@ -15,4 +21,16 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+input[type="time"]:before {
+  content: 'Enter the time you’ll arrived';
+  color: black;
+  position: absolute;
+  background: #fff;
+}
+
+input[type="time"]:focus:before {
+  width: 0;
+  content: '';
 }

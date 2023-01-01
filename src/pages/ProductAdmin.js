@@ -1,14 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Coupons from "../component/Coupons";
 import Footer from "../component/Footer";
-import NavCust from "../component/NavCust";
+import NavAdmin from "../component/NavAdmin";
+
+import Edit from "../assets/logo/edit.svg";
+import { Link } from "react-router-dom";
 
 // bg-[#fbf8cc]
-const ProductCust = () => {
+const ProductAdmin = () => {
   return (
     <>
-      <NavCust product="true" />
+      <NavAdmin product="true" />
       <main className="flex bg-[#fbf8cc]">
         <section className="w-[30%] border-r-[2px] border-[#e9d8a6] py-[35px] flex flex-col items-center px-[1%]">
           <div className="flex flex-col items-center justify-center text-center mx-auto mb-[20px]">
@@ -41,6 +43,14 @@ const ProductCust = () => {
               <li>4. Harus membuat kartu anggota untuk menerapkan kupon</li>
             </ul>
           </div>
+          <div className="w-full text-start mt-[20px]">
+            <p className="text-[#6A4029] underline cursor-pointer hover:font-bold font-semibold text-[20px]">
+              Edit Promo
+            </p>
+            <p className="text-[#6A4029] underline cursor-pointer hover:font-bold font-semibold text-[20px]">
+              Add new promo
+            </p>
+          </div>
         </section>
         <section className="w-[70%] py-[45px] px-[40px]">
           <nav className="grid grid-cols-5">
@@ -61,8 +71,8 @@ const ProductCust = () => {
             </p>
           </nav>
           <main className="grid grid-cols-4 gap-5 mt-[80px]">
-            <Link to="/product-details">
-              <div className="bg-white p-3 rounded-[30px] mb-[20px]">
+            <Link to="/product-details-admin">
+              <div className="bg-white p-3 rounded-[30px] mb-[20px] relative">
                 <img
                   src={require("./../assets/images/food.png")}
                   alt=""
@@ -74,24 +84,33 @@ const ProductCust = () => {
                 <span className="font-bold block text-center text-[18px] mt-[5px]">
                   IDR.15.000
                 </span>
+                <div className="absolute bg-[#6A4029] p-2 rounded-full right-0 bottom-0 cursor-pointer">
+                  <img src={Edit} alt="" />
+                </div>
               </div>
             </Link>
-            <Link to="/product-details">
-              <div className="bg-white p-3 rounded-[30px] mb-[20px]">
+            <Link to="/product-details-admin">
+              <div className="bg-white p-3 rounded-[30px] mb-[20px] relative">
                 <img
                   src={require("./../assets/images/drink.png")}
                   alt=""
                   className="w-[80%] mx-auto rounded-full mt-[-40px]"
                 />
                 <h3 className="text-center font-semibold text-[17px]">
-                  Kopi Warkop Bu Siti
+                  Coffee Bu Siti
                 </h3>
                 <span className="font-bold block text-center text-[18px] mt-[5px]">
-                  IDR.3.000
+                  IDR.1.000
                 </span>
+                <div className="absolute bg-[#6A4029] p-2 rounded-full right-0 bottom-0 cursor-pointer">
+                  <img src={Edit} alt="" />
+                </div>
               </div>
             </Link>
           </main>
+          <button className="mt-[30px] btn-block btn bg-warning-content">
+            Apply New Product
+          </button>
         </section>
       </main>
       <Footer />
@@ -99,4 +118,4 @@ const ProductCust = () => {
   );
 };
 
-export default ProductCust;
+export default ProductAdmin;
