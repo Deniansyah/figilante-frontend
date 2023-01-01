@@ -5,6 +5,8 @@ import Login from "./pages/Login";
 import SignUp from "./pages/signUp";
 import ProductCust from "./pages/ProductCust";
 import Profile from "./pages/Profile";
+import ProductAdmin from "./pages/ProductAdmin";
+import DetailsCust from "./pages/DetailsCust";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/sign-up" element={<SignUp/>}></Route>
         <Route path="/product-customer" element={<ProductCust/>}></Route>
+        <Route path="/product-details" element={<DetailsCust/>}></Route>
+        <Route path="/product-admin" element={<ProductAdmin/>}></Route>
         <Route path="/profile" element={<Profile/>}></Route>
       </Routes>
     </BrowserRouter>
