@@ -2,10 +2,7 @@ import React from "react";
 import Footer from "../component/Footer";
 import NavAdmin from "../component/NavAdmin";
 
-import Arrow from "../assets/logo/arrow-checkout.svg";
-import { Link } from "react-router-dom";
-
-const DetailsProductAdmin = () => {
+const EditProduct = () => {
   let [count, setCount] = React.useState(1);
   let increment = () => {
     if (count === 20) {
@@ -18,6 +15,11 @@ const DetailsProductAdmin = () => {
       return false;
     }
     return setCount(count - 1);
+  };
+  const save = () => {
+    const btn = document.querySelector(".save");
+    btn.textContent = "Saved";
+    btn.disabled = true;
   };
   return (
     <>
@@ -34,24 +36,26 @@ const DetailsProductAdmin = () => {
               alt=""
               className="rounded-full w-[60%] mx-auto mb-[30px]"
             />
-            <h1 className="font-extrabold text-[35px] mb-[10px]">
-              Good Day Coppucino
-            </h1>
-            <p className="font-semibold text-[20px] mb-[20px]">IDR 3.000</p>
-            <button className="mb-[10px] btn bg-warning-content w-[80%] text-[18px]">
-              Add to Cart
-            </button>
-            <Link to="/edit-product">
-              <button className="mb-[10px] btn btn-warning w-[80%] text-[18px]">
-                Edit Product
-              </button>
-            </Link>
+            <input
+              className="w-full font-extrabold bg-transparent outline-none text-center text-[35px] mb-[10px]"
+              defaultValue="Good Day Coppucino"
+            />
+            <input
+              className="font-semibold text-center text-[20px] mb-[20px] outline-none bg-transparent"
+              defaultValue="IDR 3.000"
+            />
             <label
               htmlFor="confirmDelete"
-              className="btn btn-error w-[80%] text-[18px]"
+              className="mb-[10px] btn btn-error w-[80%] text-[18px]"
             >
               Delete Menu
             </label>
+            <button
+              className="save btn btn-accent w-[80%] text-[18px]"
+              onClick={save}
+            >
+              Save Change
+            </button>
           </section>
           <section className="w-[50%]">
             <div className="bg-white p-[50px] rounded-[8px] text-[#6A4029]">
@@ -60,12 +64,14 @@ const DetailsProductAdmin = () => {
                 <span className="font-bold">Monday to friday</span> at{" "}
                 <span className="font-bold">1 - 7 pm</span>
               </p>
-              <span className="text-[20px]">
-                Cold brewing is a method of making Good Day Coffee that combines
-                ground coffee and cold water and uses time instead of heat to
-                extract the flavors. It is brewed in small batches and soaked
-                for 48 hours.
-              </span>
+              <textarea
+                rows="4"
+                className="text-[20px] w-full textarea textarea-ghost"
+                defaultValue="Cold brewing is a method of making Good Day Coffee that combines
+              ground coffee and cold water and uses time instead of heat to
+              extract the flavors. It is brewed in small batches and soaked
+              for 48 hours."
+              ></textarea>
               <div className="text-center">
                 <h5 className="font-bold text-center text-black text-[22px] mt-[40px] mb-[10px]">
                   Choose all size
@@ -84,7 +90,7 @@ const DetailsProductAdmin = () => {
               </div>
               <div className="flex-1 text-center">
                 <p className="font-bold text-center text-black text-[20px] mt-[40px] mb-[10px]">
-                  Count :
+                  Count Product :
                 </p>
                 <div className="flex justify-center items-center gap-4">
                   <button
@@ -132,28 +138,6 @@ const DetailsProductAdmin = () => {
             </div>
           </section>
         </div>
-        <div className="text-center mt-[50px] relative mb-[-125px]">
-          <div className="bg-white bg-white p-5 rounded-[80px] flex items-center">
-            <div className="">
-              <img
-                src={require("../assets/images/drink.png")}
-                alt=""
-                className="rounded-full"
-              />
-            </div>
-            <div className="text-[18px] font-semibold text-start ml-[20px] flex-1">
-              <h5 className="text-[25px] font-bold">Good Day Coppucino</h5>
-              <p>2x (Reguler)</p>
-              <p>1x (Large)</p>
-            </div>
-            <div className="flex items-center gap-5">
-              <p className="text-[24px] font-bold">Checkout</p>
-              <div className="w-[50px] h-[50px] border flex items-center justify-center rounded-full bg-warning p-3 cursor-pointer">
-                <img alt="" src={Arrow} />
-              </div>
-            </div>
-          </div>
-        </div>
       </main>
       <Footer />
       <input type="checkbox" id="confirmDelete" className="modal-toggle" />
@@ -170,7 +154,7 @@ const DetailsProductAdmin = () => {
           </h3>
           <div className="modal-action">
             <label htmlFor="my-modal-6" className="btn btn-error">
-            Confirm
+              Confirm
             </label>
           </div>
         </div>
@@ -179,4 +163,4 @@ const DetailsProductAdmin = () => {
   );
 };
 
-export default DetailsProductAdmin;
+export default EditProduct;
