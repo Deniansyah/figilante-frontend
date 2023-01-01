@@ -6,6 +6,13 @@
     text-transform: none;
 }
 
+.btn-signup {
+  width: 400px;
+  height: 65px;
+  left: 817px;
+  top: 721px;
+}
+
 .input {
     width: 100%;
 }
