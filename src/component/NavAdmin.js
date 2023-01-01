@@ -21,7 +21,7 @@ const NavAdmin = (props) => {
             Home
           </p>
         </Link>
-        <Link>
+        <Link to='/product-admin'>
           <p
             className={`text-[18px] font-semibold hover:text-black ${
               props.product ? "text-black" : "text-[#6c757d]"

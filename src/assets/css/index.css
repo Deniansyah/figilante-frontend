@@ -15,3 +15,15 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+input[type="time"]:before {
+  content: 'Enter the time you’ll arrived';
+  color: black;
+  position: absolute;
+  background: #fff;
+}
+
+input[type="time"]:focus:before {
+  width: 0;
+  content: '';
+}

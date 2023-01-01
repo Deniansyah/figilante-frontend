@@ -1,10 +1,10 @@
 import React from "react";
 import Footer from "../component/Footer";
-import NavCust from "../component/NavCust";
+import NavAdmin from "../component/NavAdmin";
 
 import Arrow from "../assets/logo/arrow-checkout.svg";
 
-const DetailsCust = () => {
+const DetailsProductAdmin = () => {
   let [count, setCount] = React.useState(1);
   let increment = () => {
     if (count === 20) {
@@ -20,7 +20,7 @@ const DetailsCust = () => {
   };
   return (
     <>
-      <NavCust product="true" />
+      <NavAdmin product="true" />
       <main className="py-[50px] px-[10%] bg-[#fbf8cc]">
         <div className="flex text-[#6A4029] font-semibold gap-1 text-[18px]">
           <p className="text-[#aeaeae]">Favorite Product</p>
@@ -40,8 +40,11 @@ const DetailsCust = () => {
             <button className="mb-[10px] btn bg-warning-content w-[80%] text-[18px]">
               Add to Cart
             </button>
-            <button className="btn btn-warning w-[80%] text-[18px]">
-              Ask a Staff
+            <button className="mb-[10px] btn btn-warning w-[80%] text-[18px]">
+              Edit Product
+            </button>
+            <button className="btn btn-error w-[80%] text-[18px]">
+              Delete Menu
             </button>
           </section>
           <section className="w-[50%]">
@@ -142,4 +145,4 @@ const DetailsCust = () => {
   );
 };
 
-export default DetailsCust;
+export default DetailsProductAdmin;
