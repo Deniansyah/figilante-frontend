@@ -1,17 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import NavLogo from '../assets/logo/coffee.svg'
-import Facebook from '../assets/logo/facebook.svg'
-import Twitter from '../assets/logo/twiter.svg'
-import Instagram from '../assets/logo/instagram.svg'
 import Star from '../assets/logo/star.svg'
 import { User, Heart, MapPin, Check, ArrowLeft, ArrowRight } from "react-feather"; 
+import Footer from '../component/Footer'
 
 const Landing = () => {
   return (
     <div>
       {/* Navbar Landing */}
-      <nav className="navbar bg-base-100 py-5 px-20">
+      <nav className="navbar bg-base-100 py-5 md:px-20">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} className="flex-none lg:hidden">
@@ -36,6 +34,15 @@ const Landing = () => {
               <li>
                 <Link to="/">History</Link>
               </li>
+              <div className="flex flex-col w-full border-opacity-50 my-3 md:hidden lg:hidden">
+                <div className="grid card place-items-center">
+                  <Link to='/login' className='btn btn-warning w-full capitalize btn-sm rounded-full' >Login</Link>
+                </div>
+                <div className="divider">OR</div>
+                <div className="grid card place-items-center">
+                  <Link to='/sign-up' className='btn btn-warning w-full capitalize btn-sm rounded-full' >Sign Up</Link>
+                </div>
+              </div>
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl gap-2">
@@ -61,17 +68,17 @@ const Landing = () => {
             </li>
           </ul>
         </div>
-        <div className="navbar-end gap-2">
-          <Link to="/" className="btn btn-ghost rounded-full font-bold capitalize">
+        <div className="navbar-end gap-2 hidden md:flex lg:flex">
+          <Link to="/login" className="btn btn-ghost rounded-full font-bold capitalize">
             Login
           </Link>
-          <Link to="/" className="btn btn-warning rounded-full w-32 capitalize">
+          <Link to="/sign-up" className="btn btn-warning rounded-full w-32 capitalize">
             Sign Up
           </Link>
         </div>
       </nav>
       {/* Header Landing */}
-      <header className="hero h-[80vh] justify-start px-20  bg-[url('../images/bg-landing.png')]">
+      <header className="hero h-[80vh] justify-start md:px-20  bg-[url('../images/bg-landing.png')]">
         <div className="hero-content text-left text-neutral-content">
           <div className="max-w-md">
             <h1 className="mb-5 text-5xl font-bold">Start Your Day with Coffee and Good Meals</h1>
@@ -81,8 +88,8 @@ const Landing = () => {
         </div>
       </header>
       {/* Info Panel */}
-      <div className="flex justify-center mt-[-60px]">
-        <div className="flex bg-white w-4/5 rounded-lg py-8 px-20 gap-20 justify-between shadow-2xl">
+      <div className="flex justify-center mt-[-60px] md:px-20 ">
+        <div className="flex  bg-white md:w-4/5 lg:w-4/5 w-[95%] rounded-lg py-8 md:px-10 md:gap-10 lg:px-20 lg:gap-20 px-5 justify-between shadow-2xl">
           <div className="flex items-center gap-3">
             <div className="bg-[#FFBA33] rounded-full p-3">
               <User className="text-2xl text-[#6A4029]" />
@@ -113,11 +120,11 @@ const Landing = () => {
         </div>
       </div>
       {/* Superiority */}
-      <section className="flex mt-20 px-20">
-        <div className="basis-1/2">
+      <section className="flex flex-col md:flex-row lg:flex-row mt-20 px-5   md:px-20">
+        <div className="basis-0 md:basis-1/2 lg:basis-1/2">
           <img src={require("../assets/images/team-work-landing.png")} alt="team-work" />
         </div>
-        <div className="basis-1/2 pl-10 flex flex-col gap-5">
+        <div className="basis-0 md:basis-1/2 lg:basis-1/2 pl-10 flex flex-col gap-5">
           <h1 className="text-4xl font-bold">We Provide Good Coffee and Healthy Meals</h1>
           <p className="text-sm text-gray-500">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
           <div className="flex flex-col gap-2">
@@ -149,10 +156,10 @@ const Landing = () => {
         </div>
       </section>
       {/* Favorite */}
-      <section className="px-20 flex flex-col items-center justify-center mt-20">
-        <h1 className="text-4xl font-bold">Here is People’s Favorite</h1>
-        <p className="text-gray-500 text-sm">Let’s choose and have a bit taste of poeple’s favorite. It might be yours too!</p>
-        <div className="flex gap-3 mt-40">
+      <section className="px-5 md:px-20 flex flex-col items-center justify-center mt-20">
+        <h1 className="text-4xl font-bold text-center md:text-left lg:text-left mb-5">Here is People’s Favorite</h1>
+        <p className="text-gray-500 text-sm text-center md:text-left lg:text-left">Let’s choose and have a bit taste of poeple’s favorite. It might be yours too!</p>
+        <div className="flex flex-col md:flex-row lg:flex-row gap-24 md:gap-3 lg:gap-3 mt-24 md:mt-32 lg:mt-32">
           <div className="flex flex-col justify-center items-center px-10 rounded-md border relative">
             <div className="absolute top-[-64px]">
               <img className="rounded-full drop-shadow-2xl" src={require("../assets/images/food-landing-1.png")} alt="es-krim" />
@@ -258,138 +265,111 @@ const Landing = () => {
         </div>
       </section>
       {/* Map */}
-      <section>
-        <h1>Visit Our Store in the Spot on the Map Below</h1>
-        <p>See our store in every city on the spot and spen your good day there. See you soon!</p>
+      <section className="px-5 md:px-20 flex flex-col justify-center items-center mt-20">
+        <h1 className="text-3xl font-bold md:w-[350px] text-center">Visit Our Store in the Spot on the Map Below</h1>
+        <p className="mt-10 mb-20 text-gray-500 md:w-[500px] text-center">See our store in every city on the spot and spen your good day there. See you soon!</p>
         <div>
           <img src={require("../assets/images/Global.png")} alt="map" />
         </div>
       </section>
       {/* Our Partner */}
-      <section>
-        <img src={require("../assets/images/netflix.png")} alt="netflix" />
-        <img src={require("../assets/images/reddit.png")} alt="reddit" />
-        <img src={require("../assets/images/amazon.png")} alt="amazon" />
-        <img src={require("../assets/images/discord.png")} alt="discord" />
-        <img src={require("../assets/images/spotify.png")} alt="spotify" />
+      <section className="px-5 md:px-20 mt-20 flex flex-col justify-center items-center">
+        <h1 className="text-3xl font-bold md:w-[350px] text-center">Our Partner</h1>
+        <div className="flex flex-wrap justify-center mt-10 gap-10">
+          <img className="w-[170px] h-[40px]" src={require("../assets/images/netflix.png")} alt="netflix" />
+          <img className="w-[170px] h-[40px]" src={require("../assets/images/reddit.png")} alt="reddit" />
+          <img className="w-[170px] h-[40px]" src={require("../assets/images/amazon.png")} alt="amazon" />
+          <img className="w-[170px] h-[40px]" src={require("../assets/images/discord.png")} alt="discord" />
+          <img className="w-[170px] h-[40px]" src={require("../assets/images/spotify.png")} alt="spotify" />
+        </div>
       </section>
       {/* Testimoni */}
-      <section>
-        <h1>Loved by Thousands of Happy Customer</h1>
-        <p>These are the stories of our customers who have visited us with great pleasure.</p>
-        <div>
-          <div>
-            <div>
+      <section className="px-5 md:px-20 mt-20">
+        <div className="text-center w-full flex flex-col justify-center items-center">
+          <h1 className="text-3xl font-bold md:w-[350px] lg:w-[350px]">Loved by Thousands of Happy Customer</h1>
+          <p className="mt-5 mb-10 text-gray-500 md:w-[500px] lg:w-[500px] text-center">These are the stories of our customers who have visited us with great pleasure.</p>
+        </div>
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="border border-[#6A4029] rounded-lg p-7 w-96 md:w-full">
+            <div className="flex items-center">
               <img src={require("../assets/images/user-testi-1.png")} alt="user1" />
-              <div>
-                <h4>Viezh Robert</h4>
-                <p>Warsaw, Poland</p>
+              <div className="grow ml-5">
+                <h4 className="font-bold">Viezh Robert</h4>
+                <p className="text-gray-500 text-sm">Warsaw, Poland</p>
               </div>
-              <div>
-                <p>4.5</p>
+              <div className="flex gap-2">
+                <p className="font-bold">4.5</p>
                 <img src={Star} alt="star" />
               </div>
             </div>
-            <div>
+            <div className="mt-5 text-sm">
               <p>“Wow... I am very happy to spend my whole day here. the Wi-fi is good, and the coffee and meals tho. I like it here!! Very recommended!</p>
             </div>
           </div>
-          <div>
-            <div>
-              <img src={require("../assets/images/user-testi-2.png")} alt="user2" />
-              <div>
-                <h4>Viezh Robert</h4>
-                <p>Warsaw, Poland</p>
+          <div className="border rounded-lg p-7 w-96 md:w-full">
+            <div className="flex items-center">
+              <img src={require("../assets/images/user-testi-2.png")} alt="user1" />
+              <div className="grow ml-5">
+                <h4 className="font-bold">Yessica Christy</h4>
+                <p className="text-gray-500 text-sm">Shanxi, China</p>
               </div>
-              <div>
-                <p>4.5</p>
+              <div className="flex gap-2">
+                <p className="font-bold">4.5</p>
                 <img src={Star} alt="star" />
               </div>
             </div>
-            <div>
-              <p>“Wow... I am very happy to spend my whole day here. the Wi-fi is good, and the coffee and meals tho. I like it here!! Very recommended!</p>
+            <div className="mt-5 text-sm">
+              <p>“I like it because I like to travel far and still can make my day better just by drinking their Hazelnut Latte</p>
             </div>
           </div>
-          <div>
-            <div>
-              <img src={require("../assets/images/user-testi-3.png")} alt="user3" />
-              <div>
-                <h4>Viezh Robert</h4>
-                <p>Warsaw, Poland</p>
+          <div className="border rounded-lg p-7 w-96 md:w-full">
+            <div className="flex items-center">
+              <img src={require("../assets/images/user-testi-3.png")} alt="user1" />
+              <div className="grow ml-5">
+                <h4 className="font-bold">Kim Young Jou</h4>
+                <p className="text-gray-500 text-sm">Seoul, South Korea</p>
               </div>
-              <div>
-                <p>4.5</p>
+              <div className="flex gap-2">
+                <p className="font-bold">4.5</p>
                 <img src={Star} alt="star" />
               </div>
             </div>
-            <div>
-              <p>“Wow... I am very happy to spend my whole day here. the Wi-fi is good, and the coffee and meals tho. I like it here!! Very recommended!</p>
+            <div className="mt-5 text-sm">
+              <p>“This is very unusual for my taste, I haven’t liked coffee before but their coffee is the best! and yup, you have to order the chicken wings, the best in town!</p>
             </div>
           </div>
         </div>
-        <div>
-          <div>
-            <div />
-            <div />
-            <div />
-            <div />
+        <div className="flex flex-col md:flex-row lg:flex-row gap-5 mt-10 items-center">
+          <div className="grow flex gap-2">
+            <div className="w-8 h-3 bg-[#6A4029] rounded-full" />
+            <div className="w-3 h-3 bg-gray-300 rounded-full" />
+            <div className="w-3 h-3 bg-gray-300 rounded-full" />
+            <div className="w-3 h-3 bg-gray-300 rounded-full" />
           </div>
-          <div>
-            <div>
+          <div className="flex gap-5">
+            <div className="p-3 border-[#6A4029] border-2 text-[#6A4029] rounded-full">
               <ArrowLeft />
             </div>
-            <div>
+            <div className="p-3 bg-[#6A4029] border-[#6A4029] border-2 text-white rounded-full">
               <ArrowRight />
             </div>
           </div>
         </div>
       </section>
       {/* Promo */}
-      <section>
-        <div>
-          <div>
-            <h1>Check our promo today!</h1>
+      <section className="md:px-20 px-5 my-20">
+        <div className="rounded-md shadow-xl px-16 py-14 flex flex-col md:flex-row lg:flex-row items-center gap-5">
+          <div className="grow text-center md:text-left lg:text-left">
+            <h1 className="text-3xl font-bold w-60 mb-2">Check our promo today!</h1>
             <p>Let's see the deals and pick yours!</p>
           </div>
           <div>
-            <button>See Promo</button>
+            <button className="btn btn-warning capitalize shaodow-xl w-44">See Promo</button>
           </div>
         </div>
       </section>
       {/* Footer Landing */}
-      <footer>
-        <div>
-          <div>
-            <img src={NavLogo} alt="logo" />
-            <h1>Coffee Shop</h1>
-          </div>
-          <p>Coffee Shop is a store that sells some good meals, and especially coffee. We provide high quality beans</p>
-          <div>
-            <img src={Facebook} alt="facebook" />
-            <img src={Twitter} alt="twitter" />
-            <img src={Instagram} alt="instagram" />
-          </div>
-          <p>©2020CoffeeStore</p>
-        </div>
-        <div>
-          <div>
-            <h4>Product</h4>
-            <p>Download</p>
-            <p>Pricing</p>
-            <p>Locations</p>
-            <p>Countries</p>
-            <p>Blog</p>
-          </div>
-          <div>
-            <h4>Engage</h4>
-            <p>Coffe Shop ?</p>
-            <p>FAQ</p>
-            <p>About Us</p>
-            <p>Privacy Policy</p>
-            <p>Terms of Service</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
