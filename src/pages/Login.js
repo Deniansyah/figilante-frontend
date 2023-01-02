@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import background from "../assets/images/bg-login.png";
 import logo from "../assets/images/logo-figilante-removebg.png";
 import google from "../assets/images/google-logo.png";
@@ -108,11 +109,14 @@ const Login = () => {
                       </label>
                     )}
                   </div>
-                  <div className="w-[25rem] mt-7">
+                  <div className='mb-8 text-end mt-3'>
+                    <Link href='/forgot-password' className='font-bold text-[#6A4029] underline pr-60'>Forgot password?</Link>
+                  </div>
+                  <div className="w-[25rem] mt-5">
                     <button
                       type="submit"
                       disabled={!dirty || !isLoading}
-                      className="btn btn-signup bg-[#FFBA33] text-[#6A4029] font-bold text-lg rounded-2xl hover:bg-[#F49D1A]"
+                      className="btnCustom btn-signup bg-[#FFBA33] text-[#6A4029] font-bold text-lg rounded-2xl hover:bg-[#F49D1A]"
                     >
                       Login
                     </button>
@@ -121,9 +125,9 @@ const Login = () => {
                     <button
                       type="submit"
                       disabled={!dirty || !isLoading}
-                      className="btn btn-signup bg-[#FFFFFF] mt-5 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5"
+                      className="btnCustom btn-signup bg-[#FFFFFF] mt-10 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5"
                     >
-                      <img src={google} alt="" />
+                      <img src={google} alt="" className="pl-20"/>
                       <p>Login with Google</p>
                     </button>
                   </div>

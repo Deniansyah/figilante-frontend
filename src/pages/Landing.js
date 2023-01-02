@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import NavLogo from '../assets/logo/coffee.svg'
+import Logo from '../assets/images/logo-figilante-removebg.png'
 import Star from '../assets/logo/star.svg'
 import { User, Heart, MapPin, Check, ArrowLeft, ArrowRight } from "react-feather"; 
 import Footer from '../component/Footer'
@@ -46,8 +46,8 @@ const Landing = () => {
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl gap-2">
-            <img src={NavLogo} alt="logo" />
-            <p className="font-bold">Coffe Shop</p>
+            <img src={Logo} alt="logo" className='w-10 h-10' />
+            <p className="font-bold">Figilante</p>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
