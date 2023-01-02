@@ -9,6 +9,8 @@ import ProductAdmin from "./pages/ProductAdmin";
 import DetailsCust from "./pages/DetailsCust";
 import DetailsProductAdmin from "./pages/DetailsProductAdmin";
 import EditProduct from "./pages/EditProduct";
+import CartPayment from "./pages/CartPayment";
+import History from "./pages/History";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/sign-up" element={<SignUp/>}></Route>
         <Route path="/product-customer" element={<ProductCust/>}></Route>
         <Route path="/product-details" element={<DetailsCust/>}></Route>
+        <Route path="/cart-payment" element={<CartPayment/>}></Route>
+        <Route path="/history" element={<History/>}></Route>
         <Route path="/product-details-admin" element={<DetailsProductAdmin/>}></Route>
         <Route path="/product-admin" element={<ProductAdmin/>}></Route>
         <Route path="/profile" element={<Profile/>}></Route>

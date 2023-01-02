@@ -30,7 +30,7 @@ const NavCust = (props) => {
             Product
           </p>
         </Link>
-        <Link>
+        <Link to='/cart-payment'>
           <p
             className={`text-[18px] font-semibold hover:text-black ${
               props.cart ? "text-black" : "text-[#6c757d]"
@@ -39,7 +39,7 @@ const NavCust = (props) => {
             You Cart
           </p>
         </Link>
-        <Link>
+        <Link to='/history'>
           <p
             className={`text-[18px] font-semibold hover:text-black ${
               props.history ? "text-black" : "text-[#6c757d]"
