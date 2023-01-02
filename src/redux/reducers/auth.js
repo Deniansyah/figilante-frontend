@@ -20,9 +20,9 @@ const authReducer = createSlice({
       state.isLoading = false;
     });
 
-    build.addCase(loginAction.rejected, (state, { payload }) => {
+    build.addCase(loginAction.rejected, (state, action) => {
       state.isLoading = true;
-      state.message = "Wrong Email or Password";
+      state.message = action.error.message;
     });
 
     build.addCase(loginAction.fulfilled, (state, { payload }) => {
@@ -35,9 +35,9 @@ const authReducer = createSlice({
       state.isLoading = false;
     });
 
-    build.addCase(registerAction.rejected, (state, { payload }) => {
+    build.addCase(registerAction.rejected, (state, action) => {
       state.isLoading = true;
-      state.message = "Register gagal";
+      state.message = action.error.message;
     });
 
     build.addCase(registerAction.fulfilled, (state, { payload }) => {

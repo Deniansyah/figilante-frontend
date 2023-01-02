@@ -10,6 +10,8 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import YupPassword from "yup-password";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { registerAction } from "../redux/action/auth";
 
 YupPassword(Yup); // extend yup
 
@@ -22,10 +24,22 @@ const registerSchema = Yup.object().shape({
     .minLowercase(1)
     .minNumbers(1)
     .minSymbols(1),
-  phoneNumber: Yup.string().required("Required").min(10).max(12),
+  phoneNumber: Yup.string().required("Required").min(10).max(13),
 });
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const message = useSelector((state) => state.auth.message);
+  const isLoading = useSelector((state) => state.auth.isLoading);
+
+  const doRegister = (value) => {
+    const cb = () => {
+      navigate("/product-customer");
+    };
+    dispatch(registerAction({ value, cb }));
+  };
+
   return (
     <div>
       <section>
@@ -45,61 +59,105 @@ const SignUp = () => {
                 </button>
               </div>
             </div>
-            <form className="flex flex-col items-center gap-5">
-              <div className="py-1">
-                <h1 className="font-bold text-2xl text-[#6A4029]">Sign Up</h1>
-              </div>
-              <div className="w-[25rem] ">
-                <label className="text-[#4F5665] font-semibold">
-                  Email Address :{" "}
-                </label>
-                <input
-                  type="text"
-                  name="email"
-                  placeholder="Enter your email address"
-                  className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
-                />
-              </div>
-              <div className="w-[25rem]">
-                <label className="text-[#4F5665] font-semibold">
-                  Password :{" "}
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Enter your password"
-                  className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
-                />
-              </div>
-              <div className="w-[25rem]">
-                <label className="text-[#4F5665] font-semibold">
-                  Phone Number :{" "}
-                </label>
-                <input
-                  type="tel"
-                  name="phone number"
-                  placeholder="Enter your phone number"
-                  className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
-                />
-              </div>
-              <div className="w-[25rem] mt-7">
-                <button
-                  type="submit"
-                  className="btn btn-signup bg-[#FFBA33] text-[#6A4029] font-bold text-lg rounded-2xl hover:bg-[#F49D1A]"
-                >
-                  Sign Up
-                </button>
-              </div>
-              <div className="w-[25rem]">
-                <button
-                  type="submit"
-                  className="btn btn-signup bg-[#FFFFFF] mt-5 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5"
-                >
-                  <img src={google} alt="" />
-                  <p>Sign up with Google</p>
-                </button>
-              </div>
-            </form>
+            <Formik
+              initialValues={{
+                email: "",
+                password: "",
+                phoneNumber: "",
+              }}
+              validationSchema={registerSchema}
+              onSubmit={(value) => doRegister(value)}
+            >
+              {({ errors, touched, dirty }) => (
+                <Form className="flex flex-col items-center gap-5">
+                  <div className="py-1">
+                    <h1 className="font-bold text-2xl text-[#6A4029]">
+                      Sign Up
+                    </h1>
+                    {message && (
+                      <div className="text-center mt-10">
+                        <p className="text-base font-semibold text-red-500">
+                          {message}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <div className="w-[25rem] ">
+                    <label className="text-[#4F5665] font-semibold">
+                      Email Address :{" "}
+                    </label>
+                    <Field
+                      type="text"
+                      name="email"
+                      placeholder="Enter your email address"
+                      className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
+                    />
+                    {errors.email && touched.email && (
+                      <label className="label">
+                        <span className="label-text-alt text-red-500">
+                          {errors.email}
+                        </span>
+                      </label>
+                    )}
+                  </div>
+                  <div className="w-[25rem]">
+                    <label className="text-[#4F5665] font-semibold">
+                      Password :{" "}
+                    </label>
+                    <Field
+                      type="password"
+                      name="password"
+                      placeholder="Enter your password"
+                      className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
+                    />
+                    {errors.password && touched.password && (
+                      <label className="label">
+                        <span className="label-text-alt text-red-500">
+                          {errors.password}
+                        </span>
+                      </label>
+                    )}
+                  </div>
+                  <div className="w-[25rem]">
+                    <label className="text-[#4F5665] font-semibold">
+                      Phone Number :{" "}
+                    </label>
+                    <Field
+                      type="text"
+                      name="phoneNumber"
+                      placeholder="Enter your phone number"
+                      className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
+                    />
+                    {errors.phoneNumber && touched.phoneNumber && (
+                      <label className="label">
+                        <span className="label-text-alt text-red-500">
+                          {errors.phoneNumber}
+                        </span>
+                      </label>
+                    )}
+                  </div>
+                  <div className="w-[25rem] mt-7">
+                    <button
+                      type="submit"
+                      disabled={!dirty || !isLoading}
+                      className="btn btn-signup bg-[#FFBA33] text-[#6A4029] font-bold text-lg rounded-2xl hover:bg-[#F49D1A]"
+                    >
+                      Sign Up
+                    </button>
+                  </div>
+                  <div className="w-[25rem]">
+                    <button
+                      type="submit"
+                      disabled={!dirty || !isLoading}
+                      className="btn btn-signup bg-[#FFFFFF] mt-5 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5"
+                    >
+                      <img src={google} alt="" />
+                      <p>Sign up with Google</p>
+                    </button>
+                  </div>
+                </Form>
+              )}
+            </Formik>
           </div>
         </div>
 
