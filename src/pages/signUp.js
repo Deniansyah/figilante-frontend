@@ -6,128 +6,192 @@ import fb from "../assets/images/Facebook.png";
 import twitter from "../assets/images/Twitter.png";
 import ig from "../assets/images/Instagram.png";
 
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import YupPassword from "yup-password";
+import { useNavigate } from "react-router-dom";
+
+YupPassword(Yup); // extend yup
+
+const registerSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid email").required("Required"),
+  password: Yup.string()
+    .required("Required")
+    .min(6)
+    .minUppercase(1)
+    .minLowercase(1)
+    .minNumbers(1)
+    .minSymbols(1),
+  phoneNumber: Yup.string().required("Required").min(10).max(12),
+});
+
 const SignUp = () => {
-    return (
+  return (
     <div>
-        <section>
-            <div className="flex">
-                <div className="flex-[45%]">
-                    <img src={background} alt="bg" className="5/6" />
-                </div>
-                <div className="flex-[55%] py-12 md:py-0 bg-[#FFFFFF] md:bg-[#FFFFFF]">
-                    <div className="hidden md:flex items-center py-14 pl-13 pr-36">
-                        <div className="flex-1 flex items-center gap-7">
-                            <img src={logo} alt="" className="w-20 h-20 ml-5" />
-                            <p className="font-bold text-3xl text-stone-800">Figilante</p>
-                        </div>
-                        <div className="flex w-20 items-center justify-center">
-                            <button className="btn btn-sm bg-[#FFBA33] w-40 h-10 rounded-2xl font-bold text-[#6A4029] hover:bg-[#F49D1A]">Login</button>
-                        </div>
-                    </div>
-                    <form className="flex flex-col items-center gap-5">
-                        <div className="py-1">
-                            <h1 className="font-bold text-2xl text-[#6A4029]">Sign Up</h1>
-                        </div>
-                        <div className="w-[25rem] ">
-                            <label className="text-[#4F5665] font-semibold">Email Address : </label>
-                            <input
-                            type="text"
-                            name="email"
-                            placeholder="Enter your email address"
-                            className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
-                            />
-                        </div>
-                        <div className="w-[25rem]">
-                            <label className="text-[#4F5665] font-semibold">Password : </label>
-                            <input
-                            type="password"
-                            name="password"
-                            placeholder="Enter your password"
-                            className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
-                            />
-                        </div>
-                        <div className="w-[25rem]">
-                            <label className="text-[#4F5665] font-semibold">Phone Number : </label>
-                            <input
-                            type="tel"
-                            name="phone number"
-                            placeholder="Enter your phone number"
-                            className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
-                            />
-                        </div>
-                        <div className="w-[25rem] mt-7">
-                            <button type="submit" className="btn btn-signup bg-[#FFBA33] text-[#6A4029] font-bold text-lg rounded-2xl hover:bg-[#F49D1A]">Sign Up</button>
-                        </div>
-                        <div className="w-[25rem]">
-                            <button type="submit" className="btn btn-signup bg-[#FFFFFF] mt-5 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5">
-                                <img src={google} alt="" />
-                                <p>Sign up with Google</p>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+      <section>
+        <div className="flex">
+          <div className="flex-[45%]">
+            <img src={background} alt="bg" className="5/6" />
+          </div>
+          <div className="flex-[55%] py-12 md:py-0 bg-[#FFFFFF] md:bg-[#FFFFFF]">
+            <div className="hidden md:flex items-center py-14 pl-13 pr-36">
+              <div className="flex-1 flex items-center gap-7">
+                <img src={logo} alt="" className="w-20 h-20 ml-5" />
+                <p className="font-bold text-3xl text-stone-800">Figilante</p>
+              </div>
+              <div className="flex w-20 items-center justify-center">
+                <button className="btn btn-sm bg-[#FFBA33] w-40 h-10 rounded-2xl font-bold text-[#6A4029] hover:bg-[#F49D1A]">
+                  Login
+                </button>
+              </div>
             </div>
+            <form className="flex flex-col items-center gap-5">
+              <div className="py-1">
+                <h1 className="font-bold text-2xl text-[#6A4029]">Sign Up</h1>
+              </div>
+              <div className="w-[25rem] ">
+                <label className="text-[#4F5665] font-semibold">
+                  Email Address :{" "}
+                </label>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Enter your email address"
+                  className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
+                />
+              </div>
+              <div className="w-[25rem]">
+                <label className="text-[#4F5665] font-semibold">
+                  Password :{" "}
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
+                />
+              </div>
+              <div className="w-[25rem]">
+                <label className="text-[#4F5665] font-semibold">
+                  Phone Number :{" "}
+                </label>
+                <input
+                  type="tel"
+                  name="phone number"
+                  placeholder="Enter your phone number"
+                  className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
+                />
+              </div>
+              <div className="w-[25rem] mt-7">
+                <button
+                  type="submit"
+                  className="btn btn-signup bg-[#FFBA33] text-[#6A4029] font-bold text-lg rounded-2xl hover:bg-[#F49D1A]"
+                >
+                  Sign Up
+                </button>
+              </div>
+              <div className="w-[25rem]">
+                <button
+                  type="submit"
+                  className="btn btn-signup bg-[#FFFFFF] mt-5 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5"
+                >
+                  <img src={google} alt="" />
+                  <p>Sign up with Google</p>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
 
-            <footer className="hidden md:flex gap-20 relative bg-[#F8F8F8] pt-36 pb-20 pl-30 px-50">
-                <div className="absolute box-border h-40 w-32 -top-20 inset-x-28 bg-[#FFFFFF] drop-shadow-2xl rounded-lg flex items-center p-7 w-3/4">
-                    <div className="flex-1">
-                        <p className="font-bold text-3xl w-2/4 mb-5 text-stone-600">Get your member <br></br> card now !</p>
-                        <p className="text-stone-500">Let's join with our member and enjoy the deals</p>
-                    </div>
-                    <div>
-                        <button className="btn text-xl bg-[#FFBA33] hover:bg-[#F49D1A] w-40 text-stone-700"> Create Now </button>
-                    </div>
-                </div>
+        <footer className="hidden md:flex gap-20 relative bg-[#F8F8F8] pt-36 pb-20 pl-30 px-50">
+          <div className="absolute box-border h-40 w-32 -top-20 inset-x-28 bg-[#FFFFFF] drop-shadow-2xl rounded-lg flex items-center p-7 w-3/4">
+            <div className="flex-1">
+              <p className="font-bold text-3xl w-2/4 mb-5 text-stone-600">
+                Get your member <br></br> card now !
+              </p>
+              <p className="text-stone-500">
+                Let's join with our member and enjoy the deals
+              </p>
+            </div>
+            <div>
+              <button className="btn text-xl bg-[#FFBA33] hover:bg-[#F49D1A] w-40 text-stone-700">
+                {" "}
+                Create Now{" "}
+              </button>
+            </div>
+          </div>
 
-                <div className="flex-1 flex flex-col gap-5">
-                    <div className="flex items-center gap-4">
-                        <img src={logo} alt="" className="ml-5 w-20 h-20" />
-                        <p className="font-bold text-lg text-stone-700">Figilante</p>
-                    </div>
-                    <div>
-                        <p className="w-70 ml-10 text-stone-700">
-                            Figilante ia a store that sells some good <br></br> meals, and especially coffee. We provide <br />high quality beans
-                        </p>
-                    </div>
-                    <div className="flex gap-5">
-                        <div className="flex items-center justify-center w-20 h-20 ml-5">
-                            <img src={fb} alt="" />
-                        </div>
-                    <div className="flex items-center w-20 h-20">
-                            <img src={twitter} alt="" />
-                    </div>
-                    <div className="flex items-center w-20 h-20">
-                            <img src={ig} alt="" />
-                    </div>
-                    </div>
-                    <div className="ml-10">
-                        <p>©2022 Figilante coffee</p>
-                    </div>
-                </div>
-                <div className="flex flex-col gap-5 mr-20 mt-10">
-                    <p className="font-bold text-lg text-stone-700">Product</p>
-                    <ul className="flex flex-col gap-4">
-                        <li className="font-semibold text-stone-600 cursor-pointer">Download</li>
-                        <li className="font-semibold text-stone-600 cursor-pointer">Pricing</li>
-                        <li className="font-semibold text-stone-600 cursor-pointer">Locations</li>
-                        <li className="font-semibold text-stone-600 cursor-pointer">Countries</li>
-                        <li className="font-semibold text-stone-600 cuirsor-pointer">Blog</li>
-                    </ul>
-                </div>
-                <div className="flex flex-col gap-5 mr-40 mt-10">
-                    <p className="font-bold text-lg text-stone-700">Engange</p>
-                    <ul className="flex flex-col gap-4">
-                        <li className="font-semibold text-stone-600 cursor-pointer">Coffee shop ?</li>
-                        <li className="font-semibold text-stone-600 cursor-pointer">FAQ</li>
-                        <li className="font-semibold text-stone-600 cursor-pointer">About Us</li>
-                        <li className="font-semibold text-stone-600 cursor-pointer">Privacy Policy</li>
-                        <li className="font-semibold text-stone-600 cursor-pointer">Term of Service</li>
-                    </ul>
-                </div>
-            </footer>
-        </section>
+          <div className="flex-1 flex flex-col gap-5">
+            <div className="flex items-center gap-4">
+              <img src={logo} alt="" className="ml-5 w-20 h-20" />
+              <p className="font-bold text-lg text-stone-700">Figilante</p>
+            </div>
+            <div>
+              <p className="w-70 ml-10 text-stone-700">
+                Figilante ia a store that sells some good <br></br> meals, and
+                especially coffee. We provide <br />
+                high quality beans
+              </p>
+            </div>
+            <div className="flex gap-5">
+              <div className="flex items-center justify-center w-20 h-20 ml-5">
+                <img src={fb} alt="" />
+              </div>
+              <div className="flex items-center w-20 h-20">
+                <img src={twitter} alt="" />
+              </div>
+              <div className="flex items-center w-20 h-20">
+                <img src={ig} alt="" />
+              </div>
+            </div>
+            <div className="ml-10">
+              <p>©2022 Figilante coffee</p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-5 mr-20 mt-10">
+            <p className="font-bold text-lg text-stone-700">Product</p>
+            <ul className="flex flex-col gap-4">
+              <li className="font-semibold text-stone-600 cursor-pointer">
+                Download
+              </li>
+              <li className="font-semibold text-stone-600 cursor-pointer">
+                Pricing
+              </li>
+              <li className="font-semibold text-stone-600 cursor-pointer">
+                Locations
+              </li>
+              <li className="font-semibold text-stone-600 cursor-pointer">
+                Countries
+              </li>
+              <li className="font-semibold text-stone-600 cuirsor-pointer">
+                Blog
+              </li>
+            </ul>
+          </div>
+          <div className="flex flex-col gap-5 mr-40 mt-10">
+            <p className="font-bold text-lg text-stone-700">Engange</p>
+            <ul className="flex flex-col gap-4">
+              <li className="font-semibold text-stone-600 cursor-pointer">
+                Coffee shop ?
+              </li>
+              <li className="font-semibold text-stone-600 cursor-pointer">
+                FAQ
+              </li>
+              <li className="font-semibold text-stone-600 cursor-pointer">
+                About Us
+              </li>
+              <li className="font-semibold text-stone-600 cursor-pointer">
+                Privacy Policy
+              </li>
+              <li className="font-semibold text-stone-600 cursor-pointer">
+                Term of Service
+              </li>
+            </ul>
+          </div>
+        </footer>
+      </section>
     </div>
-    );
+  );
 };
 
 export default SignUp;
