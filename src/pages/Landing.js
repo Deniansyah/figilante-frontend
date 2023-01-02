@@ -1,11 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from '../assets/images/logo-figilante-removebg.png'
+import NavLogo from '../assets/logo/coffee.svg'
 import Star from '../assets/logo/star.svg'
-import { User, Heart, MapPin, Check, ArrowLeft, ArrowRight } from "react-feather"; 
+import { User, Heart, MapPin, Check, ArrowLeft, ArrowRight } from "react-feather";
 import Footer from '../component/Footer'
+import Navbar from '../component/Navbar';
+import NavCust from '../component/NavCust';
+import NavAdmin from '../component/NavAdmin';
 
 const Landing = () => {
+  const token = true
+  const customer = false
   return (
     <div>
       {/* Navbar Landing */}
@@ -46,8 +51,8 @@ const Landing = () => {
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl gap-2">
-            <img src={Logo} alt="logo" className='w-10 h-10' />
-            <p className="font-bold">Figilante</p>
+            <img src={NavLogo} alt="logo" />
+            <p className="font-bold">Coffe Shop</p>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -284,13 +289,13 @@ const Landing = () => {
         </div>
       </section>
       {/* Testimoni */}
-      <section className="px-5 md:px-20 mt-20">
+      <section className="md:px-20 mt-20 border">
         <div className="text-center w-full flex flex-col justify-center items-center">
           <h1 className="text-3xl font-bold md:w-[350px] lg:w-[350px]">Loved by Thousands of Happy Customer</h1>
           <p className="mt-5 mb-10 text-gray-500 md:w-[500px] lg:w-[500px] text-center">These are the stories of our customers who have visited us with great pleasure.</p>
         </div>
         <div className="flex flex-col lg:flex-row gap-8">
-          <div className="border border-[#6A4029] rounded-lg p-7 w-96 md:w-full">
+          <div className="border border-[#6A4029] rounded-lg p-7 sm:w-full">
             <div className="flex items-center">
               <img src={require("../assets/images/user-testi-1.png")} alt="user1" />
               <div className="grow ml-5">
@@ -306,7 +311,7 @@ const Landing = () => {
               <p>“Wow... I am very happy to spend my whole day here. the Wi-fi is good, and the coffee and meals tho. I like it here!! Very recommended!</p>
             </div>
           </div>
-          <div className="border rounded-lg p-7 w-96 md:w-full">
+          <div className="border rounded-lg p-7 sm:w-full">
             <div className="flex items-center">
               <img src={require("../assets/images/user-testi-2.png")} alt="user1" />
               <div className="grow ml-5">
@@ -322,7 +327,7 @@ const Landing = () => {
               <p>“I like it because I like to travel far and still can make my day better just by drinking their Hazelnut Latte</p>
             </div>
           </div>
-          <div className="border rounded-lg p-7 w-96 md:w-full">
+          <div className="border rounded-lg p-7 sm:w-full">
             <div className="flex items-center">
               <img src={require("../assets/images/user-testi-3.png")} alt="user1" />
               <div className="grow ml-5">
