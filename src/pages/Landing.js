@@ -1,6 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import NavLogo from '../assets/logo/coffee.svg'
 import Star from '../assets/logo/star.svg'
 import { User, Heart, MapPin, Check, ArrowLeft, ArrowRight } from "react-feather";
 import Footer from '../component/Footer'
@@ -9,79 +7,12 @@ import NavCust from '../component/NavCust';
 import NavAdmin from '../component/NavAdmin';
 
 const Landing = () => {
-  const token = true
+  const token = false
   const customer = false
   return (
     <div>
       {/* Navbar Landing */}
-      <nav className="navbar bg-base-100 py-5 md:px-20">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} className="flex-none lg:hidden">
-              <button className="btn btn-square btn-ghost">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-              </button>
-            </div>
-            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-              <li>
-                <Link to="/" className="text-[#6A4029] font-bold">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/">Product</Link>
-              </li>
-              <li>
-                <Link to="/">Your Cart</Link>
-              </li>
-              <li>
-                <Link to="/">History</Link>
-              </li>
-              <div className="flex flex-col w-full border-opacity-50 my-3 md:hidden lg:hidden">
-                <div className="grid card place-items-center">
-                  <Link to='/login' className='btn btn-warning w-full capitalize btn-sm rounded-full' >Login</Link>
-                </div>
-                <div className="divider">OR</div>
-                <div className="grid card place-items-center">
-                  <Link to='/sign-up' className='btn btn-warning w-full capitalize btn-sm rounded-full' >Sign Up</Link>
-                </div>
-              </div>
-            </ul>
-          </div>
-          <Link to="/" className="btn btn-ghost normal-case text-xl gap-2">
-            <img src={NavLogo} alt="logo" />
-            <p className="font-bold">Coffe Shop</p>
-          </Link>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <Link to="/" className="text-[#6A4029] font-bold">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/">Product</Link>
-            </li>
-            <li>
-              <Link to="/">Your Cart</Link>
-            </li>
-            <li>
-              <Link to="/">History</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="navbar-end gap-2 hidden md:flex lg:flex">
-          <Link to="/login" className="btn btn-ghost rounded-full font-bold capitalize">
-            Login
-          </Link>
-          <Link to="/sign-up" className="btn btn-warning rounded-full w-32 capitalize">
-            Sign Up
-          </Link>
-        </div>
-      </nav>
+      {!token? <Navbar home='true'/> : customer ? <NavCust home='true'/> : <NavAdmin home='true'/>}
       {/* Header Landing */}
       <header className="hero h-[80vh] justify-start md:px-20  bg-[url('../images/bg-landing.png')]">
         <div className="hero-content text-left text-neutral-content">
@@ -289,7 +220,7 @@ const Landing = () => {
         </div>
       </section>
       {/* Testimoni */}
-      <section className="md:px-20 mt-20 border">
+      <section className="md:px-20 mt-20">
         <div className="text-center w-full flex flex-col justify-center items-center">
           <h1 className="text-3xl font-bold md:w-[350px] lg:w-[350px]">Loved by Thousands of Happy Customer</h1>
           <p className="mt-5 mb-10 text-gray-500 md:w-[500px] lg:w-[500px] text-center">These are the stories of our customers who have visited us with great pleasure.</p>

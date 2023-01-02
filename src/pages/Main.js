@@ -11,6 +11,8 @@ import DetailsProductAdmin from "./DetailsProductAdmin";
 import EditProduct from "./EditProduct";
 import CartPayment from "./CartPayment";
 import History from "./History";
+import ForgotPassword from "./ForgotPassword";
+import ResetPassword from "./ResetPassword";
 
 function Main() {
   return (
@@ -23,6 +25,8 @@ function Main() {
         <Route path="/product-details" element={<DetailsCust />}></Route>
         <Route path="/cart-payment" element={<CartPayment />}></Route>
         <Route path="/history" element={<History />}></Route>
+        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+        <Route path="/reset-password" element={<ResetPassword />}></Route>
         <Route
           path="/product-details-admin"
           element={<DetailsProductAdmin />}
