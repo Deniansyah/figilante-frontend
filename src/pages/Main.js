@@ -11,6 +11,7 @@ import DetailsProductAdmin from "./DetailsProductAdmin";
 import EditProduct from "./EditProduct";
 import CartPayment from "./CartPayment";
 import History from "./History";
+import ForgotPassword from "./ForgotPassword";
 
 function Main() {
   return (
@@ -30,6 +31,7 @@ function Main() {
         <Route path="/product-admin" element={<ProductAdmin />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/edit-product" element={<EditProduct />}></Route>
+        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
       </Routes>
     </BrowserRouter>
   );
