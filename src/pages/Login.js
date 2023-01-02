@@ -48,9 +48,11 @@ const Login = () => {
                 <p className="font-bold text-3xl text-stone-800">Figilante</p>
               </div>
               <div className="flex w-20 items-center justify-center">
+                <Link to='/sign-up'>
                 <button className="btn btn-sm bg-[#FFBA33] w-40 h-10 rounded-2xl font-bold text-[#6A4029] hover:bg-[#F49D1A]">
                   Sign Up
                 </button>
+                </Link>
               </div>
             </div>
             <Formik
@@ -110,7 +112,7 @@ const Login = () => {
                     )}
                   </div>
                   <div className='mb-8 text-end mt-3'>
-                    <Link href='/forgot-password' className='font-bold text-[#6A4029] underline pr-60'>Forgot password?</Link>
+                    <Link to='/forgot-password' className='font-bold text-[#6A4029] underline pr-60'>Forgot password?</Link>
                   </div>
                   <div className="w-[25rem] mt-5">
                     <button
