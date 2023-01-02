@@ -4,8 +4,8 @@ import reducer from "./reducers";
 import { persistStore } from "redux-persist";
 
 const store = configureStore({
-  reducer,
-  middleware: [thunk],
+	reducer,
+	middleware: [thunk],
 });
 
 const persistor = persistStore(store);
