@@ -34,3 +34,7 @@ input[type="time"]:focus:before {
   width: 0;
   content: '';
 }
+
+.nonelement {
+  display: none;
+}
