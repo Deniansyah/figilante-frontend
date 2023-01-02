@@ -118,14 +118,10 @@ const Login = () => {
                     </button>
                   </div>
                   <div className="w-[25rem]">
-                    <button
-                      type="submit"
-                      disabled={!dirty || !isLoading}
-                      className="btn btn-signup bg-[#FFFFFF] mt-5 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5"
-                    >
+                    <div className="btn btn-signup bg-[#FFFFFF] mt-5 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5">
                       <img src={google} alt="" />
                       <p>Login with Google</p>
-                    </button>
+                    </div>
                   </div>
                 </Form>
               )}
