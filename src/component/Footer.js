@@ -8,7 +8,7 @@ import Twiter from "../assets/logo/twiter.svg";
 const Footer = () => {
   return (
     <>
-      <div className="px-[10%] pt-[100px] bg-[#e9d8a6] flex flex-col md:flex-row lg:flex-row items-start gap-5">
+      <div className="px-[10%] pt-[50px] bg-[#e9d8a6] flex flex-col md:flex-row lg:flex-row items-start gap-5">
         <section className="flex-1">
           <div className="flex">
             <img src={CoffeeLogo} alt="logo-app" className="w-[200px]" />

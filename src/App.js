@@ -11,6 +11,7 @@ import DetailsProductAdmin from "./pages/DetailsProductAdmin";
 import EditProduct from "./pages/EditProduct";
 import CartPayment from "./pages/CartPayment";
 import History from "./pages/History";
+import Chat from "./pages/Chat";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/product-admin" element={<ProductAdmin/>}></Route>
         <Route path="/profile" element={<Profile/>}></Route>
         <Route path="/edit-product" element={<EditProduct/>}></Route>
+        <Route path="/chat" element={<Chat/>}></Route>
       </Routes>
     </BrowserRouter>
   );
