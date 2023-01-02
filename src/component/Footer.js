@@ -9,11 +9,11 @@ const Footer = () => {
   return (
     <>
       <div className="px-[10%] pt-[100px] bg-[#e9d8a6] flex flex-col md:flex-row lg:flex-row items-start gap-5">
-        <section className="flex-1 w-[]">
+        <section className="flex-1">
           <div className="flex">
             <img src={CoffeeLogo} alt="logo-app" className="w-[200px]" />
           </div>
-          <p className="mt-[20px] text-[17px] font-semibold">Figalante is a store that sells some good meals, and especially coffee. We provide high quality beans</p>
+          <p className="mt-[20px] text-[17px] font-semibold md:w-[50%] lg:w-[50%]">Figalante is a store that sells some good meals, and especially coffee. We provide high quality beans</p>
           <div className="flex gap-3 my-[20px]">
             <div className="bg-blue-800 rounded-full cursor-pointer w-[45px] border-2 border-blue-800">
               <img src={Twiter} alt="" className="w-[100%]" />
@@ -45,7 +45,7 @@ const Footer = () => {
           </div>
         </section>
       </div>
-      <p className="font-bold w-full text-center md:text-left lg:text-left bg-[#e9d8a6] px-[10%] pb-[50px] pt-2">©2023_Figilante</p>
+      <p className="font-bold w-full text-center md:text-left lg:text-left bg-[#e9d8a6] px-[10%] pb-[40px] pt-10">©2023_Figilante</p>
     </>
   );
 };
