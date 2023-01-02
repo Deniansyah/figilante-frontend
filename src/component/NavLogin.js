@@ -13,7 +13,7 @@ const NavLogin = (props) => {
         <Link to='/login'>
         <button className="btn w-[100px] btn-accent">Login</button>
         </Link>
-        <Link to='/register'>
+        <Link to='/sign-up'>
         <button className="btn w-[100px] btn-warning">Register</button>
         </Link>
       </div>
