@@ -2,8 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn {
+.btnCustom { /* class nya tolong dibedakan sama punyanya tailwind pingkan atau bisa pake "normal-case dan w-full" dari tailwind */
     text-transform: none;
+}
+
+.btn-signup {
+  width: 400px;
+  height: 65px;
+  left: 817px;
+  top: 721px;
 }
 
 .input {

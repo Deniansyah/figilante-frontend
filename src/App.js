@@ -2,7 +2,7 @@ import {BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
+import SignUp from "./pages/signUp";
 import ProductCust from "./pages/ProductCust";
 import Profile from "./pages/Profile";
 import ProductAdmin from "./pages/ProductAdmin";
