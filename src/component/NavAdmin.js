@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/reducers/auth";
 
 import CoffeeLogo from "../assets/images/figilante-removebg.png";
 import Search from "../assets/logo/search.svg";
 import Chat from "../assets/logo/chat.svg";
+import { profileAction } from "../redux/action/profile";
 
 const NavAdmin = (props) => {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.profile);
+  const { token } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(profileAction());
+  }, [dispatch, token]);
+
   return (
     // <div className="px-[10%] py-[15px] bg-[#e9d8a6] flex items-center">
     //   <div className="flex">
@@ -159,32 +170,32 @@ const NavAdmin = (props) => {
                   </p>
                 </Link>
               </div>
-             <div className="block md:hidden">
-             <div className="grid mb-[5px] card place-items-center">
-                <Link
-                  to="/login"
-                  className="btn btn-warning w-full capitalize btn-sm rounded-full"
-                >
-                  Profile
-                </Link>
+              <div className="block md:hidden">
+                <div className="grid mb-[5px] card place-items-center">
+                  <Link
+                    to="/login"
+                    className="btn btn-warning w-full capitalize btn-sm rounded-full"
+                  >
+                    Profile
+                  </Link>
+                </div>
+                <div className="grid mb-[5px] card place-items-center">
+                  <Link
+                    to="/chat"
+                    className="btn bg-warning-content w-full capitalize btn-sm rounded-full"
+                  >
+                    Chat
+                  </Link>
+                </div>
+                <div className="grid mb-[5px] card place-items-center">
+                  <Link
+                    to="/sign-up"
+                    className="btn btn-error w-full capitalize btn-sm rounded-full"
+                  >
+                    Logout
+                  </Link>
+                </div>
               </div>
-              <div className="grid mb-[5px] card place-items-center">
-                <Link
-                  to="/chat"
-                  className="btn bg-warning-content w-full capitalize btn-sm rounded-full"
-                >
-                  Chat
-                </Link>
-              </div>
-              <div className="grid mb-[5px] card place-items-center">
-                <Link
-                  to="/sign-up"
-                  className="btn btn-error w-full capitalize btn-sm rounded-full"
-                >
-                  Logout
-                </Link>
-              </div>
-             </div>
             </div>
           </div>
         </div>
@@ -234,11 +245,19 @@ const NavAdmin = (props) => {
         </Link>
         <div className="dropdown dropdown-end border-[2px] border-black w-[40px] rounded-[50%]">
           <label tabIndex={0}>
-            <img
-              src={require("../assets/images/avatar.png")}
-              alt=""
-              className="w-[100%] rounded-full cursor-pointer"
-            />
+            {user?.picture ? (
+              <img
+                src={process.env.REACT_APP_IMG_URL + user.picture}
+                alt="Avatar"
+                className="w-[40px] h-[40px] rounded-full cursor-pointer object-cover"
+              />
+            ) : (
+              <img
+                src={require("../assets/images/avatar.png")}
+                alt="Avatar"
+                className="w-[40px] h-[40px] rounded-full cursor-pointer object-cover"
+              />
+            )}
           </label>
           <ul
             tabIndex={0}
@@ -248,7 +267,7 @@ const NavAdmin = (props) => {
               <Link to="/profile">Profile</Link>
             </li>
             <li>
-              <Link to="/login">Logout</Link>
+              <button onClick={() => dispatch(logout())}>Logout</button>
             </li>
           </ul>
         </div>
