@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Coupons from "../component/Coupons";
 import Footer from "../component/Footer";
 import NavCust from "../component/NavCust";
+import * as Icon from "react-feather"
 
 import {  useSelector } from "react-redux";
 import http from "../helpers/http"
@@ -11,10 +12,12 @@ import http from "../helpers/http"
 const ProductCust = () => {
   // const dispatch = useDispatch();
   const [limit, setLimit] = useState(12);
+  const [pages, setPages] = useState(12);
   const [page, setPage] = useState(1);
   const [menu, setMenu] = useState("Favorite");
   const [product, setProduct] = useState([]);
   const [menus, setMenus] = useState([]);
+  const [count, setCount] = useState(1);
   const token = useSelector((state)=> state.auth.token)
 
   useEffect(() => {
@@ -26,6 +29,8 @@ const ProductCust = () => {
     try {
       const response = await http().get(`/products?limit=${limit}&page=${page}&menu=${menu}`, {headers: {"authorization" : `Bearer ${token}`}});
       setProduct(response.data.results);
+
+      setPages(Math.trunc((product.length / 12) + 1));
     } catch (error) {
       setProduct([]);
     }
@@ -39,6 +44,28 @@ const ProductCust = () => {
       setMenus();
     }
   }
+
+  const increment = () => {
+    if (count === pages) {
+      return false;
+    } else {
+      setPage(page + 1);
+      return setCount(count + 1);
+    }
+  };
+
+  const decrement = () => {
+    if (count === 1) {
+      return false;
+    } else {
+      setPage(page - 1);
+      return setCount(count - 1);
+    }
+  };
+
+
+
+
   return (
     <>
       <NavCust product="true" />
@@ -102,9 +129,8 @@ const ProductCust = () => {
             {product?.map((data, index) => (
               <div key={index} onClick={()=>{console.log(index)}}>
 
-                <Link to="/product-details">
+                <Link to={"/product-details/"+ data.id}>
                   <div className="bg-white p-3 rounded-[30px] mb-[20px]">
-                    {/*  */}
                     <img
                       src={ data.picture || require("./../assets/images/food.png")}
                       alt=""
@@ -121,6 +147,21 @@ const ProductCust = () => {
               </div>
             )) }
           </main>
+          <div className="flex items-center justify-center">
+            <div
+              className="w-[45px] h-[40px] cursor-pointer bg-white rounded-[5px] flex items-center justify-center font-bold bg-warning-conten hover:opacity-50 mr-[10px]"
+              onClick={decrement}
+            ><Icon.ArrowLeft />
+            </div>
+            <div className="w-[45px] h-[40px] cursor-pointer rounded-[5px] flex items-center justify-center font-bold bg-[#6A4029] text-white mr-[10px]">
+              {count}
+            </div>
+            <div
+              className="w-[45px] h-[40px] cursor-pointer bg-white rounded-[5px] flex items-center justify-center font-bold bg-warning-conten hover:opacity-50 mr-[10px]"
+              onClick={increment}
+            ><Icon.ArrowRight />
+            </div>
+          </div>
         </section>
       </main>
       <Footer />
