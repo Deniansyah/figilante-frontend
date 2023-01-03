@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import background from "../assets/images/bg-login.png";
 import logo from "../assets/images/logo-figilante-removebg.png";
 import google from "../assets/images/google-logo.png";
@@ -48,10 +48,10 @@ const Login = () => {
                 <p className="font-bold text-3xl text-stone-800">Figilante</p>
               </div>
               <div className="flex w-20 items-center justify-center">
-                <Link to='/sign-up'>
-                <button className="btn btn-sm bg-[#FFBA33] w-40 h-10 rounded-2xl font-bold text-[#6A4029] hover:bg-[#F49D1A]">
-                  Sign Up
-                </button>
+                <Link to="/sign-up">
+                  <button className="btn btn-sm bg-[#FFBA33] w-40 h-10 rounded-2xl font-bold text-[#6A4029] hover:bg-[#F49D1A]">
+                    Sign Up
+                  </button>
                 </Link>
               </div>
             </div>
@@ -111,30 +111,26 @@ const Login = () => {
                       </label>
                     )}
                   </div>
-                  <div className='mb-8 text-end mt-3'>
-                    <Link to='/forgot-password' className='font-bold text-[#6A4029] underline pr-60'>Forgot password?</Link>
+                  <div className="mb-8 text-end mt-3">
+                    <Link
+                      to="/forgot-password"
+                      className="font-bold text-[#6A4029] underline pr-60"
+                    >
+                      Forgot password?
+                    </Link>
                   </div>
                   <div className="w-[25rem] mt-5">
                     <button
                       type="submit"
                       disabled={!dirty || !isLoading}
-                      className="btnCustom btn-signup bg-[#FFBA33] text-[#6A4029] font-bold text-lg rounded-2xl hover:bg-[#F49D1A]"
+                      className="btn btn-signup bg-[#FFBA33] text-[#6A4029] font-bold text-lg rounded-2xl hover:bg-[#F49D1A]"
                     >
                       Login
                     </button>
                   </div>
                   <div className="w-[25rem]">
-<<<<<<< HEAD
-                    <div className="btn btn-signup bg-[#FFFFFF] mt-5 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5">
-                      <img src={google} alt="" />
-=======
-                    <button
-                      type="submit"
-                      disabled={!dirty || !isLoading}
-                      className="btnCustom btn-signup bg-[#FFFFFF] mt-10 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5"
-                    >
-                      <img src={google} alt="" className="pl-20"/>
->>>>>>> f7cb4937a3df54fa77ff662cddbc24976c342867
+                    <div className="btnCustom btn-signup bg-[#FFFFFF] mt-10 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5">
+                      <img src={google} alt="" className="pl-20" />
                       <p>Login with Google</p>
                     </div>
                   </div>
