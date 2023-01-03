@@ -1,17 +1,40 @@
 import React from "react";
 import Footer from "../component/Footer";
 import NavCust from "../component/NavCust";
-import NavAdmin from "../component/NavAdmin";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import { profileAction } from "../redux/action/profile";
+import { logout } from "../redux/reducers/auth";
+import http from "../helpers/http";
+import YupPassword from "yup-password";
+
+YupPassword(Yup);
+
+const EditProfileSchema = Yup.object().shape({
+  nickName: Yup.string().required("Required"),
+  firstName: Yup.string().required("Required"),
+  lastName: Yup.string().required("Required"),
+  email: Yup.string().email("Invalid email").required("Required"),
+  phoneNumber: Yup.string().required("Required"),
+  address: Yup.string().required("Required"),
+});
+
+const EditPasswordSchema = Yup.object().shape({
+  oldPassword: Yup.string().required("Required"),
+  newPassword: Yup.string().required("Required"),
+  confirmNewPassword: Yup.string().oneOf(
+    [Yup.ref("newPassword"), null],
+    "Password does not match"
+  ),
+});
 
 const Profile = () => {
 	const { user } = useSelector((state) => state.profile);
-  const admin = useSelector((state) => state?.profile?.user?.isAdmin)
-  return (
-    <>
-      {/* Navbar Landing */}
-      { Boolean(admin) ? <NavAdmin home='true'/> : <NavCust home='true'/> }
+	return (
+		<>
+			<NavCust />
 			<main className="relative">
 				<img
 					className="absolute z-[-1] w-[100%] h-[100%]"

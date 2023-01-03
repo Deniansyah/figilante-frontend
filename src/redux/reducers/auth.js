@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginAction, registerAction } from "../action/auth";
+import {
+  forgotPasswordAction,
+  loginAction,
+  registerAction,
+} from "../action/auth";
 
 const initialState = {
   token: null,

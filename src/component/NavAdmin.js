@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 
 import CoffeeLogo from "../assets/images/figilante-removebg.png";
 import Search from "../assets/logo/search.svg";
 import Chat from "../assets/logo/chat.svg";
 import { profileAction } from "../redux/action/profile";
+import { Link, useNavigate } from "react-router-dom";
 import { logout as LogoutAction } from "../redux/reducers/auth";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -22,10 +22,6 @@ const NavAdmin = (props) => {
   useEffect(() => {
     dispatch(profileAction());
   }, [dispatch, token]);
-
-  const PictureUsers = process.env.REACT_APP_IMG_URL + user.picture
-  console.log(PictureUsers)
-  console.log(`http://localhost:8888/uploads/${user.picture}`)
 
   return (
     <nav className="navbar py-[15px] px-[10%] bg-[#e9d8a6]">
@@ -183,18 +179,18 @@ const NavAdmin = (props) => {
           <img src={Chat} alt="" className="w-[25px]" />
         </Link>
         <div className="dropdown dropdown-end border-[2px] border-black w-[40px] rounded-[50%]">
-        <label tabIndex={0}>
+          <label tabIndex={0}>
             {user?.picture ? (
               <img
-                src={PictureUsers}
+                src={process.env.REACT_APP_IMG_URL + user.picture}
                 alt="Avatar"
-                className="w-[100%] h-[35px] rounded-full cursor-pointer object-cover"
+                className="w-[40px] h-[40px] rounded-full cursor-pointer object-cover"
               />
-            ) : (
+            ):(
               <img
                 src={require("../assets/images/avatar.png")}
                 alt="Avatar"
-                className="w-[100%] h-[35px] rounded-full cursor-pointer object-cover"
+                className="w-[40px] h-[40px] rounded-full cursor-pointer object-cover"
               />
             )}
           </label>

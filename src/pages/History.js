@@ -2,20 +2,40 @@ import React from "react";
 import Footer from "../component/Footer";
 import NavCust from "../component/NavCust";
 import Trash from "../assets/logo/trash.svg";
+import http from "../helpers/http";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const History = () => {
-  const showDelete = (idTool)=>{
-    const Tool = document.getElementById(idTool)
-    Tool.classList.remove("hidden")
-  }
-  const cancelDelete = (idTool) =>{
+  const { token } = useSelector((state) => state.auth);
+  const [history, setHistory] = useState([]);
+
+  useEffect(() => {
+    const getHistory = async () => {
+      try {
+        const { data } = await http(token).get(
+          `${process.env.REACT_APP_URL_BACKEND}/transactions`
+        );
+        setHistory(data.results);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getHistory();
+  }, []);
+
+  const showDelete = (idTool) => {
+    const Tool = document.getElementById(idTool);
+    Tool.classList.remove("hidden");
+  };
+  const cancelDelete = (idTool) => {
     // const cancel = document.getElementById(idCancel)
-    const Tool = document.getElementById(idTool)
-    Tool.classList.add('hidden')
+    const Tool = document.getElementById(idTool);
+    Tool.classList.add("hidden");
     // cancel.addEventListener('click',()=>{
     //   console.log(cancel)
     // })
-  }
+  };
   return (
     <>
       <NavCust history="true" />
@@ -31,16 +51,67 @@ const History = () => {
             <br />
             <span className="text-[17px]"> press to delete item</span>
           </h3>
+          {history?.map((item, index) => {
+            return (
+              <div className="grid grid-cols-3 gap-5 mb-2" key={index + 1}>
+                <div
+                  className="bg-white p-5 rounded-[8px] flex items-start gap-2 relative cursor-pointer"
+                  onClick={() => showDelete("tool1")}
+                >
+                  <div
+                    className="flex absolute top-[-10px] right-0 gap-1 hidden"
+                    id="tool1"
+                  >
+                    <label
+                      htmlFor="confirmDelete"
+                      className="cursor-pointer w-[33px] h-[30px] bg-error rounded-full flex items-center justify-center"
+                    >
+                      <img src={Trash} alt="" />
+                    </label>
+                    <p
+                      className="font-bold cursor-pointer w-[33px] h-[30px] bg-yellow-300 flex items-center justify-center rounded-full"
+                      id="cancel1"
+                      onClick={() => cancelDelete("tool1")}
+                    >
+                      X
+                    </p>
+                  </div>
+                  <img
+                    src={require("../assets/images/drink.png")}
+                    alt=""
+                    className="w-[80px] rounded-[10px]"
+                  />
+                  <div className="text-warning-content font-semibold">
+                    <h4 className="text-black text-[20px] font-bold">
+                      {item.products.name}
+                    </h4>
+                    <p>IDR {item.products.price}</p>
+                    <span> {item.deliveryMethods.name}</span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
           <div className="grid grid-cols-3 gap-5">
-            <div className="bg-white p-5 rounded-[8px] flex items-start gap-2 relative cursor-pointer" onClick={() =>showDelete("tool1")}>
-              <div className="flex absolute top-[-10px] right-0 gap-1 hidden" id='tool1' >
+            <div
+              className="bg-white p-5 rounded-[8px] flex items-start gap-2 relative cursor-pointer"
+              onClick={() => showDelete("tool1")}
+            >
+              <div
+                className="flex absolute top-[-10px] right-0 gap-1 hidden"
+                id="tool1"
+              >
                 <label
                   htmlFor="confirmDelete"
                   className="cursor-pointer w-[33px] h-[30px] bg-error rounded-full flex items-center justify-center"
                 >
                   <img src={Trash} alt="" />
                 </label>
-                <p className="font-bold cursor-pointer w-[33px] h-[30px] bg-yellow-300 flex items-center justify-center rounded-full" id="cancel1" onClick={() =>cancelDelete("tool1")}>
+                <p
+                  className="font-bold cursor-pointer w-[33px] h-[30px] bg-yellow-300 flex items-center justify-center rounded-full"
+                  id="cancel1"
+                  onClick={() => cancelDelete("tool1")}
+                >
                   X
                 </p>
               </div>

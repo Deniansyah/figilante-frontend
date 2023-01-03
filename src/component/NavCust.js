@@ -1,9 +1,8 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
 import { profileAction } from "../redux/action/profile";
 import { logout as LogoutAction } from "../redux/reducers/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 
 import CoffeeLogo from "../assets/images/figilante-removebg.png";
 import Search from "../assets/logo/search.svg";
@@ -23,7 +22,6 @@ const NavCust = (props) => {
   useEffect(() => {
     dispatch(profileAction());
   }, [dispatch, token]);
-
   return (
     <nav className="navbar py-[15px] px-[10%] bg-[#e9d8a6]">
       <div className="flex-1 lg:flex-none">
@@ -176,13 +174,13 @@ const NavCust = (props) => {
               <img
                 src={process.env.REACT_APP_IMG_URL + user.picture}
                 alt="Avatar"
-                className="w-[100%] h-[35px] rounded-full cursor-pointer object-cover"
+                className="w-[40px] h-[40px] rounded-full cursor-pointer object-cover"
               />
             ) : (
               <img
                 src={require("../assets/images/avatar.png")}
                 alt="Avatar"
-                className="w-[100%] h-[35px] rounded-full cursor-pointer object-cover"
+                className="w-[40px] h-[40px] rounded-full cursor-pointer object-cover"
               />
             )}
           </label>
