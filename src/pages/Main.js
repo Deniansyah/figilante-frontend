@@ -14,11 +14,20 @@ import EditProduct from "./EditProduct";
 import CartPayment from "./CartPayment";
 import History from "./History";
 import LoggedIn from "../component/LoggedIn";
+import Chat from "./Chat";
 
 function Main() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route
+          path="/chat"
+          element={
+            <LoggedIn>
+              <Chat />
+            </LoggedIn>
+          }
+        ></Route>
         <Route path="/" element={<Landing />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/sign-up" element={<SignUp />}></Route>

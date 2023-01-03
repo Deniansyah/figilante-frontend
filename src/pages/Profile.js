@@ -19,6 +19,14 @@ const EditProfileSchema = Yup.object().shape({
   address: Yup.string().required("Required"),
 });
 
+const EditPasswordSchema = Yup.object().shape({
+  oldPassword: Yup.string().required("Required"),
+  newPassword: Yup.string().required("Required"),
+  confirmNewPassword: Yup.string().oneOf(
+    [Yup.ref("newPassword"), null],
+    "Password does not match"
+  ),
+});
 const Profile = () => {
   const { user } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
@@ -67,6 +75,19 @@ const Profile = () => {
       setUploadAlert("Upload failed!");
     }
   };
+
+  const handleChangePassword = async (values) => {
+    try {
+      await http(token).patch(
+        `${process.env.REACT_APP_URL_BACKEND}/profile/changePassword`,
+        { ...values }
+      );
+      dispatch(logout());
+      setIsError(false);
+    } catch (error) {
+      setIsError(true);
+    }
+  };
   const admin = useSelector((state) => state?.profile?.user?.isAdmin)
   return (
     <>
@@ -92,7 +113,9 @@ const Profile = () => {
                 email: user?.email || "",
                 phoneNumber: user?.phoneNumber || "",
                 address: user?.address || "",
-                datebirth: moment(user?.datebirth) || moment(),
+                birthdate:
+                  moment(user?.birthdate).format("YYYY-MM-DD") ||
+                  moment(new Date()).format("YYYY-MM-DD"),
                 gender: user?.gender || "",
               }}
               validationSchema={EditProfileSchema}
@@ -335,7 +358,10 @@ const Profile = () => {
                         Cancel
                       </button>
                       <div className="flex-1" />
-                      <label className="btn btn-block flex justify-start">
+                      <label
+                        htmlFor="edit-password"
+                        className="btn btn-block flex justify-start"
+                      >
                         Edit Password
                       </label>
                       <button
@@ -354,6 +380,100 @@ const Profile = () => {
         </div>
       </main>
       <Footer />
+      <input type="checkbox" id="edit-password" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box relative">
+          <label
+            htmlFor="edit-password"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
+          >
+            ✕
+          </label>
+          <h3 className="text-lg font-bold">Edit Password</h3>
+          <p className="py-4">
+            Please enter your current password and then type your new password
+          </p>
+          <Formik
+            initialValues={{
+              oldPassword: "",
+              newPassword: "",
+              confirmNewPassword: "",
+            }}
+            validationSchema={EditPasswordSchema}
+            onSubmit={(values) => handleChangePassword(values)}
+          >
+            {({ errors, dirty, touched }) => (
+              <Form className="flex flex-col gap-4">
+                {isError && (
+                  <label className="label">
+                    <span className="label-text-alt text-red-500">
+                      Update Password Failed!!!
+                    </span>
+                  </label>
+                )}
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="oldPassword" className="label">
+                    <span className="label-text">Current Password</span>
+                  </label>
+                  <Field
+                    type="password"
+                    name="oldPassword"
+                    className="input input-bordered"
+                  />
+                  {errors.oldPassword && touched.oldPassword && (
+                    <label className="label">
+                      <span className="label-text-alt text-red-500">
+                        {errors.oldPassword}
+                      </span>
+                    </label>
+                  )}
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="newPassword" className="label">
+                    <span className="label-text">New Password</span>
+                  </label>
+                  <Field
+                    type="password"
+                    name="newPassword"
+                    className="input input-bordered"
+                  />
+                  {errors.newPassword && touched.newPassword && (
+                    <label className="label">
+                      <span className="label-text-alt text-red-500">
+                        {errors.newPassword}
+                      </span>
+                    </label>
+                  )}
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="confirmNewPassword" className="label">
+                    <span className="label-text">Confirm New Password</span>
+                  </label>
+                  <Field
+                    type="password"
+                    name="confirmNewPassword"
+                    className="input input-bordered"
+                  />
+                  {errors.confirmNewPassword && touched.confirmNewPassword && (
+                    <label className="label">
+                      <span className="label-text-alt text-red-500">
+                        {errors.confirmNewPassword}
+                      </span>
+                    </label>
+                  )}
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-accent"
+                  disabled={!dirty}
+                >
+                  Save Change
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </div>
     </>
   );
 };
