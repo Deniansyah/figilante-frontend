@@ -1,14 +1,17 @@
 import React from "react";
 import Footer from "../component/Footer";
 import NavCust from "../component/NavCust";
+import NavAdmin from "../component/NavAdmin";
 import { useSelector } from "react-redux";
 import moment from "moment";
 
 const Profile = () => {
 	const { user } = useSelector((state) => state.profile);
-	return (
-		<>
-			<NavCust />
+  const admin = useSelector((state) => state?.profile?.user?.isAdmin)
+  return (
+    <>
+      {/* Navbar Landing */}
+      { Boolean(admin) ? <NavAdmin home='true'/> : <NavCust home='true'/> }
 			<main className="relative">
 				<img
 					className="absolute z-[-1] w-[100%] h-[100%]"

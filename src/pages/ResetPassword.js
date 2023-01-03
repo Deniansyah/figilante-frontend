@@ -19,7 +19,7 @@ const ResetPassword = () => {
             </p>
           </div>
           <div className="flex justify-center w-full">
-            <div className="w-[25rem]">
+            <div className="w-[80%] lg:w-[50%]">
               <label className="text-white font-semibold">
                 Code Confirm :{" "}
               </label>
@@ -31,8 +31,8 @@ const ResetPassword = () => {
               />
             </div>
           </div>
-          <div className="flex justify-center w-[40%]">
-            <div className="w-[25rem]">
+          <div className="flex justify-center w-full">
+            <div className="w-[80%] lg:w-[50%]">
               <label className="text-white font-semibold">
                 New Password :{" "}
               </label>
@@ -52,7 +52,7 @@ const ResetPassword = () => {
             </div>
           </div>
           <div className="flex justify-center w-full">
-            <div className="w-[25rem]">
+            <div className="w-[80%] lg:w-[50%]">
               <label className="text-white font-semibold">
                Cofirm Password :{" "}
               </label>
@@ -71,7 +71,7 @@ const ResetPassword = () => {
               )} */}
             </div>
           </div>
-          <button className="btn btn-accent btn-block w-[35%] mt-[50px]">Confirm</button>
+          <button className="btn btn-accent btn-block w-[80%] lg:w-[50%] mt-[50px]">Confirm</button>
         </div>
       </main>
       <Footer />

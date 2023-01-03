@@ -11,6 +11,8 @@ import DetailsProductAdmin from "./DetailsProductAdmin";
 import EditProduct from "./EditProduct";
 import CartPayment from "./CartPayment";
 import History from "./History";
+import ForgotPassword from "./ForgotPassword";
+import ResetPassword from "./ResetPassword";
 
 function Main() {
   return (

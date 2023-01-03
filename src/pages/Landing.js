@@ -5,14 +5,16 @@ import Footer from '../component/Footer'
 import Navbar from '../component/Navbar';
 import NavCust from '../component/NavCust';
 import NavAdmin from '../component/NavAdmin';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
-  const token = false
-  const customer = false
+  const token = useSelector((state) => state?.auth?.token)
+  const admin = useSelector((state) => state?.profile?.user?.isAdmin)
   return (
     <div>
       {/* Navbar Landing */}
-      {!token? <Navbar home='true'/> : customer ? <NavCust home='true'/> : <NavAdmin home='true'/>}
+      {!token? <Navbar home='true'/> : Boolean(admin) ? <NavAdmin home='true'/> : <NavCust home='true'/> }
       {/* Header Landing */}
       <header className="hero h-[80vh] justify-start md:px-20  bg-[url('../images/bg-landing.png')]">
         <div className="hero-content text-left text-neutral-content">
@@ -283,10 +285,10 @@ const Landing = () => {
             <div className="w-3 h-3 bg-gray-300 rounded-full" />
           </div>
           <div className="flex gap-5">
-            <div className="p-3 border-[#6A4029] border-2 text-[#6A4029] rounded-full">
+            <div className="p-3 cursor-pointer border-[#6A4029] border-2 text-[#6A4029] rounded-full">
               <ArrowLeft />
             </div>
-            <div className="p-3 bg-[#6A4029] border-[#6A4029] border-2 text-white rounded-full">
+            <div className="p-3 cursor-pointer bg-[#6A4029] border-[#6A4029] border-2 text-white rounded-full">
               <ArrowRight />
             </div>
           </div>
@@ -300,7 +302,7 @@ const Landing = () => {
             <p>Let's see the deals and pick yours!</p>
           </div>
           <div>
-            <button className="btn btn-warning capitalize shaodow-xl w-44">See Promo</button>
+            <Link to='/product-customer'><button className="btn btn-warning capitalize shaodow-xl w-44">See Promo</button></Link>
           </div>
         </div>
       </section>

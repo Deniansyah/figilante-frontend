@@ -39,10 +39,6 @@ const ProductCust = () => {
       setMenus();
     }
   }
-
-
-
-
   return (
     <>
       <NavCust product="true" />
@@ -123,7 +119,7 @@ const ProductCust = () => {
                   </div>
                 </Link>
               </div>
-            )) }              
+            )) }
           </main>
         </section>
       </main>
