@@ -6,6 +6,7 @@ import fb from "../assets/images/Facebook.png";
 import twitter from "../assets/images/Twitter.png";
 import ig from "../assets/images/Instagram.png";
 
+import {Link} from "react-router-dom"
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import YupPassword from "yup-password";
@@ -53,11 +54,11 @@ const SignUp = () => {
                 <img src={logo} alt="" className="w-20 h-20 ml-5" />
                 <p className="font-bold text-3xl text-stone-800">Figilante</p>
               </div>
-              <div className="flex w-20 items-center justify-center">
+              <Link to='/login' className="flex w-20 items-center justify-center">
                 <button className="btn btn-sm bg-[#FFBA33] w-40 h-10 rounded-2xl font-bold text-[#6A4029] hover:bg-[#F49D1A]">
                   Login
                 </button>
-              </div>
+              </Link>
             </div>
             <Formik
               initialValues={{
