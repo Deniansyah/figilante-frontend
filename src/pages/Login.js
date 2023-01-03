@@ -124,17 +124,8 @@ const Login = () => {
                     </button>
                   </div>
                   <div className="w-[25rem]">
-<<<<<<< HEAD
                     <div className="btn btn-signup bg-[#FFFFFF] mt-5 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5">
                       <img src={google} alt="" />
-=======
-                    <button
-                      type="submit"
-                      disabled={!dirty || !isLoading}
-                      className="btnCustom btn-signup bg-[#FFFFFF] mt-10 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5"
-                    >
-                      <img src={google} alt="" className="pl-20"/>
->>>>>>> f7cb4937a3df54fa77ff662cddbc24976c342867
                       <p>Login with Google</p>
                     </div>
                   </div>
