@@ -1,8 +1,8 @@
+import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { profileAction } from "../redux/action/profile";
+import { logout as LogoutAction } from "../redux/reducers/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../redux/reducers/auth";
 
 import CoffeeLogo from "../assets/images/figilante-removebg.png";
 import Search from "../assets/logo/search.svg";
@@ -10,13 +10,18 @@ import Chat from "../assets/logo/chat.svg";
 
 const NavCust = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.profile);
   const { token } = useSelector((state) => state.auth);
+
+  const Logout = ()=>{
+    dispatch(LogoutAction())
+    return navigate("/login")
+  }
 
   useEffect(() => {
     dispatch(profileAction());
   }, [dispatch, token]);
-
   return (
     <nav className="navbar py-[15px] px-[10%] bg-[#e9d8a6]">
       <div className="flex-1 lg:flex-none">
@@ -119,29 +124,32 @@ const NavCust = (props) => {
         <img src={CoffeeLogo} alt="logo-app" className="w-[150px]" />
       </div>
       <div className="hidden lg:flex flex-1 gap-x-[15px] ml-[10%]">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <Link
-              to="/"
-              className={`${props.home ? "text-black" : "text-[#6A4029]"}`}
-            >
-              Home
-            </Link>
-          </li>
-          <hr />
-          <li>
-            <Link to="/product-customer">Product</Link>
-          </li>
-          <hr />
-          <li>
-            <Link to="/cart-payment">Your Cart</Link>
-          </li>
-          <hr />
-          <li>
-            <Link to="/history">History</Link>
-          </li>
-          <hr />
-        </ul>
+        <Link
+          to="/"
+          className={`${props.home ? "text-black font-semibold" : "text-[#6A4029]"}`}
+        >
+          Home
+        </Link>
+        <Link
+          to="/product-customer"
+          className={`${props.product ? "text-black font-semibold" : "text-[#6A4029]"}`}
+        >
+          Product
+        </Link>
+
+        <Link
+          to="/cart-payment"
+          className={`${props.cart ? "text-black font-semibold" : "text-[#6A4029]"}`}
+        >
+          Your Cart
+        </Link>
+
+        <Link
+          to="/history"
+          className={`${props.history ? "text-black font-semibold" : "text-[#6A4029]"}`}
+        >
+          History
+        </Link>
       </div>
       <div className="hidden md:flex flex items-center gap-x-[20px]">
         <div className="relative group">
@@ -184,7 +192,7 @@ const NavCust = (props) => {
               <Link to="/profile">Profile</Link>
             </li>
             <li>
-              <button onClick={() => dispatch(logout())}>Logout</button>
+              <div onClick={Logout}>Logout</div>
             </li>
           </ul>
         </div>

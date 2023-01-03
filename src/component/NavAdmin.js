@@ -1,106 +1,29 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../redux/reducers/auth";
 
 import CoffeeLogo from "../assets/images/figilante-removebg.png";
 import Search from "../assets/logo/search.svg";
 import Chat from "../assets/logo/chat.svg";
 import { profileAction } from "../redux/action/profile";
+import { Link, useNavigate } from "react-router-dom";
+import { logout as LogoutAction } from "../redux/reducers/auth";
+import { useDispatch, useSelector } from "react-redux";
 
 const NavAdmin = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.profile);
   const { token } = useSelector((state) => state.auth);
+
+  const Logout = ()=>{
+    dispatch(LogoutAction())
+    return navigate("/login")
+  }
 
   useEffect(() => {
     dispatch(profileAction());
   }, [dispatch, token]);
 
   return (
-    // <div className="px-[10%] py-[15px] bg-[#e9d8a6] flex items-center">
-    //   <div className="flex">
-    //     <img src={CoffeeLogo} alt="logo-app" className="w-[150px]"/>
-    //   </div>
-    //   <div className="flex flex-1 gap-x-[15px] ml-[10%]">
-    //     <Link>
-    //       <p
-    //         className={`text-[18px] font-semibold hover:text-black ${
-    //           props.home ? "text-black" : "text-[#6c757d]"
-    //         }`}
-    //       >
-    //         Home
-    //       </p>
-    //     </Link>
-    //     <Link to='/product-admin'>
-    //       <p
-    //         className={`text-[18px] font-semibold hover:text-black ${
-    //           props.product ? "text-black" : "text-[#6c757d]"
-    //         }`}
-    //       >
-    //         Product
-    //       </p>
-    //     </Link>
-    //     <Link>
-    //       <p
-    //         className={`text-[18px] font-semibold hover:text-black ${
-    //           props.orders ? "text-black" : "text-[#6c757d]"
-    //         }`}
-    //       >
-    //         Orders
-    //       </p>
-    //     </Link>
-    //     <Link>
-    //       <p
-    //         className={`text-[18px] font-semibold hover:text-black ${
-    //           props.dashboard ? "text-black" : "text-[#6c757d]"
-    //         }`}
-    //       >
-    //         Dashboard
-    //       </p>
-    //     </Link>
-    //   </div>
-    //   <div className="flex items-center gap-x-[20px]">
-    //     <div className="relative group">
-    //       <img
-    //         src={Search}
-    //         alt=""
-    //         className="group-hover:absolute group-hover:w-[17px]
-    //          w-[20px] top-[25%] left-[5px]"
-    //       />
-    //       <input
-    //         className="hidden group-hover:block outline-none border-[2px] rounded-[10px] border-black placeholder:text-black pl-[25px] py-1 w-[130px]"
-    //         type="text"
-    //         placeholder="Search"
-    //       />
-    //     </div>
-    //     <Link to='/chat' className="cursor-pointer">
-    //       <img src={Chat} alt="" className="w-[25px]"/>
-    //     </Link>
-    //     <div className="dropdown dropdown-end border-[2px] border-black w-[40px] rounded-[50%]">
-    //       <label tabIndex={0}>
-    //         <img
-    //           src={require("../assets/images/avatar.png")}
-    //           alt=""
-    //           className="w-[100%] rounded-full cursor-pointer"
-    //         />
-    //       </label>
-    //       <ul
-    //         tabIndex={0}
-    //         className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-    //       >
-    //         <li>
-    //           <Link to='/profile'>
-    //             Profile
-    //           </Link>
-    //         </li>
-    //         <li>
-    //           <Link to='/login'>Logout</Link>
-    //         </li>
-    //       </ul>
-    //     </div>
-    //   </div>
-    // </div>
     <nav className="navbar py-[15px] px-[10%] bg-[#e9d8a6]">
       <div className="flex-1 lg:flex-none">
         <div className="dropdown mr-[20px]">
@@ -202,29 +125,41 @@ const NavAdmin = (props) => {
         <img src={CoffeeLogo} alt="logo-app" className="w-[150px]" />
       </div>
       <div className="hidden lg:flex flex-1 gap-x-[15px] ml-[10%]">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <Link
-              to="/"
-              className={`${props.home ? "text-black" : "text-[#6A4029]"}`}
-            >
-              Home
-            </Link>
-          </li>
-          <hr />
-          <li>
-            <Link to="/product-admin">Product</Link>
-          </li>
-          <hr />
-          <li>
-            <Link to="/orders">Orders</Link>
-          </li>
-          <hr />
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <hr />
-        </ul>
+        <Link
+          to="/"
+          className={`${
+            props.home ? "text-black font-semibold" : "text-[#6A4029]"
+          }`}
+        >
+          Home
+        </Link>
+
+        <Link
+          to="/product-admin"
+          className={`${
+            props.product ? "text-black font-semibold" : "text-[#6A4029]"
+          }`}
+        >
+          Product
+        </Link>
+
+        <Link
+          to="/orders"
+          className={`${
+            props.orders ? "text-black font-semibold" : "text-[#6A4029]"
+          }`}
+        >
+          Orders
+        </Link>
+
+        <Link
+          to="/dashboard"
+          className={`${
+            props.dashboard ? "text-black font-semibold" : "text-[#6A4029]"
+          }`}
+        >
+          Dashboard
+        </Link>
       </div>
       <div className="hidden md:flex flex items-center gap-x-[20px]">
         <div className="relative group">
@@ -251,7 +186,7 @@ const NavAdmin = (props) => {
                 alt="Avatar"
                 className="w-[40px] h-[40px] rounded-full cursor-pointer object-cover"
               />
-            ) : (
+            ):(
               <img
                 src={require("../assets/images/avatar.png")}
                 alt="Avatar"
@@ -267,7 +202,7 @@ const NavAdmin = (props) => {
               <Link to="/profile">Profile</Link>
             </li>
             <li>
-              <button onClick={() => dispatch(logout())}>Logout</button>
+              <div onClick={Logout}>Logout</div>
             </li>
           </ul>
         </div>

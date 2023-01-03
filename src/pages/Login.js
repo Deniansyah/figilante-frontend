@@ -29,7 +29,7 @@ const Login = () => {
 
   const doLogin = (value) => {
     const cb = () => {
-      navigate("/product-customer");
+      navigate("/");
     };
     dispatch(loginAction({ value, cb }));
   };
@@ -42,101 +42,103 @@ const Login = () => {
             <img src={background} alt="bg" className="5/6" />
           </div>
           <div className="flex-[55%] py-12 md:py-0 bg-[#FFFFFF] md:bg-[#FFFFFF]">
-            <div className="hidden md:flex items-center py-14 pl-13 pr-36">
+            <div className="hidden md:flex items-center px-[50px]">
               <div className="flex-1 flex items-center gap-7">
-                <img src={logo} alt="" className="w-20 h-20 ml-5" />
+                <img src={logo} alt="" className="w-20 h-20" />
                 <p className="font-bold text-3xl text-stone-800">Figilante</p>
               </div>
-              <div className="flex w-20 items-center justify-center">
-                <Link to="/sign-up">
-                  <button className="btn btn-sm bg-[#FFBA33] w-40 h-10 rounded-2xl font-bold text-[#6A4029] hover:bg-[#F49D1A]">
-                    Sign Up
-                  </button>
-                </Link>
-              </div>
+              <Link to="/sign-up">
+                <button className="btn btn-sm bg-[#FFBA33] w-40 h-10 rounded-2xl font-bold text-[#6A4029] hover:bg-[#F49D1A]">
+                  Sign Up
+                </button>
+              </Link>
             </div>
-            <Formik
-              initialValues={{
-                email: "",
-                password: "",
-              }}
-              validationSchema={LoginSchema}
-              onSubmit={(value) => doLogin(value)}
-            >
-              {({ errors, touched, dirty }) => (
-                <Form className="flex flex-col items-center gap-5">
-                  <div className="py-1">
-                    <h1 className="font-bold text-2xl text-[#6A4029]">Login</h1>
-                    {message && (
-                      <div className="text-center mt-10">
-                        <p className="text-base font-semibold text-red-500">
-                          {message}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                  <div className="w-[25rem] ">
-                    <label className="text-[#4F5665] font-semibold">
-                      Email Address :
-                    </label>
-                    <Field
-                      type="text"
-                      name="email"
-                      placeholder="Enter your email address"
-                      className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
-                    />
-                    {errors.email && touched.email && (
-                      <label className="label">
-                        <span className="label-text-alt text-red-500">
-                          {errors.email}
-                        </span>
-                      </label>
-                    )}
-                  </div>
-                  <div className="w-[25rem]">
-                    <label className="text-[#4F5665] font-semibold">
-                      Password :{" "}
-                    </label>
-                    <Field
-                      type="password"
-                      name="password"
-                      placeholder="Enter your password"
-                      className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
-                    />
-                    {errors.password && touched.password && (
-                      <label className="label">
-                        <span className="label-text-alt text-red-500">
-                          {errors.password}
-                        </span>
-                      </label>
-                    )}
-                  </div>
-                  <div className="mb-8 text-end mt-3">
-                    <Link
-                      to="/forgot-password"
-                      className="font-bold text-[#6A4029] underline pr-60"
-                    >
-                      Forgot password?
-                    </Link>
-                  </div>
-                  <div className="w-[25rem] mt-5">
-                    <button
-                      type="submit"
-                      disabled={!dirty || !isLoading}
-                      className="btn btn-signup bg-[#FFBA33] text-[#6A4029] font-bold text-lg rounded-2xl hover:bg-[#F49D1A]"
-                    >
-                      Login
-                    </button>
-                  </div>
-                  <div className="w-[25rem]">
-                    <div className="btnCustom btn-signup bg-[#FFFFFF] mt-10 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5">
-                      <img src={google} alt="" className="pl-20" />
-                      <p>Login with Google</p>
+            <div className="w-[80%] mx-auto">
+              <Formik
+                initialValues={{
+                  email: "",
+                  password: "",
+                }}
+                validationSchema={LoginSchema}
+                onSubmit={(value) => doLogin(value)}
+              >
+                {({ errors, touched, dirty }) => (
+                  <Form className="flex flex-col items-center gap-5">
+                    <div className="py-1">
+                      <h1 className="font-bold text-[40px] text-[#6A4029] text-center">
+                        Login
+                      </h1>
+                      {message && (
+                        <div className="text-center mt-5">
+                          <p className="text-base font-semibold text-red-500">
+                            {message}
+                          </p>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                </Form>
-              )}
-            </Formik>
+                    <div className="w-[25rem]">
+                      <label className="text-[#4F5665] font-semibold">
+                        Email Address :
+                      </label>
+                      <Field
+                        type="text"
+                        name="email"
+                        placeholder="Enter your email address"
+                        className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
+                      />
+                      {errors.email && touched.email && (
+                        <label className="label">
+                          <span className="label-text-alt text-red-500">
+                            {errors.email}
+                          </span>
+                        </label>
+                      )}
+                    </div>
+                    <div className="w-[25rem]">
+                      <label className="text-[#4F5665] font-semibold">
+                        Password :{" "}
+                      </label>
+                      <Field
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
+                      />
+                      {errors.password && touched.password && (
+                        <label className="label">
+                          <span className="label-text-alt text-red-500">
+                            {errors.password}
+                          </span>
+                        </label>
+                      )}
+                    </div>
+                    <div className="mb-8 text-end mt-3 w-[25rem]">
+                      <Link
+                        to="/forgot-password"
+                        className="font-bold text-[#6A4029] underline"
+                      >
+                        Forgot password?
+                      </Link>
+                    </div>
+                    <div className="w-full mt-5 text-center">
+                      <button
+                        type="submit"
+                        disabled={!dirty || !isLoading}
+                        className="btn w-[25rem] bg-[#FFBA33] text-[#6A4029] font-bold text-lg rounded-2xl hover:bg-[#F49D1A]"
+                      >
+                        Login
+                      </button>
+                    </div>
+                    <div className="w-full">
+                      <div className="btn w-[25rem] mx-auto bg-[#FFFFFF] mt-5 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5">
+                        <img src={google} alt="" />
+                        <p>Login with Google</p>
+                      </div>
+                    </div>
+                  </Form>
+                )}
+              </Formik>
+            </div>
           </div>
         </div>
 

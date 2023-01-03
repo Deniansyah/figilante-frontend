@@ -1,6 +1,6 @@
 // import { Field } from "formik";
 import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Footer from "../component/Footer";
 
 import { Field, Form, Formik } from "formik";
