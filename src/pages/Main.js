@@ -23,6 +23,8 @@ function Main() {
         <Route path="/product-details" element={<DetailsCust />}></Route>
         <Route path="/cart-payment" element={<CartPayment />}></Route>
         <Route path="/history" element={<History />}></Route>
+        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+        <Route path="/reset-password" element={<ResetPassword />}></Route>
         <Route
           path="/product-details-admin"
           element={<DetailsProductAdmin />}
@@ -30,6 +32,7 @@ function Main() {
         <Route path="/product-admin" element={<ProductAdmin />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/edit-product" element={<EditProduct />}></Route>
+        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
       </Routes>
     </BrowserRouter>
   );

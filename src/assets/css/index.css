@@ -6,6 +6,22 @@
     text-transform: none;
 }
 
+.bg-hero {
+  background-image: url("../images/pic.png");
+  position: absolute;
+  width: 1440px;
+  height: 700px;
+  left: 0px;
+  top: 0px;
+}
+
+.btnSend {
+  width: 150px;
+  height: 70px;
+  left: 1037px;
+  top: 450px;
+}
+
 .btn-signup {
   width: 400px;
   height: 65px;

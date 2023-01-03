@@ -1,11 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Coupons from "../component/Coupons";
 import Footer from "../component/Footer";
 import NavCust from "../component/NavCust";
 
+import {  useSelector } from "react-redux";
+import http from "../helpers/http"
+
 // bg-[#fbf8cc]
 const ProductCust = () => {
+  // const dispatch = useDispatch();
+  const [limit, setLimit] = useState(12);
+  const [page, setPage] = useState(1);
+  const [menu, setMenu] = useState("Favorite");
+  const [product, setProduct] = useState([]);
+  const [menus, setMenus] = useState([]);
+  const token = useSelector((state)=> state.auth.token)
+
+  useEffect(() => {
+    getCategories();
+    getProduct();
+  },[limit, page, menu])
+
+  const getProduct = async () =>{
+    try {
+      const response = await http().get(`/products?limit=${limit}&page=${page}&menu=${menu}`, {headers: {"authorization" : `Bearer ${token}`}});
+      setProduct(response.data.results);
+    } catch (error) {
+      setProduct([]);
+    }
+  }
+
+  const getCategories = async () =>{
+    try {
+      const response = await http().get(`/categories`, {headers: {"authorization" : `Bearer ${token}`}})
+      setMenus(response.data.results);
+    } catch (error) {
+      setMenus();
+    }
+  }
+
+
+
+
   return (
     <>
       <NavCust product="true" />
@@ -44,53 +81,49 @@ const ProductCust = () => {
         </section>
         <section className="w-[70%] py-[45px] px-[40px]">
           <nav className="grid grid-cols-5">
-            <p className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer border-b-[3px] border-[#e9d8a6] shadow-md">
-              Favorite Product
-            </p>
-            <p className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer">
+            {menus?.map((data, index) =>(
+              <button key={index} onClick={() =>{setMenu(data.name)}} className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer focus-within:border-b-[3px] focus-within:border-[#e9d8a6] focus-within:shadow-md">
+                {data.name}
+              </button>
+            ))}
+            {/* <button onClick={(e) =>{setMenu("Favorite")}} className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer focus-within:border-b-[3px] focus-within:border-[#e9d8a6] focus-within:shadow-md">
+              Favorite
+            </button>
+            <button onClick={(e) =>{setMenu("coffee")}} className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer focus-within:border-b-[3px] focus-within:border-[#e9d8a6] focus-within:shadow-md">
               Coffee
-            </p>
-            <p className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer">
+            </button>
+            <button onClick={(e) =>{setMenu("Non Coffee")}} className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer focus-within:border-b-[3px] focus-within:border-[#e9d8a6] focus-within:shadow-md">
               Non Coffee
-            </p>
-            <p className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer">
+            </button>
+            <button onClick={(e) =>{setMenu("Foods")}} className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer focus-within:border-b-[3px] focus-within:border-[#e9d8a6] focus-within:shadow-md">
               Foods
-            </p>
-            <p className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer">
+            </button>
+            <button onClick={(e) =>{setMenu("Add-on")}} className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer focus-within:border-b-[3px] focus-within:border-[#e9d8a6] focus-within:shadow-md">
               Add-on
-            </p>
+            </button> */}
           </nav>
           <main className="grid grid-cols-4 gap-5 mt-[80px]">
-            <Link to="/product-details">
-              <div className="bg-white p-3 rounded-[30px] mb-[20px]">
-                <img
-                  src={require("./../assets/images/food.png")}
-                  alt=""
-                  className="w-[80%] mx-auto rounded-full mt-[-40px]"
-                />
-                <h3 className="text-center font-semibold text-[17px]">
-                  Salad Tomat Mang Ujang
-                </h3>
-                <span className="font-bold block text-center text-[18px] mt-[5px]">
-                  IDR.15.000
-                </span>
+            {product?.map((data, index) => (
+              <div key={index} onClick={()=>{console.log(index)}}>
+
+                <Link to="/product-details">
+                  <div className="bg-white p-3 rounded-[30px] mb-[20px]">
+                    {/*  */}
+                    <img
+                      src={ data.picture || require("./../assets/images/food.png")}
+                      alt=""
+                      className="w-[80%] mx-auto rounded-full mt-[-40px]"
+                    />
+                    <h3 className="text-center font-semibold text-[17px]">
+                      {data.name}
+                    </h3>
+                    <span className="font-bold block text-center text-[18px] mt-[5px]">
+                      {data.price}
+                    </span>
+                  </div>
+                </Link>
               </div>
-            </Link>
-            <Link to="/product-details">
-              <div className="bg-white p-3 rounded-[30px] mb-[20px]">
-                <img
-                  src={require("./../assets/images/drink.png")}
-                  alt=""
-                  className="w-[80%] mx-auto rounded-full mt-[-40px]"
-                />
-                <h3 className="text-center font-semibold text-[17px]">
-                  Kopi Warkop Bu Siti
-                </h3>
-                <span className="font-bold block text-center text-[18px] mt-[5px]">
-                  IDR.3.000
-                </span>
-              </div>
-            </Link>
+            )) }              
           </main>
         </section>
       </main>
