@@ -168,7 +168,7 @@ const NavCust = (props) => {
         <Link to="/chat" className="cursor-pointer">
           <img src={Chat} alt="" className="w-[25px]" />
         </Link>
-        <div className="dropdown dropdown-end border-[2px] border-black w-[40px] rounded-[50%]">
+        <div className="dropdown dropdown-end border-[2px] border-black w-[45px] rounded-[50%]">
           <label tabIndex={0}>
             {user?.picture ? (
               <img
