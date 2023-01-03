@@ -13,6 +13,7 @@ import DetailsProductAdmin from "./DetailsProductAdmin";
 import EditProduct from "./EditProduct";
 import CartPayment from "./CartPayment";
 import History from "./History";
+import Chat from "./Chat";
 import LoggedIn from "../component/LoggedIn";
 
 function Main() {
@@ -26,6 +27,7 @@ function Main() {
         <Route path="/product-details/:id" element={<DetailsCust />}></Route>
         <Route path="/cart-payment" element={<CartPayment />}></Route>
         <Route path="/history" element={<History />}></Route>
+        <Route path="/chat" element={<Chat />}></Route>
         <Route
           path="/product-customer"
           element={
