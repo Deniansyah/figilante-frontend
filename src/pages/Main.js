@@ -17,6 +17,7 @@ import History from "./History";
 import Chat from "./Chat";
 import Orders from "./Orders";
 import LoggedIn from "../component/LoggedIn";
+import IsAdmin from "../component/IsAdmin";
 
 function Main() {
   return (
@@ -77,7 +78,9 @@ function Main() {
           path="/product-details-admin"
           element={
             <LoggedIn>
-              <DetailsProductAdmin />
+              <IsAdmin>
+                <DetailsProductAdmin />
+              </IsAdmin>
             </LoggedIn>
           }
         ></Route>
@@ -85,7 +88,9 @@ function Main() {
           path="/product-admin"
           element={
             <LoggedIn>
-              <ProductAdmin />
+              <IsAdmin>
+                <ProductAdmin />
+              </IsAdmin>
             </LoggedIn>
           }
         ></Route>
@@ -101,7 +106,9 @@ function Main() {
           path="/edit-product"
           element={
             <LoggedIn>
-              <EditProduct />
+              <IsAdmin>
+                <EditProduct />
+              </IsAdmin>
             </LoggedIn>
           }
         ></Route>
@@ -109,7 +116,9 @@ function Main() {
           path="/new-product"
           element={
             <LoggedIn>
-              <NewProduct />
+              <IsAdmin>
+                <NewProduct />
+              </IsAdmin>
             </LoggedIn>
           }
         ></Route>
