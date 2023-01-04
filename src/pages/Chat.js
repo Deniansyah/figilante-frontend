@@ -2,7 +2,33 @@ import React from "react";
 import Footer from "../component/Footer";
 import NavCust from "../component/NavCust";
 import { Search } from "react-feather";
+import axios from "axios";
 
+const baseUrl = `${process.env.REACT_APP_URL_BACKEND}/chats`;
+
+// const config = (token) => {
+//   return {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   };
+// };
+
+export const chats = body => {
+  return axios.get(`${baseUrl}/chats`,body);
+};
+
+export const createChat = body => {
+  return axios.post(`${baseUrl}/chats`,body);
+};
+
+export const updateChat = body => {
+  return axios.patch(`${baseUrl}/chats/:id`, body);
+};
+
+export const deleteChat = body => {
+  return axios.delete(`${baseUrl}/chats/:id`, body);
+};
 
 
 const Chat = () => {
