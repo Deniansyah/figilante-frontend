@@ -156,7 +156,7 @@ const Profile = () => {
                     <div className="border-b-[10px] border-[#e9d8a6] w-[30%] bg-white rounded-[8px] p-5 text-center">
                       {user?.picture ? (
                         <img
-                          src={process.env.REACT_APP_IMG_URL + user?.picture}
+                          src={user.picture}
                           alt="ProfilePicture"
                           className="w-[100px] h-[100px] rounded-full mx-auto mb-2 object-cover"
                         />
