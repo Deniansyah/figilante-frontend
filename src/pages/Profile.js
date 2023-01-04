@@ -8,9 +8,7 @@ import * as Yup from "yup";
 import { profileAction } from "../redux/action/profile";
 import { logout } from "../redux/reducers/auth";
 import http from "../helpers/http";
-import YupPassword from "yup-password";
-
-YupPassword(Yup);
+import NavAdmin from "../component/NavAdmin";
 
 const EditProfileSchema = Yup.object().shape({
   nickName: Yup.string().required("Required"),
@@ -29,7 +27,6 @@ const EditPasswordSchema = Yup.object().shape({
     "Password does not match"
   ),
 });
-
 const Profile = () => {
   const { user } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
@@ -91,10 +88,11 @@ const Profile = () => {
       setIsError(true);
     }
   };
-
+  const admin = useSelector((state) => state?.profile?.user?.isAdmin)
   return (
     <>
-      <NavCust />
+      {/* Navbar Landing */}
+      { Boolean(admin) ? <NavAdmin home='true'/> : <NavCust home='true'/> }
       <main className="relative">
         <img
           className="absolute z-[-1] w-[100%] h-[100%]"

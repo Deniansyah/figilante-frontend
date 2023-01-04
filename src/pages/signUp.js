@@ -36,7 +36,7 @@ const SignUp = () => {
 
   const doRegister = (value) => {
     const cb = () => {
-      navigate("/product-customer");
+      navigate("/");
     };
     dispatch(registerAction({ value, cb }));
   };
@@ -49,17 +49,18 @@ const SignUp = () => {
             <img src={background} alt="bg" className="5/6" />
           </div>
           <div className="flex-[55%] py-12 md:py-0 bg-[#FFFFFF] md:bg-[#FFFFFF]">
-            <div className="hidden md:flex items-center py-14 pl-13 pr-36">
+            <div className="hidden md:flex items-center px-[50px]">
               <div className="flex-1 flex items-center gap-7">
-                <img src={logo} alt="" className="w-20 h-20 ml-5" />
+                <img src={logo} alt="" className="w-20 h-20" />
                 <p className="font-bold text-3xl text-stone-800">Figilante</p>
               </div>
-              <Link to='/login' className="flex w-20 items-center justify-center">
+              <Link to='/login'>
                 <button className="btn btn-sm bg-[#FFBA33] w-40 h-10 rounded-2xl font-bold text-[#6A4029] hover:bg-[#F49D1A]">
                   Login
                 </button>
               </Link>
             </div>
+            <div className="w-[80%] mx-auto">
             <Formik
               initialValues={{
                 email: "",
@@ -72,7 +73,7 @@ const SignUp = () => {
               {({ errors, touched, dirty }) => (
                 <Form className="flex flex-col items-center gap-5">
                   <div className="py-1">
-                    <h1 className="font-bold text-2xl text-[#6A4029]">
+                    <h1 className="font-bold text-[40px] text-[#6A4029]">
                       Sign Up
                     </h1>
                     {message && (
@@ -141,13 +142,13 @@ const SignUp = () => {
                     <button
                       type="submit"
                       disabled={!dirty || !isLoading}
-                      className="btn btn-signup bg-[#FFBA33] text-[#6A4029] font-bold text-lg rounded-2xl hover:bg-[#F49D1A]"
+                      className="btn w-[25rem] bg-[#FFBA33] text-[#6A4029] font-bold text-lg rounded-2xl hover:bg-[#F49D1A]"
                     >
                       Sign Up
                     </button>
                   </div>
                   <div className="w-[25rem]">
-                    <div className="btn btn-signup bg-[#FFFFFF] mt-5 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5">
+                    <div className="btn w-[25rem] bg-[#FFFFFF] mt-5 hover:bg-[#B2B2B2] drop-shadow-2xl text-[#000000] border-none font-bold text-lg rounded-2xl flex items-center gap-5">
                       <img src={google} alt="" />
                       <p>Sign up with Google</p>
                     </div>
@@ -155,11 +156,12 @@ const SignUp = () => {
                 </Form>
               )}
             </Formik>
+            </div>
           </div>
         </div>
 
         <footer className="hidden md:flex gap-20 relative bg-[#F8F8F8] pt-36 pb-20 pl-30 px-50">
-          <div className="absolute box-border h-40 w-32 -top-20 inset-x-28 bg-[#FFFFFF] drop-shadow-2xl rounded-lg flex items-center p-7 w-3/4">
+          <div className="absolute box-border h-40 -top-20 inset-x-28 bg-[#FFFFFF] drop-shadow-2xl rounded-lg flex items-center p-7 w-3/4">
             <div className="flex-1">
               <p className="font-bold text-3xl w-2/4 mb-5 text-stone-600">
                 Get your member <br></br> card now !
