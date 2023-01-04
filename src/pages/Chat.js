@@ -56,18 +56,25 @@ const Message = ({ adminList, selectChat }) => {
           ) : (
             <div className="flex bg-white rounded-box p-5 mb-3">
               <div className="mr-3">
-                <img
-                  src={require("../assets/images/user-testi-1.png")}
-                  alt="user1"
-                />
+                {adminList?.map((admin) => {
+                  return admin.id === selectChat ? (
+                    <img src={admin.picture} alt="user1" className="w-[70px] h-[70px] rounded-full mx-auto object-cover" />
+                  ) : (
+                    <></>
+                  );
+                })}
               </div>
               <div className="flex flex-col grow">
-                <h3 className="font-bold">Joson</h3>
+                <h3 className="font-bold">
+                  {adminList?.map((admin) => {
+                    return admin.id === selectChat ? admin.firstName : <></>;
+                  })}
+                </h3>
                 <p className="text-sm">
-                  Hey, I’m Jason, Let’s talk and share what’s on your thoughts!
+                  {item.message}
                 </p>
               </div>
-              <p className="text-sm text-gray-400">02.14 PM</p>
+              <p className="text-sm text-gray-400">{item.createdAt}</p>
             </div>
           );
         })}
