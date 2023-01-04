@@ -7,8 +7,10 @@ import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import YupPassword from "yup-password";
 import http from "../helpers/http";
-YupPassword(Yup); // extend yup
+import  Eye from "../assets/logo/eye.svg";
+import  EyeOff from "../assets/logo/eye-off.svg";
 
+YupPassword(Yup); // extend yup
 const resetSchema = Yup.object().shape({
   code: Yup.string().required("Required"),
   newPassword: Yup.string()
@@ -47,6 +49,22 @@ const ResetPassword = () => {
       setMessage(error.response.data.message);
     }
   };
+
+  const showPassword = (fieldId, eyeId , eyeoffId) =>{
+    const field = document.getElementById(fieldId)
+    const eye = document.getElementById(eyeId)
+    const eyeoff = document.getElementById(eyeoffId)
+    if(field.type === 'password'){
+      eye.classList.add("hidden")
+      eyeoff.classList.remove("hidden")
+      field.type = 'text'
+    }else{
+      eye.classList.remove("hidden")
+      eyeoff.classList.add("hidden")
+      field.type = 'password'
+    }
+  }
+
   return (
     <div>
       <main className="relative">
@@ -116,12 +134,20 @@ const ResetPassword = () => {
                     <label className="text-white font-semibold">
                       New Password :{" "}
                     </label>
+                    <div className="relative">
+                  <div className="absolute right-5 top-[45%]" onClick={() => showPassword("newPassword",'Show1',
+                    'Hidden1')}>
+                    <img src={Eye} alt='' id="Show1" className=" cursor-pointer w-[20px]"/>
+                    <img src={EyeOff} alt='' id="Hidden1" className="hidden cursor-pointer w-[20px]"/>
+                    </div>
                     <Field
                       type="password"
                       name="newPassword"
+                      id="newPassword"
                       placeholder="Enter your new password"
                       className="input focus:outline-white bg-white border-[#4F5665] mt-2 w-full rounded-2xl "
                     />
+                    </div>
                     {errors.newPassword && touched.newPassword && (
                       <label className="label">
                         <span className="label-text-alt text-red-500">
@@ -136,12 +162,20 @@ const ResetPassword = () => {
                     <label className="text-white font-semibold">
                       Cofirm Password :{" "}
                     </label>
+                    <div className="relative">
+                  <div className="absolute right-5 top-[45%]" onClick={() => showPassword("confirmPassword",'Show2',
+                    'Hidden2')}>
+                    <img src={Eye} alt='' id="Show2" className=" cursor-pointer w-[20px]"/>
+                    <img src={EyeOff} alt='' id="Hidden2" className="hidden cursor-pointer w-[20px]"/>
+                    </div>
                     <Field
                       type="password"
                       name="confirmPassword"
+                      id="confirmPassword"
                       placeholder="Enter your confirm password"
                       className="input focus:outline-white bg-white border-[#4F5665] mt-2 w-full rounded-2xl "
                     />
+                    </div>
                     {errors.confirmPassword && touched.confirmPassword && (
                       <label className="label">
                         <span className="label-text-alt text-red-500">
