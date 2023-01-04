@@ -144,7 +144,7 @@ const Profile = () => {
                 address: user?.address || "",
                 birthdate:
                   moment(user?.birthdate).format("YYYY-MM-DD") ||
-                  moment(new Date()).format("YYYY-MM-DD"),
+                  moment().format("YYYY-MM-DD"),
                 gender: user?.gender || "",
               }}
               validationSchema={EditProfileSchema}
@@ -316,10 +316,10 @@ const Profile = () => {
                               name="birthdate"
                               className="w-[90%] outline-none border-b-[1px] border-black text-[18px] font-semibold"
                             />
-                            {errors.datebirth && touched.datebirth && (
+                            {errors.birthdate && touched.birthdate && (
                               <label className="label">
                                 <span className="label-text-alt text-red-500">
-                                  {errors.datebirth}
+                                  {errors.birthdate}
                                 </span>
                               </label>
                             )}

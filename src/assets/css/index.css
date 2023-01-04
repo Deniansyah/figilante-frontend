@@ -46,6 +46,20 @@ input[type="time"]:before {
   background: #fff;
 }
 
+input.timeStart[type="time"]:before {
+  content: "Select start hour";
+  color: black;
+  position: absolute;
+  background: #fff;
+}
+
+input.timeEnd[type="time"]:before {
+  content: "Select end hour";
+  color: black;
+  position: absolute;
+  background: #fff;
+}
+
 input[type="time"]:focus:before {
   width: 0;
   content: '';
