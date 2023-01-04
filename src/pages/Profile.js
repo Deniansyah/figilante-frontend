@@ -9,6 +9,8 @@ import { profileAction } from "../redux/action/profile";
 import { logout } from "../redux/reducers/auth";
 import http from "../helpers/http";
 import NavAdmin from "../component/NavAdmin";
+import  EyeOff from "../assets/logo/eye-off.svg";
+import  Eye from "../assets/logo/eye.svg";
 
 const EditProfileSchema = Yup.object().shape({
   nickName: Yup.string().required("Required"),
@@ -20,8 +22,20 @@ const EditProfileSchema = Yup.object().shape({
 });
 
 const EditPasswordSchema = Yup.object().shape({
-  oldPassword: Yup.string().required("Required"),
-  newPassword: Yup.string().required("Required"),
+  oldPassword:Yup.string()
+  .required("Required")
+  .min(6)
+  .minUppercase(1)
+  .minLowercase(1)
+  .minNumbers(1)
+  .minSymbols(1),
+  newPassword: Yup.string()
+  .required("Required")
+  .min(6)
+  .minUppercase(1)
+  .minLowercase(1)
+  .minNumbers(1)
+  .minSymbols(1),
   confirmNewPassword: Yup.string().oneOf(
     [Yup.ref("newPassword"), null],
     "Password does not match"
@@ -33,6 +47,21 @@ const Profile = () => {
   const { token } = useSelector((state) => state.auth);
   const [isError, setIsError] = React.useState(false);
   const [uploadAlert, setUploadAlert] = React.useState("");
+
+  const showPassword = (fieldId, eyeId , eyeoffId) =>{
+    const field = document.getElementById(fieldId)
+    const eye = document.getElementById(eyeId)
+    const eyeoff = document.getElementById(eyeoffId)
+    if(field.type === 'password'){
+      eye.classList.add("hidden")
+      eyeoff.classList.remove("hidden")
+      field.type = 'text'
+    }else{
+      eye.classList.remove("hidden")
+      eyeoff.classList.add("hidden")
+      field.type = 'password'
+    }
+  }
 
   const handleSubmit = async (values) => {
     try {
@@ -92,7 +121,7 @@ const Profile = () => {
   return (
     <>
       {/* Navbar Landing */}
-      { Boolean(admin) ? <NavAdmin home='true'/> : <NavCust home='true'/> }
+      { admin === 'true' ? <NavAdmin home='true'/> : <NavCust home='true'/> }
       <main className="relative">
         <img
           className="absolute z-[-1] w-[100%] h-[100%]"
@@ -415,11 +444,19 @@ const Profile = () => {
                   <label htmlFor="oldPassword" className="label">
                     <span className="label-text">Current Password</span>
                   </label>
-                  <Field
-                    type="password"
-                    name="oldPassword"
-                    className="input input-bordered"
-                  />
+                  <div className="relative">
+                    <div className="absolute right-5 top-[30%]" onClick={() => showPassword("oldPassword",'currentShow',
+                    'currentHidden')}>
+                    <img src={Eye} alt='' id="currentShow" className="cursor-pointer w-[20px]"/>
+                    <img src={EyeOff} alt='' id="currentHidden" className="hidden cursor-pointer w-[20px]"/>
+                    </div>
+                    <Field
+                      type="password"
+                      name="oldPassword"
+                      id='oldPassword'
+                      className="input input-bordered"
+                    />
+                  </div>
                   {errors.oldPassword && touched.oldPassword && (
                     <label className="label">
                       <span className="label-text-alt text-red-500">
@@ -432,11 +469,19 @@ const Profile = () => {
                   <label htmlFor="newPassword" className="label">
                     <span className="label-text">New Password</span>
                   </label>
+                  <div className="relative">
+                  <div className="absolute right-5 top-[30%]" onClick={() => showPassword("newPassword",'newShow',
+                    'newHidden')}>
+                    <img src={Eye} alt='' id="newShow" className=" cursor-pointer w-[20px]"/>
+                    <img src={EyeOff} alt='' id="newHidden" className="hidden cursor-pointer w-[20px]"/>
+                    </div>
                   <Field
                     type="password"
                     name="newPassword"
+                    id="newPassword"
                     className="input input-bordered"
                   />
+                  </div>
                   {errors.newPassword && touched.newPassword && (
                     <label className="label">
                       <span className="label-text-alt text-red-500">
@@ -449,11 +494,19 @@ const Profile = () => {
                   <label htmlFor="confirmNewPassword" className="label">
                     <span className="label-text">Confirm New Password</span>
                   </label>
+                  <div className="relative">
+                  <div className="absolute right-5 top-[30%]" onClick={() => showPassword("confirmPassword",'confirmShow',
+                    'confirmHidden')}>
+                    <img src={Eye} alt='' id="confirmShow" className=" cursor-pointer w-[20px]"/>
+                    <img src={EyeOff} alt='' id="confirmHidden" className="hidden cursor-pointer w-[20px]"/>
+                    </div>
                   <Field
                     type="password"
                     name="confirmNewPassword"
+                    id="confirmPassword"
                     className="input input-bordered"
                   />
+                  </div>
                   {errors.confirmNewPassword && touched.confirmNewPassword && (
                     <label className="label">
                       <span className="label-text-alt text-red-500">

@@ -14,7 +14,7 @@ const Landing = () => {
   return (
     <div>
       {/* Navbar Landing */}
-      {!token? <Navbar home='true'/> : Boolean(admin) ? <NavAdmin home='true'/> : <NavCust home='true'/> }
+      {!token? <Navbar home='true'/> : admin === 'true' ? <NavAdmin home='true'/> : <NavCust home='true'/> }
       {/* Header Landing */}
       <header className="hero h-[80vh] justify-start md:px-20  bg-[url('../images/bg-landing.png')]">
         <div className="hero-content text-left text-neutral-content">
