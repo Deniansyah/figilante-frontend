@@ -7,14 +7,14 @@ import profile from "./profile";
 import transaction from "./transaction";
 
 const authConfig = {
-	key: "auth",
-	storage,
-	blacklist: ["message"],
+  key: "auth",
+  storage,
+  blacklist: ["message"],
 };
 
 const reducer = combineReducers({
-	auth: persistReducer(authConfig, auth),
-	profile: profile,
+  auth: persistReducer(authConfig, auth),
+  profile: profile,
   transaction: transaction,
 });
 

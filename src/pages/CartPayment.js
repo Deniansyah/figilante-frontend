@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../component/Footer";
 import NavCust from "../component/NavCust";
 
@@ -6,101 +6,126 @@ import Cardpay from "../assets/logo/card-pay.svg";
 import Bankpay from "../assets/logo/bank-pay.svg";
 import Delivery from "../assets/logo/delivery.svg";
 
-import {  useSelector } from "react-redux";
-import http from "../helpers/http"
+import { useSelector } from "react-redux";
+import http from "../helpers/http";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { transactionAction } from "../redux/action/transaction";
 
 const CartPayment = () => {
+  // const [product, setProduct] = React.useState({});
+  // const [sizes, setSizes] = React.useState({});
+  // const [payment, setPayment] = React.useState([]);
+  // const token = useSelector((state)=> state.auth.token);
+
+  // const phoneNumber = useSelector((state)=> state.profile.user.phoneNumber);
+  // const [addressInput, setAddressInput] = React.useState("");
+  // const address = useSelector((state)=> state.profile.user.address);
+  // const trans = useSelector((state) => state.transaction);
+  // const [subTotal, setSubTotal] = React.useState(0);
+  // const [tax, setTax] = React.useState(0);
+  // const [grandTotal, setGrandtotal] = React.useState(0);
+  // // console.log(trans);
+  // const cart = []
+
+  // const getProducts = async (prodId) =>{
+  //   try {
+  //     const response = await http().get(`/products/${prodId}`, {headers: {"authorization" : `Bearer ${token}`}})
+  //     setProduct(response.data.results);
+  //   } catch (error) {
+  //     setProduct();
+  //   }
+  // }
+
+  // const getSizes = async (sizeId) =>{
+  //   try {
+  //     const response = await http().get(`/sizes/${sizeId}`, {headers: {"authorization" : `Bearer ${token}`}})
+  //     setSizes(response.data.results);
+  //   } catch (error) {
+  //     setSizes();
+  //   }
+  // }
+
+  // const getPaymentMethods = async () =>{
+  //   try {
+  //     const response = await http().get(`/paymentMethods`, {headers: {"authorization" : `Bearer ${token}`}})
+  //     setPayment(response.data.results);
+  //   } catch (error) {
+  //     setPayment();
+  //   }
+  // }
+
+  // const extraToCart = () => {
+  //   const value = {};
+  //   console.log("panjang "+trans.length)
+  //   for (let index = 0; index<trans.length; index++){
+  //     value.userId = trans[index].userId;
+
+  //     value.productId = trans[index].productId;
+  //     getProducts(trans[index].productId);
+  //     value.productName = product.name;
+  //     value.productPicture = product.picture;
+
+  //     value.qty = trans[index].qty;
+
+  //     value.sizeId = trans[index].sizeId
+  //     getSizes(trans[index].sizeId);
+  //     value.sizeName = sizes.name
+  //     value.totalPrice = trans[index].total
+
+  //     setSubTotal(subTotal + value.totalPrice)
+  //     setTax((subTotal / 10) )
+  //     setGrandtotal(tax + subTotal )
+
+  //     cart.push(value);
+  //   }
+  // }
+
+  // const checkOut = (value) => {
+  //   const cb = () => {
+  //     navigate("/history");
+  //   };
+  //   dispatch(transactionAction({ value, cb }));
+  // };
+
+  // React.useEffect(() => {
+  //   getPaymentMethods();
+  //   console.log("tai");
+  //   console.log(grandTotal)
+  //   extraToCart();
+  // },[]);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const token = useSelector((state) => state.auth.token);
+  const { user } = useSelector((state) => state.profile);
+  const transaction = useSelector((state) => state.transaction);
 
-  const [product, setProduct] = React.useState({});
-  const [sizes, setSizes] = React.useState({});
-  const [payment, setPayment] = React.useState([]);
-  const token = useSelector((state)=> state.auth.token);
+  const [paymentMethod, setPaymentMethod] = useState([]);
+  const [selectedPayment, setSelectedPayment] = useState(null);
 
-  const phoneNumber = useSelector((state)=> state.profile.user.phoneNumber);
-  const [addressInput, setAddressInput] = React.useState("");
-  const address = useSelector((state)=> state.profile.user.address);
-  const trans = useSelector((state) => state.transaction);
-  const [subTotal, setSubTotal] = React.useState(0);
-  const [tax, setTax] = React.useState(0);
-  const [grandTotal, setGrandtotal] = React.useState(0);
-  // console.log(trans);
-  const cart = []
-
-  const getProducts = async (prodId) =>{
-    try {
-      const response = await http().get(`/products/${prodId}`, {headers: {"authorization" : `Bearer ${token}`}})
-      setProduct(response.data.results);
-    } catch (error) {
-      setProduct();
-    }
-  }
-
-  const getSizes = async (sizeId) =>{
-    try {
-      const response = await http().get(`/sizes/${sizeId}`, {headers: {"authorization" : `Bearer ${token}`}})
-      setSizes(response.data.results);
-    } catch (error) {
-      setSizes();
-    }
-  }
-
-  const getPaymentMethods = async () =>{
-    try {
-      const response = await http().get(`/paymentMethods`, {headers: {"authorization" : `Bearer ${token}`}})
-      setPayment(response.data.results);
-    } catch (error) {
-      setPayment();
-    }
-  }
-
-  const extraToCart = () => {
-    const value = {};
-    console.log("panjang "+trans.length)
-    for (let index = 0; index<trans.length; index++){
-      value.userId = trans[index].userId;
-
-      value.productId = trans[index].productId;
-      getProducts(trans[index].productId);
-      value.productName = product.name;
-      value.productPicture = product.picture;
-
-      value.qty = trans[index].qty;
-
-      value.sizeId = trans[index].sizeId
-      getSizes(trans[index].sizeId);
-      value.sizeName = sizes.name
-      value.totalPrice = trans[index].total
-
-      setSubTotal(subTotal + value.totalPrice)
-      setTax((subTotal / 10) )
-      setGrandtotal(tax + subTotal )
-
-      cart.push(value);
-    }
-  }
-
-  const checkOut = (value) => {
-    const cb = () => {
-      navigate("/history");
-    };
-    dispatch(transactionAction({ value, cb }));
+  const getPaymentMethod = async () => {
+    const { data } = await http(token).get("/paymentMethods");
+    setPaymentMethod(data.results);
   };
 
+  const dataCart = transaction?.map((data) => {
+    return {
+      userId: user.id,
+      productId: data.productId,
+      deliveryMethodId: data.deliveryMethodsId,
+    };
+  });
 
+  const doCheckOut = () => {
+    dispatch(transactionAction([dataCart, token]));
+    console.log("berhasil");
+  };
 
-  React.useEffect(() => {
-    getPaymentMethods();
-    console.log("tai");
-    console.log(grandTotal)
-    extraToCart();
-  },[]);
-
+  useEffect(() => {
+    getPaymentMethod();
+  }, []);
 
   return (
     <>
@@ -122,45 +147,32 @@ const CartPayment = () => {
               <p className="text-[23px] font-semibold mb-[20px] text-center">
                 Order Summary
               </p>
-              {cart?.map((data, index)=> (
-                <div key={index} className="flex mb-[10px] items-center">
-                  <img
-                    src={data.productPicture || require("../assets/images/drink.png")}
-                    alt=""
-                    className="rounded-[20px] w-[100px]"
-                  />
-                  <div className="flex flex-col gap-1 justify-center ml-[10px] flex-1">
-                    <h3>{data.productName}</h3>
-                    <p>{data.qty}</p>
-                    <span>{data.sizeName}</span>
+              {transaction?.map((data) => {
+                return (
+                  <div className="flex mb-[10px] items-center" key={data.id}>
+                    <img
+                      src={require("../assets/images/drink.png")}
+                      alt=""
+                      className="rounded-[20px] w-[100px]"
+                    />
+                    <div className="flex flex-col gap-1 justify-center ml-[10px] flex-1">
+                      <h3>{data?.productName}</h3>
+                      <p>{data?.qty} X</p>
+                      <span>{data?.selectedSize}</span>
+                    </div>
+                    <p>IDR.{data?.total}</p>
                   </div>
-                  <p>IDR {data.totalPrice}</p>
-                </div>
-              ))}
+                );
+              })}
 
-
-
-              {/* <div className="flex mb-[10px] items-center">
-                <img
-                  src={require("../assets/images/food.png")}
-                  alt=""
-                  className="rounded-[20px] w-[100px]"
-                />
-                <div className="flex flex-col gap-1 justify-center ml-[10px] flex-1">
-                  <h3>Salad</h3>
-                  <p>x1</p>
-                  <span>Regular</span>
-                </div>
-                <p>IDR 5.000</p>
-              </div> */}
               <hr className="my-[10px]" />
               <div className="flex justify-between items-center text-[17px]">
                 <p>SUBTOTAL</p>
-                <span>IDR {subTotal}</span>
+                <span>IDR </span>
               </div>
               <div className="flex justify-between items-center text-[17px]">
                 <p>TAX & FEES</p>
-                <span>IDR {tax}</span>
+                <span>IDR</span>
               </div>
               <div className="flex justify-between items-center text-[17px]">
                 <p>SHIPPING</p>
@@ -168,7 +180,7 @@ const CartPayment = () => {
               </div>
               <div className="flex mt-[10px] justify-between items-center text-[20px] text-warning-content font-bold">
                 <p>TOTAL</p>
-                <span>IDR {grandTotal +10000}</span>
+                <span>IDR </span>
               </div>
             </section>
             <section className="w-[40%] font-semibold flex flex-col gap-5">
@@ -182,11 +194,9 @@ const CartPayment = () => {
                     <span className="font-bold">Delivery</span>
                   </p>
                   <hr className="my-[5px]" />
-                  <input className="input" type="text" placeholder={address? address : ""} onChange={(e) =>{setAddressInput(e.target.value)}} >
-
-                  </input>
+                  <input className="input" type="text"></input>
                   <hr className="my-[5px]" />
-                  <p>{phoneNumber}</p>
+                  <p>{user?.phoneNumber}</p>
                 </div>
               </div>
               <div>
@@ -194,52 +204,33 @@ const CartPayment = () => {
                   Payment method
                 </p>
                 <div className="bg-white p-5 rounded-[8px]">
-                  {payment?.map((data,index)=>(
-                    <div key={index}>
-                      <div  className="flex items-center gap-2">
-                        <input type="radio" name="payment-method" id="card"></input>
-                        <div className="bg-orange-500 p-2 rounded-[8px]">
-                          <img src={Cardpay} alt="card" />
+                  {paymentMethod?.map((data) => {
+                    return (
+                      <div key={data.id}>
+                        <div className="flex items-center gap-2">
+                          <input
+                            onChange={(e) => setSelectedPayment(data.id)}
+                            type="radio"
+                            name="payment-method"
+                            id="card"
+                          ></input>
+                          {/* <div className="bg-orange-500 p-2 rounded-[8px]">
+                            <img src="" alt="card" />
+                          </div> */}
+                          <p>{data.name}</p>
                         </div>
-                        <p>{data.name}</p>
-                      </div>
                         <hr className="my-[5px]" />
-                    </div>
-                  ))}
-
-                  {/* <div className="flex items-center gap-2">
-                    <input type="radio" name="payment-method" id="card"></input>
-                    <div className="bg-orange-500 p-2 rounded-[8px]">
-                      <img src={Cardpay} alt="card" />
-                    </div>
-                    <p>Card</p>
-                  </div>
-                  <hr className="my-[5px]" />
-
-                  <div className="flex items-center gap-2">
-                    <input type="radio" name="payment-method" id="bank"></input>
-
-                    <div className="bg-green-500 p-2 rounded-[8px]">
-                      <img src={Bankpay} alt="" />
-                    </div>
-                    <p>Bank account</p>
-                  </div>
-                  <hr className="my-[5px]" />
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name="payment-method"
-                      id="delivery"
-                    ></input>
-                    <div className="bg-yellow-500 p-2 rounded-[8px]">
-                      <img src={Delivery} alt="card" />
-                    </div>
-                    <p>Cash on delivery</p>
-                  </div>
-                  <hr className="my-[5px]" /> */}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
-              <button onClick={()=>{checkOut(cart)}} className="btn btn-block bg-warning-content">Confirm and Pay</button>
+              <button
+                onClick={doCheckOut}
+                className="btn btn-block bg-warning-content"
+              >
+                Confirm and Pay
+              </button>
             </section>
           </div>
         </div>

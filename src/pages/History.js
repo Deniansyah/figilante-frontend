@@ -51,10 +51,11 @@ const History = () => {
             <br />
             <span className="text-[17px]"> press to delete item</span>
           </h3>
-          {history?.map((item, index) => {
-            return (
-              <div className="grid grid-cols-3 gap-5 mb-2" key={index + 1}>
+          <div className="grid grid-cols-3 gap-5 mb-2">
+            {history?.map((item, index) => {
+              return (
                 <div
+                  key={index + 1}
                   className="bg-white p-5 rounded-[8px] flex items-start gap-2 relative cursor-pointer"
                   onClick={() => showDelete("tool1")}
                 >
@@ -89,45 +90,8 @@ const History = () => {
                     <span> {item.deliveryMethods.name}</span>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-          <div className="grid grid-cols-3 gap-5">
-            <div
-              className="bg-white p-5 rounded-[8px] flex items-start gap-2 relative cursor-pointer"
-              onClick={() => showDelete("tool1")}
-            >
-              <div
-                className="flex absolute top-[-10px] right-0 gap-1 hidden"
-                id="tool1"
-              >
-                <label
-                  htmlFor="confirmDelete"
-                  className="cursor-pointer w-[33px] h-[30px] bg-error rounded-full flex items-center justify-center"
-                >
-                  <img src={Trash} alt="" />
-                </label>
-                <p
-                  className="font-bold cursor-pointer w-[33px] h-[30px] bg-yellow-300 flex items-center justify-center rounded-full"
-                  id="cancel1"
-                  onClick={() => cancelDelete("tool1")}
-                >
-                  X
-                </p>
-              </div>
-              <img
-                src={require("../assets/images/drink.png")}
-                alt=""
-                className="w-[80px] rounded-[10px]"
-              />
-              <div className="text-warning-content font-semibold">
-                <h4 className="text-black text-[20px] font-bold">
-                  Good Day Coppucino
-                </h4>
-                <p>IDR 34.000</p>
-                <span>Delivered</span>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
       </main>
