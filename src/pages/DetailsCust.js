@@ -11,7 +11,6 @@ import jwt_decode from "jwt-decode";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { transactionAction } from "../redux/action/transaction";
 import { transaction } from "../redux/reducers/transaction"
 
 const DetailsCust = () => {
@@ -119,7 +118,7 @@ const DetailsCust = () => {
             <button onClick={() => {addTransaction(userId, id, product.price, sizeId, count, deliveryMethodId, timeArrived)}} className="mb-[10px] btn bg-warning-content w-[80%] text-[18px]" type="submit">
               Add to Cart
             </button>
-            <button onClick={() => {navigate("/product-customer")}} className="btn btn-warning w-[80%] text-[18px]">
+            <button onClick={() => {navigate("/chat")}} className="btn btn-warning w-[80%] text-[18px]">
               Ask a Staff
             </button>
           </section>

@@ -6,7 +6,102 @@ import Cardpay from "../assets/logo/card-pay.svg";
 import Bankpay from "../assets/logo/bank-pay.svg";
 import Delivery from "../assets/logo/delivery.svg";
 
+import {  useSelector } from "react-redux";
+import http from "../helpers/http"
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { transactionAction } from "../redux/action/transaction";
+
 const CartPayment = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [product, setProduct] = React.useState({});
+  const [sizes, setSizes] = React.useState({});
+  const [payment, setPayment] = React.useState([]);
+  const token = useSelector((state)=> state.auth.token);
+
+  const phoneNumber = useSelector((state)=> state.profile.user.phoneNumber);
+  const [addressInput, setAddressInput] = React.useState("");
+  const address = useSelector((state)=> state.profile.user.address);
+  const trans = useSelector((state) => state.transaction);
+  const [subTotal, setSubTotal] = React.useState(0);
+  const [tax, setTax] = React.useState(0);
+  const [grandTotal, setGrandtotal] = React.useState(0);
+  // console.log(trans);
+  const cart = []
+
+  const getProducts = async (prodId) =>{
+    try {
+      const response = await http().get(`/products/${prodId}`, {headers: {"authorization" : `Bearer ${token}`}})
+      setProduct(response.data.results);
+    } catch (error) {
+      setProduct();
+    }
+  }
+
+  const getSizes = async (sizeId) =>{
+    try {
+      const response = await http().get(`/sizes/${sizeId}`, {headers: {"authorization" : `Bearer ${token}`}})
+      setSizes(response.data.results);
+    } catch (error) {
+      setSizes();
+    }
+  }
+
+  const getPaymentMethods = async () =>{
+    try {
+      const response = await http().get(`/paymentMethods`, {headers: {"authorization" : `Bearer ${token}`}})
+      setPayment(response.data.results);
+    } catch (error) {
+      setPayment();
+    }
+  }
+
+  const extraToCart = () => {
+    const value = {};
+    console.log("panjang "+trans.length)
+    for (let index = 0; index<trans.length; index++){
+      value.userId = trans[index].userId;
+
+      value.productId = trans[index].productId;
+      getProducts(trans[index].productId);
+      value.productName = product.name;
+      value.productPicture = product.picture;
+
+      value.qty = trans[index].qty;
+
+      value.sizeId = trans[index].sizeId
+      getSizes(trans[index].sizeId);
+      value.sizeName = sizes.name
+      value.totalPrice = trans[index].total
+
+      setSubTotal(subTotal + value.totalPrice)
+      setTax((subTotal / 10) )
+      setGrandtotal(tax + subTotal )
+
+      cart.push(value);
+    }
+  }
+
+  const checkOut = (value) => {
+    const cb = () => {
+      navigate("/history");
+    };
+    dispatch(transactionAction({ value, cb }));
+  };
+
+
+
+  React.useEffect(() => {
+    getPaymentMethods();
+    console.log("tai");
+    console.log(grandTotal)
+    extraToCart();
+  },[]);
+
+
   return (
     <>
       <NavCust cart="true" />
@@ -27,20 +122,25 @@ const CartPayment = () => {
               <p className="text-[23px] font-semibold mb-[20px] text-center">
                 Order Summary
               </p>
-              <div className="flex mb-[10px] items-center">
-                <img
-                  src={require("../assets/images/drink.png")}
-                  alt=""
-                  className="rounded-[20px] w-[100px]"
-                />
-                <div className="flex flex-col gap-1 justify-center ml-[10px] flex-1">
-                  <h3>Good Day</h3>
-                  <p>x1</p>
-                  <span>Regular</span>
+              {cart?.map((data, index)=> (
+                <div key={index} className="flex mb-[10px] items-center">
+                  <img
+                    src={data.productPicture || require("../assets/images/drink.png")}
+                    alt=""
+                    className="rounded-[20px] w-[100px]"
+                  />
+                  <div className="flex flex-col gap-1 justify-center ml-[10px] flex-1">
+                    <h3>{data.productName}</h3>
+                    <p>{data.qty}</p>
+                    <span>{data.sizeName}</span>
+                  </div>
+                  <p>IDR {data.totalPrice}</p>
                 </div>
-                <p>IDR 3.000</p>
-              </div>
-              <div className="flex mb-[10px] items-center">
+              ))}
+
+
+
+              {/* <div className="flex mb-[10px] items-center">
                 <img
                   src={require("../assets/images/food.png")}
                   alt=""
@@ -52,23 +152,23 @@ const CartPayment = () => {
                   <span>Regular</span>
                 </div>
                 <p>IDR 5.000</p>
-              </div>
+              </div> */}
               <hr className="my-[10px]" />
               <div className="flex justify-between items-center text-[17px]">
                 <p>SUBTOTAL</p>
-                <span>IDR 10.000</span>
+                <span>IDR {subTotal}</span>
               </div>
               <div className="flex justify-between items-center text-[17px]">
                 <p>TAX & FEES</p>
-                <span>IDR 5.000</span>
+                <span>IDR {tax}</span>
               </div>
               <div className="flex justify-between items-center text-[17px]">
                 <p>SHIPPING</p>
-                <span>IDR 10.000</span>
+                <span>IDR 10000</span>
               </div>
               <div className="flex mt-[10px] justify-between items-center text-[20px] text-warning-content font-bold">
                 <p>TOTAL</p>
-                <span>IDR 25.000</span>
+                <span>IDR {grandTotal +10000}</span>
               </div>
             </section>
             <section className="w-[40%] font-semibold flex flex-col gap-5">
@@ -79,15 +179,14 @@ const CartPayment = () => {
                 </div>
                 <div className="bg-white p-5 rounded-[8px]">
                   <p>
-                    <span className="font-bold">Delivery</span> to Iskandar
-                    Street
+                    <span className="font-bold">Delivery</span>
                   </p>
                   <hr className="my-[5px]" />
-                  <span>
-                    Km 5 refinery road oppsite re public road, effurun, Jakarta
-                  </span>
+                  <input className="input" type="text" placeholder={address? address : ""} onChange={(e) =>{setAddressInput(e.target.value)}} >
+
+                  </input>
                   <hr className="my-[5px]" />
-                  <p>+62 81348287878</p>
+                  <p>{phoneNumber}</p>
                 </div>
               </div>
               <div>
@@ -95,7 +194,20 @@ const CartPayment = () => {
                   Payment method
                 </p>
                 <div className="bg-white p-5 rounded-[8px]">
-                  <div className="flex items-center gap-2">
+                  {payment?.map((data,index)=>(
+                    <div key={index}>
+                      <div  className="flex items-center gap-2">
+                        <input type="radio" name="payment-method" id="card"></input>
+                        <div className="bg-orange-500 p-2 rounded-[8px]">
+                          <img src={Cardpay} alt="card" />
+                        </div>
+                        <p>{data.name}</p>
+                      </div>
+                        <hr className="my-[5px]" />
+                    </div>
+                  ))}
+
+                  {/* <div className="flex items-center gap-2">
                     <input type="radio" name="payment-method" id="card"></input>
                     <div className="bg-orange-500 p-2 rounded-[8px]">
                       <img src={Cardpay} alt="card" />
@@ -103,6 +215,7 @@ const CartPayment = () => {
                     <p>Card</p>
                   </div>
                   <hr className="my-[5px]" />
+
                   <div className="flex items-center gap-2">
                     <input type="radio" name="payment-method" id="bank"></input>
 
@@ -123,10 +236,10 @@ const CartPayment = () => {
                     </div>
                     <p>Cash on delivery</p>
                   </div>
-                  <hr className="my-[5px]" />
+                  <hr className="my-[5px]" /> */}
                 </div>
               </div>
-              <button className="btn btn-block bg-warning-content">Confirm and Pay</button>
+              <button onClick={()=>{checkOut(cart)}} className="btn btn-block bg-warning-content">Confirm and Pay</button>
             </section>
           </div>
         </div>
