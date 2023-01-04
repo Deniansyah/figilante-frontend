@@ -93,7 +93,7 @@ const Profile = () => {
       const formData = new FormData();
       formData.append("picture", event.target.files[0]);
       await http(token).patch(
-        `${process.env.REACT_APP_URL_BACKEND}/profile`,
+        `${process.env.REACT_APP_URL_BACKEND}/profile/uploadProfilePicture`,
         formData
       );
       dispatch(profileAction());
