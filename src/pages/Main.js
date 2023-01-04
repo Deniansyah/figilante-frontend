@@ -3,18 +3,21 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./Landing";
 import Login from "./Login";
 import SignUp from "./SignUp";
-import ForgotPassword from "./ForgotPassword"
-import ResetPassword from "./ResetPassword"
+import ForgotPassword from "./ForgotPassword";
+import ResetPassword from "./ResetPassword";
 import ProductCust from "./ProductCust";
 import Profile from "./Profile";
 import ProductAdmin from "./ProductAdmin";
+import NewProduct from "./NewProduct";
 import DetailsCust from "./DetailsCust";
 import DetailsProductAdmin from "./DetailsProductAdmin";
 import EditProduct from "./EditProduct";
 import CartPayment from "./CartPayment";
 import History from "./History";
 import Chat from "./Chat";
+import Orders from "./Orders";
 import LoggedIn from "../component/LoggedIn";
+import IsAdmin from "../component/IsAdmin";
 
 function Main() {
   return (
@@ -33,9 +36,9 @@ function Main() {
         <Route path="/sign-up" element={<SignUp />}></Route>
         {/* <Route path="/product-customer" element={<ProductCust />}></Route>
         <Route path="/product-details/:id" element={<DetailsCust />}></Route>
-        <Route path="/cart-payment" element={<CartPayment />}></Route>
+        {/* <Route path="/cart-payment" element={<CartPayment />}></Route> */}
         <Route path="/history" element={<History />}></Route>
-        <Route path="/history" element={<History />}></Route> */}
+        <Route path="/history" element={<History />}></Route>
         {/* <Route path="/chat" element={<Chat />}></Route> */}
         <Route
           path="/product-customer"
@@ -75,7 +78,9 @@ function Main() {
           path="/product-details-admin"
           element={
             <LoggedIn>
-              <DetailsProductAdmin />
+              <IsAdmin>
+                <DetailsProductAdmin />
+              </IsAdmin>
             </LoggedIn>
           }
         ></Route>
@@ -83,7 +88,9 @@ function Main() {
           path="/product-admin"
           element={
             <LoggedIn>
-              <ProductAdmin />
+              <IsAdmin>
+                <ProductAdmin />
+              </IsAdmin>
             </LoggedIn>
           }
         ></Route>
@@ -99,7 +106,27 @@ function Main() {
           path="/edit-product"
           element={
             <LoggedIn>
-              <EditProduct />
+              <IsAdmin>
+                <EditProduct />
+              </IsAdmin>
+            </LoggedIn>
+          }
+        ></Route>
+        <Route
+          path="/new-product"
+          element={
+            <LoggedIn>
+              <IsAdmin>
+                <NewProduct />
+              </IsAdmin>
+            </LoggedIn>
+          }
+        ></Route>
+        <Route
+          path="/orders"
+          element={
+            <LoggedIn>
+              <Orders />
             </LoggedIn>
           }
         ></Route>
