@@ -29,7 +29,7 @@ const ProductCust = () => {
     try {
       const response = await http().get(`/products?limit=${limit}&page=${page}&menu=${menu}`, {headers: {"authorization" : `Bearer ${token}`}});
       setProduct(response.data.results);
-      
+
       setPages(Math.trunc((product.length / 12) + 1));
     } catch (error) {
       setProduct([]);
@@ -45,7 +45,7 @@ const ProductCust = () => {
     }
   }
 
-  const increment = () => {    
+  const increment = () => {
     if (count === pages) {
       return false;
     } else {
@@ -145,7 +145,7 @@ const ProductCust = () => {
                   </div>
                 </Link>
               </div>
-            )) }              
+            )) }
           </main>
           <div className="flex items-center justify-center">
             <div
@@ -161,7 +161,7 @@ const ProductCust = () => {
               onClick={increment}
             ><Icon.ArrowRight />
             </div>
-          </div>          
+          </div>
         </section>
       </main>
       <Footer />
