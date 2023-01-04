@@ -9,6 +9,7 @@ import ProductCust from "./ProductCust";
 import Profile from "./Profile";
 import ProductAdmin from "./ProductAdmin";
 import NewProduct from "./NewProduct";
+import NewPromo from "./NewPromo";
 import DetailsCust from "./DetailsCust";
 import DetailsProductAdmin from "./DetailsProductAdmin";
 import EditProduct from "./EditProduct";
@@ -118,6 +119,16 @@ function Main() {
             <LoggedIn>
               <IsAdmin>
                 <NewProduct />
+              </IsAdmin>
+            </LoggedIn>
+          }
+        ></Route>
+        <Route
+          path="/new-promo"
+          element={
+            <LoggedIn>
+              <IsAdmin>
+                <NewPromo />
               </IsAdmin>
             </LoggedIn>
           }

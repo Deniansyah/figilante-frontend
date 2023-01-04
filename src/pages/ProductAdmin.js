@@ -47,9 +47,9 @@ const ProductAdmin = () => {
             <p className="text-[#6A4029] underline cursor-pointer hover:font-bold font-semibold text-[20px]">
               Edit Promo
             </p>
-            <p className="text-[#6A4029] underline cursor-pointer hover:font-bold font-semibold text-[20px]">
+            <Link to='/new-promo' className="text-[#6A4029] underline cursor-pointer hover:font-bold font-semibold text-[20px]">
               Add new promo
-            </p>
+            </Link>
           </div>
         </section>
         <section className="w-[70%] py-[45px] px-[40px]">
