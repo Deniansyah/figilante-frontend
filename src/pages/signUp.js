@@ -185,7 +185,7 @@ const SignUp = () => {
         </div>
 
         <footer className="hidden md:flex gap-20 relative bg-[#F8F8F8] pt-36 pb-20 pl-30 px-50">
-          <div className="absolute box-border h-40 w-32 -top-20 inset-x-28 bg-[#FFFFFF] drop-shadow-2xl rounded-lg flex items-center p-7 w-3/4">
+          <div className="absolute box-border h-40 -top-20 inset-x-28 bg-[#FFFFFF] drop-shadow-2xl rounded-lg flex items-center p-7 w-3/4">
             <div className="flex-1">
               <p className="font-bold text-3xl w-2/4 mb-5 text-stone-600">
                 Get your member <br></br> card now !

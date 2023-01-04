@@ -4,10 +4,42 @@ import NavCust from "../component/NavCust";
 
 import Arrow from "../assets/logo/arrow-checkout.svg";
 
+
+import http from "../helpers/http"
+import {  useSelector } from "react-redux";
+import jwt_decode from "jwt-decode";
+
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { transactionAction } from "../redux/action/transaction";
+import { transaction } from "../redux/reducers/transaction"
+
 const DetailsCust = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [product, setProduct] = React.useState({});
+  const [sizes, setsSizes] = React.useState([]);
+  const [deliveryMethods, setDeliveryMethods] = React.useState([]);
   let [count, setCount] = React.useState(1);
+  const url = window.location.href.split("/");
+  const token = useSelector((state)=> state.auth.token);
+  const decode = jwt_decode(token);
+
+  const userId = decode.id;
+  const id = url[url.length-1];
+  const [sizeId, setsSizeId] = React.useState(null);
+  const [deliveryMethodId, setDeliveryMethodId] = React.useState(null);
+  const [timeArrived, setTimeArrived] = React.useState(null);
+
+  React.useEffect(() => {
+    getProducts()
+    getSizes()
+    getDeliveryMethods();
+  },[sizeId, count, deliveryMethodId, timeArrived])
+
+
   let increment = () => {
-    if (count === 20) {
+    if (count === product.stock) {
       return false;
     }
     return setCount(count + 1);
@@ -18,29 +50,76 @@ const DetailsCust = () => {
     }
     return setCount(count - 1);
   };
+
+  const getProducts = async () =>{
+    try {
+      const response = await http().get(`/products/${id}`, {headers: {"authorization" : `Bearer ${token}`}})
+      setProduct(response.data.results);
+    } catch (error) {
+      setProduct();
+    }
+  }
+
+  const getSizes = async () =>{
+    try {
+      const response = await http().get(`/sizes`, {headers: {"authorization" : `Bearer ${token}`}})
+      setsSizes(response.data.results);
+    } catch (error) {
+      setsSizes();
+    }
+  }
+
+  const getDeliveryMethods = async () =>{
+    try {
+      const response = await http().get(`/deliveryMethods`, {headers: {"authorization" : `Bearer ${token}`}})
+      setDeliveryMethods(response.data.results);
+    } catch (error) {
+      setDeliveryMethods();
+    }
+  }
+
+  const addTransaction = (userId, productId, price, sizeId, qty, deliveryMethodsId, timeArrived) =>{
+    const paramValue = {
+      userId: userId,
+      productId: parseInt(productId),
+      price: price,
+      sizeId: sizeId,
+      qty: qty,
+      deliveryMethodsId: deliveryMethodsId,
+      timeArrived: timeArrived,
+    }
+    const cb = ()=>{
+      navigate("/product-customer")
+    }
+    // dispatch(transactionAction(paramValue, cb))
+
+    dispatch(transaction(paramValue))
+    navigate("/product-customer")
+  }
+
   return (
     <>
       <NavCust product="true" />
       <main className="py-[50px] px-[10%] bg-[#fbf8cc]">
         <div className="flex text-[#6A4029] font-semibold gap-1 text-[18px]">
           <p className="text-[#aeaeae]">Favorite Product</p>
-          <p>{"> "}Coffe Good Day</p>
+          <p>{"> "}{product.name}</p>
         </div>
         <div className="flex justify-evenly gap-5 items-start">
           <section className="w-[40%] p-5 text-center">
             <img
-              src={require("../assets/images/drink.png")}
+              src={product.picture || require("../assets/images/drink.png")}
               alt=""
               className="rounded-full w-[60%] mx-auto mb-[30px]"
             />
             <h1 className="font-extrabold text-[35px] mb-[10px]">
-              Good Day Coppucino
+              {product.name}
             </h1>
-            <p className="font-semibold text-[20px] mb-[20px]">IDR 3.000</p>
-            <button className="mb-[10px] btn bg-warning-content w-[80%] text-[18px]">
+            <p className="font-semibold text-[20px] mb-[20px]">{product.price}</p>
+            <button onClick={() => {addTransaction(userId, id, product.price, sizeId, count, deliveryMethodId, timeArrived)}} className="mb-[10px] btn bg-warning-content w-[80%] text-[18px]" type="submit">
               Add to Cart
             </button>
-            <button className="btn btn-warning w-[80%] text-[18px]">
+            <button onClick={() => {navigate("/product-customer")}} className="btn btn-warning w-[80%] text-[18px]">
               Ask a Staff
             </button>
           </section>
@@ -52,25 +131,25 @@ const DetailsCust = () => {
                 <span className="font-bold">1 - 7 pm</span>
               </p>
               <span className="text-[20px]">
-                Cold brewing is a method of making Good Day Coffee that combines
-                ground coffee and cold water and uses time instead of heat to
-                extract the flavors. It is brewed in small batches and soaked
-                for 48 hours.
+                {product.description}
               </span>
               <div className="text-center">
                 <h5 className="font-bold text-center text-black text-[22px] mt-[40px] mb-[10px]">
                   Choose all size
                 </h5>
                 <div className="flex gap-3 justify-center">
-                  <button className="btn-ghost bg-orange-500 text-white rounded-full w-[60px] h-[60px]">
-                    R
+                  {sizes?.map((data, index) =>(
+                    <button onClick={ () => (setsSizeId(data.id))} key={index} className="btn-ghost opacity-50 bg-orange-500 text-white rounded-full w-[60px] h-[60px]">
+                    {data.name}
                   </button>
-                  <button className="btn-ghost bg-orange-500 text-white rounded-full w-[60px] h-[60px]">
+                  ))}
+
+                  {/* <button className="btn-ghost bg-orange-500 text-white rounded-full w-[60px] h-[60px]">
                     L
                   </button>
                   <button className="btn-ghost bg-orange-500 text-white rounded-full w-[60px] h-[60px]">
                     XL
-                  </button>
+                  </button> */}
                 </div>
               </div>
               <div className="flex-1 text-center">
@@ -97,20 +176,22 @@ const DetailsCust = () => {
                 Choose Delivery method
               </h5>
               <div className="flex gap-3 justify-center">
-                <button className="btn-ghost btn-sm bg-[#6A4029] text-white rounded-[8px]">
-                  Dine In
-                </button>
-                <button className="btn-ghost btn-sm bg-[#6A4029] text-white rounded-[8px]">
+                {deliveryMethods?.map((data, index) =>(
+                  <button onClick={ () => (setDeliveryMethodId(data.id))} key={index} className="btn-ghost btn-sm bg-[#6A4029] text-white rounded-[8px]">
+                    {data.name}
+                  </button>
+                ))}
+                {/* <button className="btn-ghost btn-sm bg-[#6A4029] text-white rounded-[8px]">
                   Door Delivery
                 </button>
                 <button className="btn-ghost btn-sm bg-[#6A4029] text-white rounded-[8px]">
                   Pick Up
-                </button>
+                </button> */}
               </div>
             </div>
             <div className="flex gap-2 mt-[30px] justify-center items-center">
               <p className="font-semibold text-center text-black text-[18px]">Set time :</p>
-              <input type='time' name="time" placeholder="Enter the time you’ll arrived" className="w-[250px] py-1 px-2"/>
+              <input onChange={ (e) => (setTimeArrived(e.target.value))} type='time' name="time" placeholder="Enter the time you’ll arrived" className="w-[250px] py-1 px-2"/>
             </div>
           </section>
         </div>
@@ -124,7 +205,7 @@ const DetailsCust = () => {
               />
             </div>
             <div className="text-[18px] font-semibold text-start ml-[20px] flex-1">
-              <h5 className="text-[25px] font-bold">Good Day Coppucino</h5>
+              <h5 className="text-[25px] font-bold">{product.name}</h5>
               <p>2x (Reguler)</p>
               <p>1x (Large)</p>
             </div>
