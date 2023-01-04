@@ -15,7 +15,6 @@ import CartPayment from "./CartPayment";
 import History from "./History";
 import Chat from "./Chat";
 import LoggedIn from "../component/LoggedIn";
-import Chat from "./Chat";
 
 function Main() {
   return (

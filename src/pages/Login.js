@@ -13,6 +13,8 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import YupPassword from "yup-password";
 import { useNavigate } from "react-router-dom";
+import  EyeOff from "../assets/logo/eye-off.svg";
+import  Eye from "../assets/logo/eye.svg";
 
 YupPassword(Yup); // extend yup
 
@@ -33,6 +35,21 @@ const Login = () => {
     };
     dispatch(loginAction({ value, cb }));
   };
+
+  const showPassword = (fieldId, eyeId , eyeoffId) =>{
+    const field = document.getElementById(fieldId)
+    const eye = document.getElementById(eyeId)
+    const eyeoff = document.getElementById(eyeoffId)
+    if(field.type === 'password'){
+      eye.classList.add("hidden")
+      eyeoff.classList.remove("hidden")
+      field.type = 'text'
+    }else{
+      eye.classList.remove("hidden")
+      eyeoff.classList.add("hidden")
+      field.type = 'password'
+    }
+  }
 
   return (
     <div>
@@ -98,12 +115,20 @@ const Login = () => {
                       <label className="text-[#4F5665] font-semibold">
                         Password :{" "}
                       </label>
+                      <div className="relative">
+                  <div className="absolute right-5 top-[45%]" onClick={() => showPassword("password",'Show',
+                    'Hidden')}>
+                    <img src={Eye} alt='' id="Show" className=" cursor-pointer w-[20px]"/>
+                    <img src={EyeOff} alt='' id="Hidden" className="hidden cursor-pointer w-[20px]"/>
+                    </div>
                       <Field
                         type="password"
                         name="password"
+                        id="password"
                         placeholder="Enter your password"
                         className="input input-bordered focus:outline-none bg-inherit border-[#4F5665] mt-2 w-full rounded-2xl"
                       />
+                      </div>
                       {errors.password && touched.password && (
                         <label className="label">
                           <span className="label-text-alt text-red-500">
