@@ -118,7 +118,7 @@ const DetailsCust = () => {
             <button onClick={() => {addTransaction(userId, id, product.price, sizeId, count, deliveryMethodId, timeArrived)}} className="mb-[10px] btn bg-warning-content w-[80%] text-[18px]" type="submit">
               Add to Cart
             </button>
-            <button onClick={() => {navigate("/product-customer")}} className="btn btn-warning w-[80%] text-[18px]">
+            <button onClick={() => {navigate("/chat")}} className="btn btn-warning w-[80%] text-[18px]">
               Ask a Staff
             </button>
           </section>
