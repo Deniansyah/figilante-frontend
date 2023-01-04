@@ -14,10 +14,10 @@ const NavAdmin = (props) => {
   const { user } = useSelector((state) => state.profile);
   const { token } = useSelector((state) => state.auth);
 
-  const Logout = ()=>{
-    dispatch(LogoutAction())
-    return navigate("/login")
-  }
+  const Logout = () => {
+    dispatch(LogoutAction());
+    return navigate("/login");
+  };
 
   useEffect(() => {
     dispatch(profileAction());
@@ -182,11 +182,11 @@ const NavAdmin = (props) => {
           <label tabIndex={0}>
             {user?.picture ? (
               <img
-                src={process.env.REACT_APP_IMG_URL + user.picture}
+                src={user.picture}
                 alt="Avatar"
                 className="w-[40px] h-[40px] rounded-full cursor-pointer object-cover"
               />
-            ):(
+            ) : (
               <img
                 src={require("../assets/images/avatar.png")}
                 alt="Avatar"
