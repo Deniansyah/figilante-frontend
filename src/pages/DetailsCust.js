@@ -158,7 +158,7 @@ const DetailsCust = () => {
             </button>
             <button
               onClick={() => {
-                navigate("/product-customer");
+                navigate("/chat");
               }}
               className="btn btn-warning w-[80%] text-[18px]"
             >
