@@ -168,19 +168,31 @@ const CartPayment = () => {
               <hr className="my-[10px]" />
               <div className="flex justify-between items-center text-[17px]">
                 <p>SUBTOTAL</p>
-                <span>IDR </span>
+                <span>
+                  IDR.
+                  {transaction?.reduce((acc, curr) => {
+                    return acc + curr.total;
+                  }, 0)}
+                </span>
               </div>
               <div className="flex justify-between items-center text-[17px]">
                 <p>TAX & FEES</p>
-                <span>IDR</span>
+                <span>IDR 11%</span>
               </div>
               <div className="flex justify-between items-center text-[17px]">
                 <p>SHIPPING</p>
-                <span>IDR 10000</span>
+                <span>IDR.10000</span>
               </div>
               <div className="flex mt-[10px] justify-between items-center text-[20px] text-warning-content font-bold">
                 <p>TOTAL</p>
-                <span>IDR </span>
+                <span>
+                  IDR.
+                  {
+                    Number(transaction?.reduce((acc, curr) => {
+                      return acc + curr.total;
+                    }, 0) * 1.11 + 10000).toFixed(0)
+                  }
+                </span>
               </div>
             </section>
             <section className="w-[40%] font-semibold flex flex-col gap-5">
