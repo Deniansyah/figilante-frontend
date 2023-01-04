@@ -118,7 +118,7 @@ const DetailsCust = () => {
             <button onClick={() => {addTransaction(userId, id, product.price, sizeId, count, deliveryMethodId, timeArrived)}} className="mb-[10px] btn bg-warning-content w-[80%] text-[18px]" type="submit">
               Add to Cart
             </button>
-            <button onClick={() => {navigate("/chat")}} className="btn btn-warning w-[80%] text-[18px]">
+            <button onClick={() => {navigate("/product-customer")}} className="btn btn-warning w-[80%] text-[18px]">
               Ask a Staff
             </button>
           </section>
@@ -210,7 +210,7 @@ const DetailsCust = () => {
             </div>
             <div className="flex items-center gap-5">
               <p className="text-[24px] font-bold">Checkout</p>
-              <div onClick={ () => {navigate("/cart-payment")} } className="w-[50px] h-[50px] border flex items-center justify-center rounded-full bg-warning p-3 cursor-pointer">
+              <div className="w-[50px] h-[50px] border flex items-center justify-center rounded-full bg-warning p-3 cursor-pointer">
                 <img alt="" src={Arrow} />
               </div>
             </div>

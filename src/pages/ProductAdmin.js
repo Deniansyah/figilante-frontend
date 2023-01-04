@@ -108,9 +108,11 @@ const ProductAdmin = () => {
               </div>
             </Link>
           </main>
+          <Link to='/new-product'>
           <button className="mt-[30px] btn-block btn bg-warning-content">
             Apply New Product
           </button>
+          </Link>
         </section>
       </main>
       <Footer />
