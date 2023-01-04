@@ -3,22 +3,20 @@ import http from "../../helpers/http";
 
 export const transactionAction = createAsyncThunk(
   "transaction/transactionAsync",
-  (value, cb) =>{
-    try {
-      const cart = {
-        userId: value.userId,
-        productId: value.productId,
-        price: value.price,
-        sizeId: value.sizeId,
-        qty: value.qty,
-        deliveryMethodsId: value.deliveryMethodsId,
-        timeArrived: value.timeArrived,
-        total: (parseInt(value.price) * parseInt(value.qty)),
+  async ({ value, cb }) => {
+    for (let index = 0; index< value.lenght; index++){
+      try {
+        const form = new URLSearchParams({
+          productId: value[index].productId,
+          deliveryMethodId: value[index].deliveryMethodId,
+        });
+        const { data } = await http().post("/transactions", form);
+        cb();
+        return data.results;
+      } catch (err) {
+        throw err.response.data.message;
       }
-      cb();
-      return cart;
-    } catch (error) {
-      throw error.response.data.message;
+
     }
   }
 

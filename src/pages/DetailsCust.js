@@ -11,7 +11,6 @@ import jwt_decode from "jwt-decode";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { transactionAction } from "../redux/action/transaction";
 import { transaction } from "../redux/reducers/transaction"
 
 const DetailsCust = () => {
