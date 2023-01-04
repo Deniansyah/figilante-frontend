@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Landing from "./Landing";
 import Login from "./Login";
-import SignUp from "./signUp";
+import SignUp from "./SignUp";
 import ForgotPassword from "./ForgotPassword";
 import ResetPassword from "./ResetPassword";
 import ProductCust from "./ProductCust";
@@ -31,11 +31,12 @@ function Main() {
         <Route path="/" element={<Landing />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/sign-up" element={<SignUp />}></Route>
-        <Route path="/product-customer" element={<ProductCust />}></Route>
+        {/* <Route path="/product-customer" element={<ProductCust />}></Route>
         <Route path="/product-details/:id" element={<DetailsCust />}></Route>
         {/* <Route path="/cart-payment" element={<CartPayment />}></Route> */}
         <Route path="/history" element={<History />}></Route>
-        <Route path="/chat" element={<Chat />}></Route>
+        <Route path="/history" element={<History />}></Route> */}
+        {/* <Route path="/chat" element={<Chat />}></Route> */}
         <Route
           path="/product-customer"
           element={
@@ -45,7 +46,7 @@ function Main() {
           }
         ></Route>
         <Route
-          path="/product-details"
+          path="/product-details/:id"
           element={
             <LoggedIn>
               <DetailsCust />
