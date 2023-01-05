@@ -172,7 +172,7 @@ const NavCust = (props) => {
           <label tabIndex={0}>
             {user?.picture ? (
               <img
-                src={process.env.REACT_APP_IMG_URL + user.picture}
+                src={user.picture}
                 alt="Avatar"
                 className="w-[40px] h-[40px] rounded-full cursor-pointer object-cover"
               />

@@ -3,23 +3,14 @@ import http from "../../helpers/http";
 
 export const transactionAction = createAsyncThunk(
   "transaction/transactionAsync",
-  (value, cb) =>{
+  async ([dataCarts, token]) => {
     try {
-      const cart = {
-        userId: value.userId,
-        productId: value.productId,
-        price: value.price,
-        sizeId: value.sizeId,
-        qty: value.qty,
-        deliveryMethodsId: value.deliveryMethodsId,
-        timeArrived: value.timeArrived,
-        total: (parseInt(value.price) * parseInt(value.qty)),
-      }
-      cb();
-      return cart;
-    } catch (error) {
-      throw error.response.data.message;
+      const { data } = await http(token).post("/transactions", dataCarts);
+      // cb();
+      return data.results;
+    } catch (err) {
+      console.log(err);
+      throw err.response.data.message;
     }
   }
-
-)
+);

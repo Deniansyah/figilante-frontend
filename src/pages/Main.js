@@ -9,6 +9,7 @@ import ProductCust from "./ProductCust";
 import Profile from "./Profile";
 import ProductAdmin from "./ProductAdmin";
 import NewProduct from "./NewProduct";
+import NewPromo from "./NewPromo";
 import DetailsCust from "./DetailsCust";
 import DetailsProductAdmin from "./DetailsProductAdmin";
 import EditProduct from "./EditProduct";
@@ -19,6 +20,7 @@ import Orders from "./Orders";
 import LoggedIn from "../component/LoggedIn";
 import Dashboard from "./Dashboard";
 import EditPromo from "./EditPromo";
+import IsAdmin from "../component/IsAdmin";
 
 function Main() {
   return (
@@ -76,10 +78,12 @@ function Main() {
         <Route path="/forgot-password" element={<ForgotPassword />}></Route>
         <Route path="/reset-password" element={<ResetPassword />}></Route>
         <Route
-          path="/product-details-admin"
+          path="/product-details-admin/:id"
           element={
             <LoggedIn>
-              <DetailsProductAdmin />
+              <IsAdmin>
+                <DetailsProductAdmin />
+              </IsAdmin>
             </LoggedIn>
           }
         ></Route>
@@ -87,7 +91,9 @@ function Main() {
           path="/product-admin"
           element={
             <LoggedIn>
-              <ProductAdmin />
+              <IsAdmin>
+                <ProductAdmin />
+              </IsAdmin>
             </LoggedIn>
           }
         ></Route>
@@ -103,7 +109,9 @@ function Main() {
           path="/edit-product"
           element={
             <LoggedIn>
-              <EditProduct />
+              <IsAdmin>
+                <EditProduct />
+              </IsAdmin>
             </LoggedIn>
           }
         ></Route>
@@ -111,7 +119,19 @@ function Main() {
           path="/new-product"
           element={
             <LoggedIn>
-              <NewProduct />
+              <IsAdmin>
+                <NewProduct />
+              </IsAdmin>
+            </LoggedIn>
+          }
+        ></Route>
+        <Route
+          path="/new-promo"
+          element={
+            <LoggedIn>
+              <IsAdmin>
+                <NewPromo />
+              </IsAdmin>
             </LoggedIn>
           }
         ></Route>

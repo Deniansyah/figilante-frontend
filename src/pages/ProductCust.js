@@ -3,68 +3,56 @@ import { Link } from "react-router-dom";
 import Coupons from "../component/Coupons";
 import Footer from "../component/Footer";
 import NavCust from "../component/NavCust";
-import * as Icon from "react-feather"
+import * as Icon from "react-feather";
 
-import {  useSelector } from "react-redux";
-import http from "../helpers/http"
+import { useSelector } from "react-redux";
+import http from "../helpers/http";
 
 // bg-[#fbf8cc]
 const ProductCust = () => {
   // const dispatch = useDispatch();
   const [limit, setLimit] = useState(12);
   const [pages, setPages] = useState(12);
-  const [page, setPage] = useState(1);
   const [menu, setMenu] = useState("Favorite");
   const [product, setProduct] = useState([]);
   const [menus, setMenus] = useState([]);
-  const [count, setCount] = useState(1);
-  const token = useSelector((state)=> state.auth.token)
+  const [page, setPage] = useState(1);
+  const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
     getCategories();
     getProduct();
-  },[limit, page, menu])
+  }, [limit, page, menu]);
 
-  const getProduct = async () =>{
+  const handleNext = () => {
+    setPage(page + 1);
+  };
+  const handlePrev = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
+
+  const getProduct = async () => {
     try {
-      const response = await http().get(`/products?limit=${limit}&page=${page}&menu=${menu}`, {headers: {"authorization" : `Bearer ${token}`}});
+      const response = await http().get(
+        `/products?limit=${limit}&page=${page}&menu=${menu}`,
+        { headers: { authorization: `Bearer ${token}` } }
+      );
       setProduct(response.data.results);
-
-      setPages(Math.trunc((product.length / 12) + 1));
     } catch (error) {
       setProduct([]);
     }
-  }
+  };
 
-  const getCategories = async () =>{
+  const getCategories = async () => {
     try {
-      const response = await http().get(`/categories`, {headers: {"authorization" : `Bearer ${token}`}})
+      const response = await http().get(`/categories`, {
+        headers: { authorization: `Bearer ${token}` },
+      });
       setMenus(response.data.results);
-    } catch (error) {
-      setMenus();
-    }
-  }
-
-  const increment = () => {
-    if (count === pages) {
-      return false;
-    } else {
-      setPage(page + 1);
-      return setCount(count + 1);
-    }
+    } catch (error) {}
   };
-
-  const decrement = () => {
-    if (count === 1) {
-      return false;
-    } else {
-      setPage(page - 1);
-      return setCount(count - 1);
-    }
-  };
-
-
-
 
   return (
     <>
@@ -104,8 +92,14 @@ const ProductCust = () => {
         </section>
         <section className="w-[70%] py-[45px] px-[40px]">
           <nav className="grid grid-cols-5">
-            {menus?.map((data, index) =>(
-              <button key={index} onClick={() =>{setMenu(data.name)}} className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer focus-within:border-b-[3px] focus-within:border-[#e9d8a6] focus-within:shadow-md">
+            {menus?.map((data, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setMenu(data.name);
+                }}
+                className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer focus-within:border-b-[3px] focus-within:border-[#e9d8a6] focus-within:shadow-md"
+              >
                 {data.name}
               </button>
             ))}
@@ -127,12 +121,18 @@ const ProductCust = () => {
           </nav>
           <main className="grid grid-cols-4 gap-5 mt-[80px]">
             {product?.map((data, index) => (
-              <div key={index} onClick={()=>{console.log(index)}}>
-
-                <Link to={"/product-details/"+ data.id}>
+              <div
+                key={index}
+                onClick={() => {
+                  console.log(index);
+                }}
+              >
+                <Link to={"/product-details/" + data.id}>
                   <div className="bg-white p-3 rounded-[30px] mb-[20px]">
                     <img
-                      src={ data.picture || require("./../assets/images/food.png")}
+                      src={
+                        data.picture || require("./../assets/images/food.png")
+                      }
                       alt=""
                       className="w-[80%] mx-auto rounded-full mt-[-40px]"
                     />
@@ -145,22 +145,22 @@ const ProductCust = () => {
                   </div>
                 </Link>
               </div>
-            )) }
+            ))}
           </main>
           <div className="flex items-center justify-center">
-            <div
+            <button
+              disabled={page === 1}
               className="w-[45px] h-[40px] cursor-pointer bg-white rounded-[5px] flex items-center justify-center font-bold bg-warning-conten hover:opacity-50 mr-[10px]"
-              onClick={decrement}
-            ><Icon.ArrowLeft />
-            </div>
-            <div className="w-[45px] h-[40px] cursor-pointer rounded-[5px] flex items-center justify-center font-bold bg-[#6A4029] text-white mr-[10px]">
-              {count}
-            </div>
-            <div
+              onClick={handlePrev}
+            >
+              <Icon.ArrowLeft />
+            </button>
+            <button
               className="w-[45px] h-[40px] cursor-pointer bg-white rounded-[5px] flex items-center justify-center font-bold bg-warning-conten hover:opacity-50 mr-[10px]"
-              onClick={increment}
-            ><Icon.ArrowRight />
-            </div>
+              onClick={handleNext}
+            >
+              <Icon.ArrowRight />
+            </button>
           </div>
         </section>
       </main>

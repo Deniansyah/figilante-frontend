@@ -19,59 +19,35 @@ const transactionReducer = createSlice({
   name: "transaction",
   initialState,
   reducers: {
-    transaction: (state, action) =>{
+    transaction: (state, action) => {
       const trans = {};
-      trans.userId= action.payload.userId
-      trans.productId = action.payload.productId
-      trans.price = action.payload.price
-      trans.sizeId = action.payload.sizeId
-      trans.qty = action.payload.qty
-      trans.deliveryMethodsId = action.payload.deliveryMethodsId
-      trans.timeArrived = action.payload.timeArrived
-      trans.total = (action.payload.price) * (action.payload.qty)
-      state.push(trans)
-    },
-    checkOut: (state, action) => {
-      return initialState;
+      trans.userId = action.payload.userId;
+      trans.productId = action.payload.productId;
+      trans.productName = action.payload.productName;
+      trans.price = action.payload.price;
+      trans.sizeId = action.payload.sizeId;
+      trans.selectedSize = action.payload.selectedSize;
+      trans.qty = action.payload.qty;
+      trans.deliveryMethodsId = action.payload.deliveryMethodsId;
+      trans.timeArrived = action.payload.timeArrived;
+      trans.total = action.payload.price * action.payload.qty;
+      state.push(trans);
     },
   },
-  extraReducers: null,
-  // extraReducers: (build) =>{
-  //   build.addCase(transactionAction.fulfilled, (state, action) => {
-  //     state.userId = action.payload
-  //     state.productId = action.payload
-  //     state.price = action.payload
-  //     state.sizeId = action.payload
-  //     state.qty = action.payload
-  //     state.deliveryMethodsId = action.payload
-  //     state.timeArrived = action.payload
-  //     state.total = action.payload
-  //   });
-  //   build.addCase(transactionAction.pending, (state, action) => {
-  //     state.userId = action.payload
-  //     state.productId = action.payload
-  //     state.price = action.payload
-  //     state.sizeId = action.payload
-  //     state.qty = action.payload
-  //     state.deliveryMethodsId = action.payload
-  //     state.timeArrived = action.payload
-  //     state.total = action.payload
-  //   });
-  //   build.addCase(transactionAction.rejected, (state, action) => {
-  //     state.userId = action.payload
-  //     state.productId = action.payload
-  //     state.price = action.payload
-  //     state.sizeId = action.payload
-  //     state.qty = action.payload
-  //     state.deliveryMethodsId = action.payload
-  //     state.timeArrived = action.payload
-  //     state.total = action.payload
-  //   });
-  // }
+  // extraReducers: null,
+  extraReducers: (build) => {
+    build.addCase(transactionAction.fulfilled, (state, action) => {
+      return initialState;
+    });
+    // build.addCase(transactionAction.pending, (state, action) => {
+    //   state.isLoading = false;
+    // });
+    // build.addCase(transactionAction.rejected, (state, action) => {
+    //   state.message = action.error.message;
+    // });
+  },
 });
 
 export const { transaction } = transactionReducer.actions;
 
 export default transactionReducer.reducer;
-
-
