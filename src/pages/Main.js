@@ -76,7 +76,7 @@ function Main() {
         <Route path="/forgot-password" element={<ForgotPassword />}></Route>
         <Route path="/reset-password" element={<ResetPassword />}></Route>
         <Route
-          path="/product-details-admin"
+          path="/product-details-admin/:id"
           element={
             <LoggedIn>
               <IsAdmin>
