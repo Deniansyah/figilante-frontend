@@ -44,9 +44,11 @@ const ProductAdmin = () => {
             </ul>
           </div>
           <div className="w-full text-start mt-[20px]">
+            <Link to='/edit-promo'>
             <p className="text-[#6A4029] underline cursor-pointer hover:font-bold font-semibold text-[20px]">
               Edit Promo
             </p>
+            </Link>
             <p className="text-[#6A4029] underline cursor-pointer hover:font-bold font-semibold text-[20px]">
               Add new promo
             </p>
