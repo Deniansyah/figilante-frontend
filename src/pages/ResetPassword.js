@@ -81,7 +81,7 @@ const ResetPassword = () => {
             </p>
             {message.includes("Password has been updated") ? (
               <div className="text-center mt-10">
-                <p className="text-base font-semibold text-green-500">
+                <p className="text-base font-semibold text-green-500 text-center">
                   {message}
                 </p>
                 <Link to="/login">
@@ -92,7 +92,7 @@ const ResetPassword = () => {
               </div>
             ) : (
               <div className="text-center mt-10 mr-40">
-                <p className="text-base font-semibold text-red-500">
+                <p className="text-base font-semibold text-red-500 text-center">
                   {message}
                 </p>
               </div>
@@ -122,7 +122,7 @@ const ResetPassword = () => {
                     />
                     {errors.code && touched.code && (
                       <label className="label">
-                        <span className="label-text-alt text-red-500">
+                        <span className="label-text-alt text-red-500 text-center">
                           {errors.code}
                         </span>
                       </label>
