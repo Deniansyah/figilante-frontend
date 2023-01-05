@@ -18,6 +18,8 @@ import History from "./History";
 import Chat from "./Chat";
 import Orders from "./Orders";
 import LoggedIn from "../component/LoggedIn";
+import Dashboard from "./Dashboard";
+import EditPromo from "./EditPromo";
 import IsAdmin from "../component/IsAdmin";
 
 function Main() {
@@ -138,6 +140,22 @@ function Main() {
           element={
             <LoggedIn>
               <Orders />
+            </LoggedIn>
+          }
+        ></Route>
+        <Route
+          path="/dashboard"
+          element={
+            <LoggedIn>
+              <Dashboard />
+            </LoggedIn>
+          }
+        ></Route>
+        <Route
+          path="/edit-promo"
+          element={
+            <LoggedIn>
+              <EditPromo />
             </LoggedIn>
           }
         ></Route>

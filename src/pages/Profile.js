@@ -121,7 +121,7 @@ const Profile = () => {
   return (
     <>
       {/* Navbar Landing */}
-      { admin === 'true' ? <NavAdmin home='true'/> : <NavCust home='true'/> }
+      { admin === 'true' ? <NavAdmin home='true'/> : <NavCust home='true'/>}
       <main className="relative">
         <img
           className="absolute z-[-1] w-[100%] h-[100%]"
