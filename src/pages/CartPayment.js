@@ -120,7 +120,7 @@ const CartPayment = () => {
 
   const doCheckOut = () => {
     dispatch(transactionAction([dataCart, token]));
-    console.log("berhasil");
+    navigate("/history");
   };
 
   useEffect(() => {
