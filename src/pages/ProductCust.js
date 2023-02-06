@@ -17,12 +17,13 @@ const ProductCust = () => {
   const [product, setProduct] = useState([]);
   const [menus, setMenus] = useState([]);
   const [page, setPage] = useState(1);
+  const [search, setSearch] = React.useState('');
   const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
     getCategories();
     getProduct();
-  }, [limit, page, menu]);
+  }, [limit, page, menu, search]);
 
   const handleNext = () => {
     setPage(page + 1);
@@ -36,7 +37,7 @@ const ProductCust = () => {
   const getProduct = async () => {
     try {
       const response = await http().get(
-        `/products?limit=${limit}&page=${page}&menu=${menu}`,
+        `/products?limit=${limit}&page=${page}&menu=${menu}&search=${search}`,
         { headers: { authorization: `Bearer ${token}` } }
       );
       setProduct(response.data.results);
@@ -54,9 +55,13 @@ const ProductCust = () => {
     } catch (error) {}
   };
 
+  const searching = (e) => {
+    setSearch(e)
+  }
+
   return (
     <>
-      <NavCust product="true" />
+      <NavCust props="true" ganti={searching} />
       <main className="flex bg-[#fbf8cc]">
         <section className="w-[30%] border-r-[2px] border-[#e9d8a6] py-[35px] flex flex-col items-center px-[1%]">
           <div className="flex flex-col items-center justify-center text-center mx-auto mb-[20px]">
