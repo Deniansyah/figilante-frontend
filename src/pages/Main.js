@@ -40,8 +40,6 @@ function Main() {
         {/* <Route path="/product-customer" element={<ProductCust />}></Route>
         <Route path="/product-details/:id" element={<DetailsCust />}></Route>
         {/* <Route path="/cart-payment" element={<CartPayment />}></Route> */}
-        <Route path="/history" element={<History />}></Route>
-        <Route path="/history" element={<History />}></Route>
         {/* <Route path="/chat" element={<Chat />}></Route> */}
         <Route
           path="/product-customer"

@@ -87,7 +87,7 @@ const History = () => {
                       {item.products.name}
                     </h4>
                     <p>IDR {item.products.price}</p>
-                    <span> {item.deliveryMethods.name}</span>
+                    <span> {item.deliveryMethods?.name}</span>
                   </div>
                 </div>
               );
