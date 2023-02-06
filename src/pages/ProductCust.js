@@ -103,21 +103,6 @@ const ProductCust = () => {
                 {data.name}
               </button>
             ))}
-            {/* <button onClick={(e) =>{setMenu("Favorite")}} className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer focus-within:border-b-[3px] focus-within:border-[#e9d8a6] focus-within:shadow-md">
-              Favorite
-            </button>
-            <button onClick={(e) =>{setMenu("coffee")}} className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer focus-within:border-b-[3px] focus-within:border-[#e9d8a6] focus-within:shadow-md">
-              Coffee
-            </button>
-            <button onClick={(e) =>{setMenu("Non Coffee")}} className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer focus-within:border-b-[3px] focus-within:border-[#e9d8a6] focus-within:shadow-md">
-              Non Coffee
-            </button>
-            <button onClick={(e) =>{setMenu("Foods")}} className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer focus-within:border-b-[3px] focus-within:border-[#e9d8a6] focus-within:shadow-md">
-              Foods
-            </button>
-            <button onClick={(e) =>{setMenu("Add-on")}} className="text-[#6c757d] text-center text-[18px] font-semibold cursor-pointer focus-within:border-b-[3px] focus-within:border-[#e9d8a6] focus-within:shadow-md">
-              Add-on
-            </button> */}
           </nav>
           <main className="grid grid-cols-4 gap-5 mt-[80px]">
             {product?.map((data, index) => (
