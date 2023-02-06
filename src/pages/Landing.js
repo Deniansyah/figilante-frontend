@@ -41,7 +41,7 @@ const Landing = () => {
             </div>
             <div>
               <p className="font-bold text-xl">90+</p>
-              <p className="text-sm text-gray-400">Staff</p>
+              <p className="text-sm text-gray-400 font-bold">Staff</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -50,7 +50,7 @@ const Landing = () => {
             </div>
             <div>
               <p className="font-bold text-xl">30+</p>
-              <p className="text-sm text-gray-400">Store</p>
+              <p className="text-sm text-gray-400 font-bold">Store</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -59,13 +59,13 @@ const Landing = () => {
             </div>
             <div>
               <p className="font-bold text-xl">800+</p>
-              <p className="text-sm text-gray-400">Customers</p>
+              <p className="text-sm text-gray-400 font-bold">Customers</p>
             </div>
           </div>
         </div>
       </div>
       {/* Superiority */}
-      <section className="flex flex-col md:flex-row lg:flex-row mt-20 px-5   md:px-20">
+      <section className="flex flex-col md:flex-row lg:flex-row mt-20 px-5 md:px-20">
         <div className="basis-0 md:basis-1/2 lg:basis-1/2">
           <img
             src={require("../assets/images/team-work-landing.png")}
@@ -76,7 +76,7 @@ const Landing = () => {
           <h1 className="text-4xl font-bold">
             We Provide Good Coffee and Healthy Meals
           </h1>
-          <p className="text-sm text-gray-500">
+          <p className="text-md text-[#001219] font-semibold">
             You can explore the menu that we provide with fun and have their own
             taste and make your day better.
           </p>
@@ -85,13 +85,13 @@ const Landing = () => {
               <div className="bg-green-700 rounded-full p-1">
                 <Check className="text-white p-1" />
               </div>
-              <p className="text-sm text-gray-500">High quality beans</p>
+              <p className="text-sm text-gray-500 font-semibold">High quality beans</p>
             </div>
             <div className="flex items-center gap-2">
               <div className="bg-green-700 rounded-full p-1">
                 <Check className="text-white p-1" />
               </div>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500 font-semibold">
                 Healthy meals, you can request the ingredients
               </p>
             </div>
@@ -99,7 +99,7 @@ const Landing = () => {
               <div className="bg-green-700 rounded-full p-1">
                 <Check className="text-white p-1" />
               </div>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500 font-semibold">
                 Chat with our staff to get better experience for ordering
               </p>
             </div>
@@ -107,7 +107,7 @@ const Landing = () => {
               <div className="bg-green-700 rounded-full p-1">
                 <Check className="text-white p-1" />
               </div>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500 font-semibold">
                 Free member card with a minimum purchase of IDR 200.000.
               </p>
             </div>
@@ -138,19 +138,19 @@ const Landing = () => {
             <div className="flex flex-col grow gap-5 my-8">
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">HazelnutSyrup</p>
+                <p className="text-sm text-gray-600 font-semibold">HazelnutSyrup</p>
               </div>
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">Wanilla Whipped Cream</p>
+                <p className="text-sm text-gray-600 font-semibold">Wanilla Whipped Cream</p>
               </div>
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">Ice / Hot</p>
+                <p className="text-sm text-gray-600 font-semibold">Ice / Hot</p>
               </div>
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">Sliced Banana on Top</p>
+                <p className="text-sm text-gray-600 font-semibold">Sliced Banana on Top</p>
               </div>
             </div>
             <div className="flex flex-col gap-3 pb-10">
@@ -174,23 +174,23 @@ const Landing = () => {
             <div className="flex flex-col grow gap-5 my-8">
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">1 Shot of Coffee</p>
+                <p className="text-sm text-gray-600 font-semibold">1 Shot of Coffee</p>
               </div>
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">Vanilla Whipped Cream</p>
+                <p className="text-sm text-gray-600 font-semibold">Vanilla Whipped Cream</p>
               </div>
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">Chocolate Biscuits</p>
+                <p className="text-sm text-gray-600 font-semibold">Chocolate Biscuits</p>
               </div>
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">Strawberry Syrup</p>
+                <p className="text-sm text-gray-600 font-semibold">Strawberry Syrup</p>
               </div>
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 font-semibold">
                   Sliced strawberry on Top
                 </p>
               </div>
@@ -216,27 +216,27 @@ const Landing = () => {
             <div className="flex flex-col grow gap-5 my-8">
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">Wings</p>
+                <p className="text-sm text-gray-600 font-semibold">Wings</p>
               </div>
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">Drum Sticks</p>
+                <p className="text-sm text-gray-600 font-semibold">Drum Sticks</p>
               </div>
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">Mayonaise and Lemon</p>
+                <p className="text-sm text-gray-600 font-semibold">Mayonaise and Lemon</p>
               </div>
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">Hot Fried</p>
+                <p className="text-sm text-gray-600 font-semibold">Hot Fried</p>
               </div>
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">Secret Recipe</p>
+                <p className="text-sm text-gray-600 font-semibold">Secret Recipe</p>
               </div>
               <div className="flex gap-2 items-center">
                 <Check className="text-green-600" />
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 font-semibold">
                   Buy 1 Get 1 only for Dine in
                 </p>
               </div>
@@ -324,7 +324,7 @@ const Landing = () => {
               </div>
             </div>
             <div className="mt-5 text-sm">
-              <p>
+              <p className='font-semibold'>
                 “Wow... I am very happy to spend my whole day here. the Wi-fi is
                 good, and the coffee and meals tho. I like it here!! Very
                 recommended!
@@ -347,7 +347,7 @@ const Landing = () => {
               </div>
             </div>
             <div className="mt-5 text-sm">
-              <p>
+              <p className='font-semibold'>
                 “I like it because I like to travel far and still can make my
                 day better just by drinking their Hazelnut Latte
               </p>
@@ -369,7 +369,7 @@ const Landing = () => {
               </div>
             </div>
             <div className="mt-5 text-sm">
-              <p>
+              <p className='font-semibold'>
                 “This is very unusual for my taste, I haven’t liked coffee
                 before but their coffee is the best! and yup, you have to order
                 the chicken wings, the best in town!
@@ -401,7 +401,7 @@ const Landing = () => {
             <h1 className="text-3xl font-bold w-60 mb-2">
               Check our promo today!
             </h1>
-            <p>Let's see the deals and pick yours!</p>
+            <p className='font-semibold'>Let's see the deals and pick yours!</p>
           </div>
           <div>
             <Link to='/product-customer'><button className="btn btn-warning capitalize shadow-xl w-44">See Promo</button></Link>

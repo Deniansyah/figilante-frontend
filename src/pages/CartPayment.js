@@ -206,7 +206,7 @@ const CartPayment = () => {
                     <span className="font-bold">Delivery</span>
                   </p>
                   <hr className="my-[5px]" />
-                  <input className="input" type="text"></input>
+                  <textarea className="w-full my-2 outline-none border py-[10px] px-[5px] border-1 " placeholder="Write your address details......"></textarea>
                   <hr className="my-[5px]" />
                   <p>{user?.phoneNumber}</p>
                 </div>

@@ -29,7 +29,6 @@ const DetailsCust = () => {
   const [selectedSize, setSelectedSize] = React.useState(null);
   const [deliveryMethodId, setDeliveryMethodId] = React.useState(null);
   const [timeArrived, setTimeArrived] = React.useState(null);
-
   React.useEffect(() => {
     getProducts();
     getSizes();
@@ -89,7 +88,7 @@ const DetailsCust = () => {
     price,
     sizeId,
     selectedSize,
-    qty,
+    count,
     deliveryMethodsId,
     timeArrived
   ) => {
@@ -100,7 +99,7 @@ const DetailsCust = () => {
       price: price,
       sizeId: sizeId,
       selectedSize: selectedSize,
-      qty: qty,
+      count: count,
       deliveryMethodsId: deliveryMethodsId,
       timeArrived: timeArrived,
     };
@@ -185,7 +184,11 @@ const DetailsCust = () => {
                         setSelectedSize(data.name);
                       }}
                       key={index}
-                      className="btn-ghost opacity-50 bg-orange-500 text-white rounded-full w-[60px] h-[60px]"
+                      className={`btn-ghost opacity-50 text-white rounded-full w-[60px] h-[60px] ${
+                        selectedSize === data.name
+                          ? "bg-orange-800"
+                          : "bg-orange-500"
+                      }`}
                     >
                       {data.name}
                     </button>
@@ -229,17 +232,15 @@ const DetailsCust = () => {
                   <button
                     onClick={() => setDeliveryMethodId(data.id)}
                     key={index}
-                    className="btn-ghost btn-sm bg-[#6A4029] text-white rounded-[8px]"
+                    className={`btn-ghost btn-sm bg-[#6A4029] text-white rounded-[8px] ${
+                      deliveryMethodId === data.id
+                        ? "bg-orange-800"
+                        : "bg-[#6A4029]"
+                    }`}
                   >
                     {data.name}
                   </button>
                 ))}
-                {/* <button className="btn-ghost btn-sm bg-[#6A4029] text-white rounded-[8px]">
-                  Door Delivery
-                </button>
-                <button className="btn-ghost btn-sm bg-[#6A4029] text-white rounded-[8px]">
-                  Pick Up
-                </button> */}
               </div>
             </div>
             <div className="flex gap-2 mt-[30px] justify-center items-center">
@@ -251,7 +252,7 @@ const DetailsCust = () => {
                 type="time"
                 name="time"
                 placeholder="Enter the time you’ll arrived"
-                className="w-[250px] py-1 px-2"
+                className="w-[250px] py-1 px-2 bg-red-100 rounded-[10px]"
               />
             </div>
           </section>
@@ -267,8 +268,11 @@ const DetailsCust = () => {
             </div>
             <div className="text-[18px] font-semibold text-start ml-[20px] flex-1">
               <h5 className="text-[25px] font-bold">{product.name}</h5>
-              <p>2x (Reguler)</p>
-              <p>1x (Large)</p>
+              {selectedSize && (
+                <p>
+                  {count}x ({selectedSize})
+                </p>
+              )}
             </div>
             <div className="flex items-center gap-5">
               <p className="text-[24px] font-bold">Checkout</p>

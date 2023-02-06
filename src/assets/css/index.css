@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.btnCustom { /* class nya tolong dibedakan sama punyanya tailwind pingkan atau bisa pake "normal-case dan w-full" dari tailwind */
-    text-transform: none;
+.btnCustom {
+  /* class nya tolong dibedakan sama punyanya tailwind pingkan atau bisa pake "normal-case dan w-full" dari tailwind */
+  text-transform: none;
 }
 
 .bg-hero {
@@ -30,18 +31,19 @@
 }
 
 .input {
-    width: 100%;
+  width: 100%;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type="time"]:before {
-  content: 'Enter the time you’ll arrived';
+  content: "Enter the time you’ll arrived";
   color: black;
+  font-weight: 600;
   position: absolute;
   background: #fff;
 }
@@ -62,7 +64,7 @@ input.timeEnd[type="time"]:before {
 
 input[type="time"]:focus:before {
   width: 0;
-  content: '';
+  content: "";
 }
 
 .nonelement {
