@@ -56,7 +56,7 @@ const NavCust = ({props, ganti}) => {
                 <Link to="/">
                   <p
                     className={`text-[18px] font-semibold hover:text-black ${
-                      props.home ? "text-black" : "text-[#6c757d]"
+                      props ? "text-black" : "text-[#6c757d]"
                     }`}
                   >
                     Home
@@ -67,7 +67,7 @@ const NavCust = ({props, ganti}) => {
                 <Link to="/product-customer">
                   <p
                     className={`text-[18px] font-semibold hover:text-black ${
-                      props.product ? "text-black" : "text-[#6c757d]"
+                      props ? "text-black" : "text-[#6c757d]"
                     }`}
                   >
                     Product
@@ -78,7 +78,7 @@ const NavCust = ({props, ganti}) => {
                 <Link to="/cart-payment">
                   <p
                     className={`text-[18px] font-semibold hover:text-black ${
-                      props.cart ? "text-black" : "text-[#6c757d]"
+                      props ? "text-black" : "text-[#6c757d]"
                     }`}
                   >
                     You Cart
@@ -89,7 +89,7 @@ const NavCust = ({props, ganti}) => {
                 <Link to="/history">
                   <p
                     className={`text-[18px] font-semibold hover:text-black ${
-                      props.history ? "text-black" : "text-[#6c757d]"
+                      props ? "text-black" : "text-[#6c757d]"
                     }`}
                   >
                     History
@@ -131,7 +131,7 @@ const NavCust = ({props, ganti}) => {
         <Link
           to="/"
           className={`${
-            props.home ? "text-black font-semibold" : "text-[#6A4029]"
+            props ? "text-black font-semibold" : "text-[#6A4029]"
           }`}
         >
           Home
@@ -139,7 +139,7 @@ const NavCust = ({props, ganti}) => {
         <Link
           to="/product-customer"
           className={`${
-            props.product ? "text-black font-semibold" : "text-[#6A4029]"
+            props ? "text-black font-semibold" : "text-[#6A4029]"
           }`}
         >
           Product
@@ -148,7 +148,7 @@ const NavCust = ({props, ganti}) => {
         <Link
           to="/cart-payment"
           className={`${
-            props.cart ? "text-black font-semibold" : "text-[#6A4029]"
+            props ? "text-black font-semibold" : "text-[#6A4029]"
           }`}
         >
           Your Cart
@@ -157,7 +157,7 @@ const NavCust = ({props, ganti}) => {
         <Link
           to="/history"
           className={`${
-            props.history ? "text-black font-semibold" : "text-[#6A4029]"
+            props ? "text-black font-semibold" : "text-[#6A4029]"
           }`}
         >
           History
