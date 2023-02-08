@@ -101,6 +101,7 @@ const CartPayment = () => {
   const token = useSelector((state) => state.auth.token);
   const { user } = useSelector((state) => state.profile);
   const transaction = useSelector((state) => state.transaction);
+  console.log(transaction)
 
   const [paymentMethod, setPaymentMethod] = useState([]);
   const [selectedPayment, setSelectedPayment] = useState(null);

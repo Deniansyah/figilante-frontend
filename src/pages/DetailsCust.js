@@ -99,7 +99,7 @@ const DetailsCust = () => {
       price: price,
       sizeId: sizeId,
       selectedSize: selectedSize,
-      count: count,
+      qty: count,
       deliveryMethodsId: deliveryMethodsId,
       timeArrived: timeArrived,
     };
