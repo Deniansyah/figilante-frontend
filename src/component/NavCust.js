@@ -8,7 +8,7 @@ import CoffeeLogo from "../assets/images/figilante-removebg.png";
 import Search from "../assets/logo/search.svg";
 import Chat from "../assets/logo/chat.svg";
 
-const NavCust = (props, ganti) => {
+const NavCust = ({props, ganti}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.profile);
@@ -175,7 +175,8 @@ const NavCust = (props, ganti) => {
             className="hidden group-hover:block outline-none border-[2px] rounded-[10px] border-black placeholder:text-black pl-[25px] py-1 w-[130px]"
             type="text"
             placeholder="Search"
-            onChange={(e) => ganti(e.target.value)}
+            onChange={(e) =>ganti(e.target.value)}
+            // onChange={(e) => ganti(e.target.value)}
           />
         </div>
         <Link to="/chat" className="cursor-pointer">

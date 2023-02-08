@@ -57,6 +57,7 @@ const ProductCust = () => {
 
   const searching = (e) => {
     setSearch(e)
+    // console.log('hit hit')
   }
 
   return (
