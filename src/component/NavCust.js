@@ -8,7 +8,7 @@ import CoffeeLogo from "../assets/images/figilante-removebg.png";
 import Search from "../assets/logo/search.svg";
 import Chat from "../assets/logo/chat.svg";
 
-const NavCust = ({props, ganti}) => {
+const NavCust = (props, ganti) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.profile);
@@ -18,10 +18,10 @@ const NavCust = ({props, ganti}) => {
   //   console.log(e.target.value)
   // }
 
-  const Logout = ()=>{
-    dispatch(LogoutAction())
-    return navigate("/login")
-  }
+  const Logout = () => {
+    dispatch(LogoutAction());
+    return navigate("/login");
+  };
 
   useEffect(() => {
     dispatch(profileAction());
@@ -99,7 +99,7 @@ const NavCust = ({props, ganti}) => {
               <div className="block md:hidden">
                 <div className="grid mb-[5px] card place-items-center">
                   <Link
-                    to="/login"
+                    to="/profile"
                     className="btn btn-warning w-full capitalize btn-sm rounded-full"
                   >
                     Profile
@@ -114,12 +114,12 @@ const NavCust = ({props, ganti}) => {
                   </Link>
                 </div>
                 <div className="grid mb-[5px] card place-items-center">
-                  <Link
-                    to="/sign-up"
+                  <p
+                    onClick={() => Logout()}
                     className="btn btn-error w-full capitalize btn-sm rounded-full"
                   >
                     Logout
-                  </Link>
+                  </p>
                 </div>
               </div>
             </div>
@@ -130,27 +130,35 @@ const NavCust = ({props, ganti}) => {
       <div className="hidden lg:flex flex-1 gap-x-[15px] ml-[10%]">
         <Link
           to="/"
-          className={`${props.home ? "text-black font-semibold" : "text-[#6A4029]"}`}
+          className={`${
+            props.home ? "text-black font-semibold" : "text-[#6A4029]"
+          }`}
         >
           Home
         </Link>
         <Link
           to="/product-customer"
-          className={`${props.product ? "text-black font-semibold" : "text-[#6A4029]"}`}
+          className={`${
+            props.product ? "text-black font-semibold" : "text-[#6A4029]"
+          }`}
         >
           Product
         </Link>
 
         <Link
           to="/cart-payment"
-          className={`${props.cart ? "text-black font-semibold" : "text-[#6A4029]"}`}
+          className={`${
+            props.cart ? "text-black font-semibold" : "text-[#6A4029]"
+          }`}
         >
           Your Cart
         </Link>
 
         <Link
           to="/history"
-          className={`${props.history ? "text-black font-semibold" : "text-[#6A4029]"}`}
+          className={`${
+            props.history ? "text-black font-semibold" : "text-[#6A4029]"
+          }`}
         >
           History
         </Link>
@@ -167,7 +175,7 @@ const NavCust = ({props, ganti}) => {
             className="hidden group-hover:block outline-none border-[2px] rounded-[10px] border-black placeholder:text-black pl-[25px] py-1 w-[130px]"
             type="text"
             placeholder="Search"
-            onChange={e => ganti(e.target.value)}
+            onChange={(e) => ganti(e.target.value)}
           />
         </div>
         <Link to="/chat" className="cursor-pointer">
