@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 const History = () => {
   const { token } = useSelector((state) => state.auth);
   const [history, setHistory] = useState([]);
+  const [selected, setSelectedDelete] = useState(0);
+  const [refresh, setRefresh] = useState(null);
 
   useEffect(() => {
     const getHistory = async () => {
@@ -22,19 +24,42 @@ const History = () => {
       }
     };
     getHistory();
-  }, []);
+  }, [token, refresh]);
 
   const showDelete = (idTool) => {
     const Tool = document.getElementById(idTool);
-    Tool.classList.remove("hidden");
+    if (Tool.className.includes("nonelement")) {
+      Tool.classList.remove("nonelement");
+    } else {
+      Tool.classList.remove("hidden");
+      Tool.classList.add("piece");
+    }
   };
-  const cancelDelete = (idTool) => {
-    // const cancel = document.getElementById(idCancel)
+  const cancelDelete = (idTool, idCancel) => {
+    const cancel = document.getElementById(idCancel);
     const Tool = document.getElementById(idTool);
-    Tool.classList.add("hidden");
-    // cancel.addEventListener('click',()=>{
-    //   console.log(cancel)
-    // })
+    cancel.addEventListener("click", () => {
+      if (Tool.className.includes("piece")) {
+        Tool.classList.add("nonelement");
+        Tool.classList.remove("piece");
+      } else {
+        Tool.classList.add("hidden");
+      }
+    });
+  };
+
+  // Delete History
+  const deleteHistory = async (selected) => {
+    setRefresh(null)
+    const formData = {
+      data: { id: selected },
+    };
+    try {
+      await http(token).delete("/transactions", formData);
+      setRefresh(true)
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <>
@@ -52,27 +77,30 @@ const History = () => {
             <span className="text-[17px]"> press to delete item</span>
           </h3>
           <div className="grid grid-cols-3 gap-5 mb-2">
-            {history?.map((item, index) => {
+            {history?.map((item) => {
               return (
                 <div
-                  key={index + 1}
+                  key={item.id}
                   className="bg-white p-5 rounded-[8px] flex items-start gap-2 relative cursor-pointer"
-                  onClick={() => showDelete("tool1")}
+                  onClick={() => showDelete(`menu${item.id}`)}
                 >
                   <div
-                    className="flex absolute top-[-10px] right-0 gap-1 hidden"
-                    id="tool1"
+                    className="flex absolute top-[-10px] right-0 gap-1 nonelement"
+                    id={`menu${item.id}`}
                   >
                     <label
                       htmlFor="confirmDelete"
+                      onClick={() => setSelectedDelete(item.id)}
                       className="cursor-pointer w-[33px] h-[30px] bg-error rounded-full flex items-center justify-center"
                     >
                       <img src={Trash} alt="" />
                     </label>
                     <p
                       className="font-bold cursor-pointer w-[33px] h-[30px] bg-yellow-300 flex items-center justify-center rounded-full"
-                      id="cancel1"
-                      onClick={() => cancelDelete("tool1")}
+                      id={`cancel${item.id}`}
+                      onClick={() =>
+                        cancelDelete(`menu${item.id}`, `cancel${item.id}`)
+                      }
                     >
                       X
                     </p>
@@ -109,7 +137,11 @@ const History = () => {
             Are you sure want to delete this product?
           </h3>
           <div className="modal-action">
-            <label htmlFor="my-modal-6" className="btn btn-error">
+            <label
+              htmlFor="confirmDelete"
+              className="btn btn-error"
+              onClick={() => deleteHistory(selected)}
+            >
               Confirm
             </label>
           </div>
