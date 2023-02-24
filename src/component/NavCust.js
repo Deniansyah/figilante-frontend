@@ -163,13 +163,12 @@ const NavCust = ({props, ganti}) => {
           History
         </Link>
       </div>
-      <div className="hidden md:flex flex items-center gap-x-[20px]">
+      <div className="hidden md:flex items-center gap-x-[20px]">
         <div className="relative group">
           <img
             src={Search}
             alt=""
-            className="group-hover:absolute group-hover:w-[17px]
-             w-[20px] top-[25%] left-[5px]"
+            className="group-hover:absolute group-hover:w-[17px] w-[20px] top-[25%] left-[5px]"
           />
           <input
             className="hidden group-hover:block outline-none border-[2px] rounded-[10px] border-black placeholder:text-black pl-[25px] py-1 w-[130px]"
