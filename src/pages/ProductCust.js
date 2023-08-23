@@ -13,7 +13,7 @@ const ProductCust = () => {
   // const dispatch = useDispatch();
   const [limit, setLimit] = useState(12);
   const [pages, setPages] = useState(12);
-  const [menu, setMenu] = useState("Favorite");
+  const [menu, setMenu] = useState("");
   const [product, setProduct] = useState([]);
   const [menus, setMenus] = useState([]);
   const [page, setPage] = useState(1);
