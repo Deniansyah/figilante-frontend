@@ -11,8 +11,7 @@ import http from "../helpers/http";
 // bg-[#fbf8cc]
 const ProductCust = () => {
   // const dispatch = useDispatch();
-  const [limit, setLimit] = useState(12);
-  const [pages, setPages] = useState(12);
+  const [limit,] = useState(12);
   const [menu, setMenu] = useState("Favorite");
   const [product, setProduct] = useState([]);
   const [menus, setMenus] = useState([]);
@@ -23,6 +22,7 @@ const ProductCust = () => {
   useEffect(() => {
     getCategories();
     getProduct();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [limit, page, menu, search]);
 
   const handleNext = () => {

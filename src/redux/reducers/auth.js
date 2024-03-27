@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  forgotPasswordAction,
   loginAction,
   registerAction,
 } from "../action/auth";

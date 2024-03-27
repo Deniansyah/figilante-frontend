@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import Footer from "../component/Footer";
 import NavCust from "../component/NavCust";
 
-import Cardpay from "../assets/logo/card-pay.svg";
-import Bankpay from "../assets/logo/bank-pay.svg";
-import Delivery from "../assets/logo/delivery.svg";
+// import Cardpay from "../assets/logo/card-pay.svg";
+// import Bankpay from "../assets/logo/bank-pay.svg";
+// import Delivery from "../assets/logo/delivery.svg";
 
 import { useSelector } from "react-redux";
 import http from "../helpers/http";
@@ -104,7 +104,7 @@ const CartPayment = () => {
   console.log(transaction)
 
   const [paymentMethod, setPaymentMethod] = useState([]);
-  const [selectedPayment, setSelectedPayment] = useState(null);
+  const [, setSelectedPayment] = useState(null);
 
   const getPaymentMethod = async () => {
     const { data } = await http(token).get("/paymentMethods");
@@ -126,6 +126,7 @@ const CartPayment = () => {
 
   useEffect(() => {
     getPaymentMethod();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

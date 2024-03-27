@@ -44,6 +44,7 @@ const NewProduct = () => {
   useEffect(() => {
     getSizes();
     getDeliveryMethods();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getSizes = async () => {

@@ -33,6 +33,7 @@ const DetailsCust = () => {
     getProducts();
     getSizes();
     getDeliveryMethods();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sizeId, count, deliveryMethodId, timeArrived]);
 
   let increment = () => {
@@ -103,9 +104,9 @@ const DetailsCust = () => {
       deliveryMethodsId: deliveryMethodsId,
       timeArrived: timeArrived,
     };
-    const cb = () => {
-      navigate("/product-customer");
-    };
+    // const cb = () => {
+    //   navigate("/product-customer");
+    // };
     // dispatch(transactionAction(paramValue, cb))
 
     dispatch(transaction(paramValue));
@@ -258,7 +259,7 @@ const DetailsCust = () => {
           </section>
         </div>
         <div className="text-center mt-[50px] relative mb-[-125px]">
-          <div className="bg-white bg-white p-5 rounded-[80px] flex items-center">
+          <div className="bg-white p-5 rounded-[80px] flex items-center">
             <div className="">
               <img
                 src={require("../assets/images/drink.png")}

@@ -3,7 +3,7 @@ import Coupons from "../component/Coupons";
 import Footer from "../component/Footer";
 import NavAdmin from "../component/NavAdmin";
 
-import Edit from "../assets/logo/edit.svg";
+// import Edit from "../assets/logo/edit.svg";
 import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
@@ -12,8 +12,7 @@ import * as Icon from "react-feather";
 
 // bg-[#fbf8cc]
 const ProductAdmin = () => {
-  const [limit, setLimit] = useState(12);
-  const [pages, setPages] = useState(12);
+  const [limit,] = useState(12);
   const [menu, setMenu] = useState("Favorite");
   const [product, setProduct] = useState([]);
   const [menus, setMenus] = useState([]);
@@ -23,6 +22,7 @@ const ProductAdmin = () => {
   useEffect(() => {
     getCategories();
     getProduct();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [limit, page, menu]);
 
   const handleNext = () => {
